@@ -20,7 +20,9 @@ namespace LudumDare50
         [SerializeField, Enhanced] private PlayerIKAttributes attributes = null;
 
         private Sequence verticalSequence = null;
-        private Sequence horizontalSequence = null; 
+        private Sequence horizontalSequence = null;
+
+        public List<Ingredient> Ingredients => ingredients;
         #endregion
 
 
@@ -55,35 +57,45 @@ namespace LudumDare50
 
         public void ApplyJumpDecal(float _jumpDuration, float _horizontalVelocity)
         {
+            Stretch(_jumpDuration);
             if (_horizontalVelocity == 0) return;
+
             if (horizontalSequence.IsActive())
                 horizontalSequence.Kill(false);
+
             horizontalSequence = DOTween.Sequence();
             float _endValue = Mathf.Min(Mathf.Abs(_horizontalVelocity), attributes.HorizontalOffsetMinMax.y);
             _endValue = Mathf.Max(_endValue, attributes.HorizontalOffsetMinMax.x);
             if (_horizontalVelocity > 0)
                 _endValue *= -1;
-            float _horizontal = 0;
             for (int i = ingredients.Count; i-- > 0;)
             {
-                _horizontal += Mathf.Lerp(0, _endValue, 1f / ingredients.Count);
-                horizontalSequence.Join(ingredients[i].transform.DOLocalMoveX(_horizontal, _jumpDuration).SetEase(attributes.JumpCurve));
+                horizontalSequence.Join(ingredients[i].transform.DOLocalMoveX(Mathf.Lerp(0, _endValue, 1f - (float)i / ingredients.Count), _jumpDuration).SetEase(attributes.JumpCurve));
             }
             horizontalSequence.Play();
         }
 
         public void ApplyLandingDecal(float _landingDuration, float _instability)
         {
+            Debug.Log("Apply Landing");
             // WORK IN PROGRESS
             if (horizontalSequence.IsActive())
                 horizontalSequence.Kill(false);
 
             horizontalSequence = DOTween.Sequence();
+            float _distance = verticalOffset;
+            for (int i = 0; i < ingredients.Count; i++){
+                _distance += ingredients[i].Height;
+            }
+            Vector2 _direction = new Vector2(Mathf.Sin(attributes.InstabilityMax * _instability), Mathf.Cos(attributes.InstabilityMax * _instability)) * _distance;
+            for (int i = ingredients.Count; i-- > 0;){
+                horizontalSequence.Join(ingredients[i].transform.DOLocalMoveX(Mathf.Lerp(0, _direction.x, 1f - (float)i / ingredients.Count), _landingDuration).SetEase(attributes.JumpCurve));
+            }
+            horizontalSequence.Play();
         }
 
         public void ApplyLandingDecal(float _landingDuration, Ingredient _newIngredient)
         {
-            // WORK IN PROGRESS
             // WORK IN PROGRESS
             if (horizontalSequence.IsActive())
                 horizontalSequence.Kill(false);

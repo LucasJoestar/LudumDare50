@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54462e9e15225574fa69c7a1a7462307, type: 3}
   m_Name: PlayerIKAttributes
   m_EditorClassIdentifier: 
-  BoneLengthMinMax: {x: 0.1, y: 1.25}
+  BoneLengthMax: 1
   SquishCurve:
     serializedVersion: 2
     m_Curve:
@@ -79,7 +79,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  HorizontalOffsetMinMax: {x: 1, y: 1}
+  HorizontalOffsetMinMax: {x: 0.1, y: 0.7}
   JumpCurve:
     serializedVersion: 2
     m_Curve:
