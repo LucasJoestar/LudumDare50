@@ -70,13 +70,21 @@ namespace LudumDare50 {
         // ---------------
 
         private void UpdateMovement() {
-            if (!isPlayable || moveSequence.IsActive()) {
+            if (!isPlayable) {
                 return;
             }
 
             Vector2 input = moveInput.ReadValue<Vector2>();
+            if (moveSequence.IsActive()) {
+                if (input != Vector2.zero) {
+                    movementInput = input;
+                }
+
+                return;
+            }
+
             if (input != Vector2.zero) {
-                movementInput = input.normalized;
+                movementInput = input;
 
                 // Wait during interval.
                 moveSequence = DOTween.Sequence(); {
@@ -88,7 +96,7 @@ namespace LudumDare50 {
         private void Move() {
             Vector2 input = moveInput.ReadValue<Vector2>();
             if (input != Vector2.zero) {
-                movementInput = input.normalized;
+                movementInput = input;
             }
 
             moveSequence.Kill();
@@ -96,12 +104,14 @@ namespace LudumDare50 {
             // Move sequence.
             moveSequence = DOTween.Sequence(); {
                 Vector2 destination = thisTransform.position;
-                if (Mathf.Abs(movementInput.x) > .4f) {
-                    destination.x += GameManager.Instance.Settings.Unit * attributes.MovementUnit * Mathf.Sign(movementInput.x);
+                input = movementInput.normalized;
+
+                if (Mathf.Abs(input.x) > .4f) {
+                    destination.x += GameManager.Instance.Settings.Unit * attributes.MovementUnit * Mathf.Sign(input.x);
                 }
 
-                if (Mathf.Abs(movementInput.y) > .4f) {
-                    destination.y += GameManager.Instance.Settings.Unit * attributes.MovementUnit * Mathf.Sign(movementInput.y);
+                if (Mathf.Abs(input.y) > .4f) {
+                    destination.y += GameManager.Instance.Settings.Unit * attributes.MovementUnit * Mathf.Sign(input.y);
                 }
 
                 destination.x = Mathf.Clamp(destination.x, horizontalBounds.x, horizontalBounds.y);

@@ -35,13 +35,39 @@ namespace LudumDare50 {
         [Section("Game Manager")]
 
         [SerializeField, Enhanced, Required] public GameSettings Settings = null;
+        [SerializeField, Enhanced, Required] public new Camera camera = null;
         #endregion
 
         #region Behaviour
+        private const float TARGET_RATIO = 16f / 9f;
+        private float lastRatio = 0f;
+
+        // ---------------
+
         protected override void OnEnable() {
             Settings.Inputs.asset.Enable();
 
             base.OnEnable();
+        }
+
+        private void Update() {
+            float ratio = (float)Screen.width / Screen.height;
+            if (ratio == lastRatio)
+                return;
+
+            lastRatio = ratio;
+            float heightRatio = ratio / TARGET_RATIO;
+
+            if (heightRatio < 1f) {
+                Rect rect = new Rect(0f, (1f - heightRatio) / 2f, 1f, heightRatio);
+                camera.rect = rect;
+            } else
+              {
+                float widthRatio = 1f / heightRatio;
+
+                Rect rect = new Rect((1f - widthRatio) / 2f, 0f, widthRatio, 1f);
+                camera.rect = rect;
+            }
         }
 
         protected override void OnDisable() {
