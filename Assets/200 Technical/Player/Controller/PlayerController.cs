@@ -128,7 +128,7 @@ namespace LudumDare50 {
                 float duration = attributes.MovementDelay;
                 Vector2 velocity = destination - (Vector2)thisTransform.position;
 
-                ik.ApplyJumpDecal(duration, velocity.x);
+                ik.ApplyJumpIK(duration, velocity.x);
 
                 moveSequence.Join(thisTransform.DOMove(destination, attributes.MovementDuration).SetEase(attributes.MovementEase));
                 moveSequence.Join(root.DOLocalMoveY(attributes.MovementRootHeight, attributes.MovementDuration).SetEase(attributes.MovementRootCurve));
@@ -144,7 +144,7 @@ namespace LudumDare50 {
             }
 
             // Landing callback.
-            ik.ApplyLandingDecal(attributes.MovementLandingDuration, instability);
+            ik.ApplyLandingIK(attributes.MovementLandingDuration, instability);
 
             // Land without falling in pieces.
             int amount = Physics2D.OverlapCircle(transform.position, attributes.OverlapRadius, filter, buffer);
@@ -177,7 +177,7 @@ namespace LudumDare50 {
                 collectSequence.Join(DOVirtual.DelayedCall(duration, OnCollect, false));
             }
 
-            ik.ApplyLandingDecal(duration, ingredient);
+            ik.ApplyLandingIK(duration, ingredient);
         }
 
         private void OnCollect() {
@@ -218,7 +218,7 @@ namespace LudumDare50 {
             instability = 0f;
             isPlayable = true;
 
-            //ik.OnReset(BASE_INGREDIENT_COUNT);
+            ik.OnReset(BASE_INGREDIENT_COUNT);
         }
         #endregion
     }
