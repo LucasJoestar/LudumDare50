@@ -14,7 +14,7 @@ namespace LudumDare50
     {
         #region Global Members
         [Section("Stretch / Squish ")]
-        public Vector2 BoneLengthMinMax = Vector2.one;
+        public float BoneLengthMax = 1.0f;
         public AnimationCurve SquishCurve = AnimationCurve.Linear(0, 0, 1, 1);
         public AnimationCurve StretchCurve = AnimationCurve.Linear(0, 0, 1, 1);
 

@@ -15,7 +15,7 @@ namespace LudumDare50 {
         private const int BASE_INGREDIENT_COUNT = 1;
 
         [Section("Player Controller")]
-
+        [SerializeField, Enhanced, Required] private PlayerIK playerIK = null;  
         [SerializeField, Enhanced, Required] private PlayerControllerAttributes attributes = null;
         [SerializeField, Enhanced, Required] private Transform root = null;
 
@@ -77,7 +77,7 @@ namespace LudumDare50 {
             Vector2 input = moveInput.ReadValue<Vector2>();
             if (input != Vector2.zero) {
                 movementInput = input.normalized;
-
+                playerIK.Squish(attributes.MovementDelay);
                 // Wait during interval.
                 moveSequence = DOTween.Sequence(); {
                     moveSequence.Join(DOVirtual.DelayedCall(attributes.MovementDelay, Move, false));
@@ -92,7 +92,8 @@ namespace LudumDare50 {
             }
 
             moveSequence.Kill();
-
+            playerIK.Stretch(attributes.MovementDuration);
+            playerIK.ApplyJumpDecal(attributes.MovementDuration, movementInput.x);
             // Move sequence.
             moveSequence = DOTween.Sequence(); {
                 Vector2 destination = thisTransform.position;
@@ -177,7 +178,9 @@ namespace LudumDare50 {
             ingredientCount = BASE_INGREDIENT_COUNT;
             instability = 0f;
             isPlayable = true;
+            //playerIK.OnReset(BASE_INGREDIENT_COUNT);
         }
         #endregion
     }
 }
+    

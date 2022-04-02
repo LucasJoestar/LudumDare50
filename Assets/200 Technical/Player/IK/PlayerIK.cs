@@ -48,13 +48,14 @@ namespace LudumDare50
             // Stretch 
             for (int i = ingredients.Count; i-- > 0;)
             {
-                verticalSequence.Join(ingredients[i].transform.DOLocalMoveY(attributes.BoneLengthMinMax.y * (i + 1), _stretchDuration).SetEase(attributes.StretchCurve));
+                verticalSequence.Join(ingredients[i].transform.DOLocalMoveY(attributes.BoneLengthMax * (ingredients.Count - i), _stretchDuration).SetEase(attributes.StretchCurve));
             }
             verticalSequence.Play();
         }
 
         public void ApplyJumpDecal(float _jumpDuration, float _horizontalVelocity)
         {
+            if (_horizontalVelocity == 0) return;
             if (horizontalSequence.IsActive())
                 horizontalSequence.Kill(false);
             horizontalSequence = DOTween.Sequence();
@@ -62,10 +63,10 @@ namespace LudumDare50
             _endValue = Mathf.Max(_endValue, attributes.HorizontalOffsetMinMax.x);
             if (_horizontalVelocity > 0)
                 _endValue *= -1;
-            float _horizontal = 0.0f; 
-            for (int i = 0; i< ingredients.Count; i++)
+            float _horizontal = 0;
+            for (int i = ingredients.Count; i-- > 0;)
             {
-                _horizontal += Mathf.Lerp(0, _endValue, (1 / ingredients.Count) * (i + 1));
+                _horizontal += Mathf.Lerp(0, _endValue, 1f / ingredients.Count);
                 horizontalSequence.Join(ingredients[i].transform.DOLocalMoveX(_horizontal, _jumpDuration).SetEase(attributes.JumpCurve));
             }
             horizontalSequence.Play();
@@ -73,6 +74,7 @@ namespace LudumDare50
 
         public void ApplyLandingDecal(float _landingDuration, float _instability)
         {
+            // WORK IN PROGRESS
             if (horizontalSequence.IsActive())
                 horizontalSequence.Kill(false);
 
@@ -81,6 +83,8 @@ namespace LudumDare50
 
         public void ApplyLandingDecal(float _landingDuration, Ingredient _newIngredient)
         {
+            // WORK IN PROGRESS
+            // WORK IN PROGRESS
             if (horizontalSequence.IsActive())
                 horizontalSequence.Kill(false);
             horizontalSequence = DOTween.Sequence();
