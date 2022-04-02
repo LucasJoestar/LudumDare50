@@ -12,6 +12,8 @@ using Range = EnhancedEditor.RangeAttribute;
 namespace LudumDare50 {
     public class PlayerController : Singleton<PlayerController> {
         #region Global Members
+        private const int BASE_INGREDIENT_COUNT = 1;
+
         [Section("Player Controller")]
 
         [SerializeField, Enhanced, Required] private PlayerControllerAttributes attributes = null;
@@ -24,8 +26,9 @@ namespace LudumDare50 {
 
         [Space(10f)]
 
+        [SerializeField, Enhanced, ReadOnly] private bool isPlayable = true;
         [SerializeField, Enhanced, ReadOnly, Range(0f, 1f)] private float instability = 0f;
-        [SerializeField, Enhanced] private int ingredientCount = 1;
+        [SerializeField, Enhanced, ReadOnly] private int ingredientCount = BASE_INGREDIENT_COUNT;
 
         // ---------------
 
@@ -43,8 +46,14 @@ namespace LudumDare50 {
             thisTransform = transform;
             initialPosition = thisTransform.position;
 
+            filter.useTriggers = true;
+            filter.useLayerMask = true;
+            filter.layerMask = attributes.LayerMask;
+
             // Get inputs.
             moveInput = GameManager.Instance.Settings.Inputs.asset.FindAction(attributes.MoveInput, true);
+
+            ResetBehaviour();
         }
 
         private void Update() {
@@ -61,7 +70,7 @@ namespace LudumDare50 {
         // ---------------
 
         private void UpdateMovement() {
-            if (moveSequence.IsActive()) {
+            if (!isPlayable || moveSequence.IsActive()) {
                 return;
             }
 
@@ -71,7 +80,7 @@ namespace LudumDare50 {
 
                 // Wait during interval.
                 moveSequence = DOTween.Sequence(); {
-                    moveSequence.Join(DOVirtual.DelayedCall(attributes.MovementDelay, Move));
+                    moveSequence.Join(DOVirtual.DelayedCall(attributes.MovementDelay, Move, false));
                 }
             }
         }
@@ -122,14 +131,26 @@ namespace LudumDare50 {
         #endregion
 
         #region Ingredient
-        /*private void Collect(Ingredient ingredient) {
+        private Sequence collectSequence = null;
 
-        }*/
+        // ---------------
+
+        private void Collect(/*Ingredient ingredient*/) {
+            isPlayable = false;
+
+            collectSequence = DOTween.Sequence(); {
+                collectSequence.Join(DOVirtual.DelayedCall(attributes.CollectDuration, OnCollect, false));
+            }
+        }
+
+        private void OnCollect() {
+            isPlayable = true;
+        }
         #endregion
 
         #region Lifetime
         private void Splash() {
-
+            isPlayable = false;
         }
         #endregion
 
@@ -141,7 +162,21 @@ namespace LudumDare50 {
 
         #region Reset
         public void ResetBehaviour() {
+            // Stop all tween and sequences.
+            if (moveSequence.IsActive()) {
+                collectSequence.Complete(false);
+            }
+
+            if (collectSequence.IsActive()) {
+                collectSequence.Complete(false);
+            }
+
+            // Reset the whole behaviour.
             thisTransform.position = initialPosition;
+
+            ingredientCount = BASE_INGREDIENT_COUNT;
+            instability = 0f;
+            isPlayable = true;
         }
         #endregion
     }

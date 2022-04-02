@@ -13,6 +13,14 @@ namespace LudumDare50 {
     public class PlayerControllerAttributes : ScriptableObject {
         [Section("Player Controller Attributes")]
 
+        #region Collision
+        [Enhanced, BeginFoldout("Collision"), Section("Collision")]
+
+        public LayerMask LayerMask = new LayerMask();
+
+        [Enhanced, EndFoldout, Range(0f, 1f)] public float OverlapRadius = .2f;
+        #endregion
+
         #region Inputs
         [Enhanced, BeginFoldout("Inputs"), Section("Inputs")]
 
@@ -36,10 +44,10 @@ namespace LudumDare50 {
         [Enhanced, EndFoldout] public Ease MovementEase = Ease.Linear;
         #endregion
 
-        #region Collision
-        [Enhanced, BeginFoldout("Collision"), Section("Collision")]
+        #region Collect
+        [Enhanced, BeginFoldout("Collect"), Section("Collect")]
 
-        [EndFoldout, Range(0f, 1f)] public float OverlapRadius = .2f;
+        [EndFoldout, Range(0f, 5f)] public float CollectDuration = .5f;
         #endregion
     }
 }
