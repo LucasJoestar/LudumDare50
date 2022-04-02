@@ -299,7 +299,6 @@ GameObject:
   - component: {fileID: 1153116278}
   - component: {fileID: 1153116281}
   - component: {fileID: 1153116280}
-  - component: {fileID: 1153116279}
   m_Layer: 0
   m_Name: Background Camera
   m_TagString: Untagged
@@ -321,14 +320,6 @@ Transform:
   m_Father: {fileID: 1622195449}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!81 &1153116279
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1153116277}
-  m_Enabled: 1
 --- !u!20 &1153116280
 Camera:
   m_ObjectHideFlags: 0
@@ -642,7 +633,7 @@ MonoBehaviour:
   Tags:
     Tags: []
   lastModifiedBy: Lucas
-  lastModifiedDate: 02/04/2022 21:27:23
+  lastModifiedDate: 02/04/2022 21:41:25
   IsPersistent: 0
 --- !u!114 &2055282802 stripped
 MonoBehaviour:
@@ -666,7 +657,6 @@ GameObject:
   - component: {fileID: 2057722759}
   - component: {fileID: 2057722760}
   - component: {fileID: 2057722758}
-  - component: {fileID: 2057722757}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -674,14 +664,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &2057722757
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2057722756}
-  m_Enabled: 1
 --- !u!20 &2057722758
 Camera:
   m_ObjectHideFlags: 0
@@ -755,7 +737,7 @@ MonoBehaviour:
   Tags:
     Tags: []
   lastModifiedBy: Lucas
-  lastModifiedDate: 02/04/2022 21:27:23
+  lastModifiedDate: 02/04/2022 21:41:25
   IsPersistent: 0
 --- !u!1001 &3732182923428171056
 PrefabInstance:
@@ -778,7 +760,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3732182922343307832, guid: 338ad29048c189f47bd11d4f5a921cf7, type: 3}
       propertyPath: lastModifiedDate
-      value: 02/04/2022 21:30:36
+      value: 02/04/2022 21:51:34
       objectReference: {fileID: 0}
     - target: {fileID: 3732182922343307833, guid: 338ad29048c189f47bd11d4f5a921cf7, type: 3}
       propertyPath: m_RootOrder
@@ -822,7 +804,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3732182922343307833, guid: 338ad29048c189f47bd11d4f5a921cf7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+      value: 14.368
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 338ad29048c189f47bd11d4f5a921cf7, type: 3}

@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Puff
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 0
+      generateMipMaps: 0
+      readable: 1
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 64
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: c339580ef8fc95145b5cd66f8a639f07, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 86896ea098503364ca5ed72540a6666d, type: 3}
+  - {fileID: 21300000, guid: 941204e1c7b17dc45a56d6f970bff3b9, type: 3}
+  - {fileID: 21300000, guid: 68be6db2c3e69b94a968662a4aaf53aa, type: 3}
+  - {fileID: 21300000, guid: ff57a4c40c1bc6b4a8339a08e8bcb493, type: 3}
+  - {fileID: 21300000, guid: 9fbfe525cb6323d4bac337831f05c9f9, type: 3}
+  - {fileID: 21300000, guid: bd81ac078e1cf1a44bf6357d5d882a27, type: 3}
+  - {fileID: 21300000, guid: 79cd534af03f8fa47b37780445784b2f, type: 3}
+  - {fileID: 21300000, guid: eb49037aa2a6b044aa5583d623d5a9e2, type: 3}
+  - {fileID: 21300000, guid: 9bcc4f2c42b64b5439a940669f5dddc8, type: 3}
+  - {fileID: 21300000, guid: 460aed0ee357cb54c857276a44581267, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - Puff-3
+  - Puff-4
+  - Puff-10
+  - Puff-7
+  - Puff-5
+  - Puff-2
+  - Puff-6
+  - Puff-8
+  - Puff-1
+  - Puff-9
+  m_RenderDataMap: {}
+  m_Tag: Puff
+  m_IsVariant: 0

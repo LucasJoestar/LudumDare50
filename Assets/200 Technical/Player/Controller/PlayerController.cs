@@ -87,7 +87,7 @@ namespace LudumDare50 {
             if (input != Vector2.zero) {
                 float duration = attributes.MovementDelay;
 
-                ik.Squish(duration);
+                ik.Squash(duration);
                 movementInput = input;
 
                 // Wait during interval.
@@ -173,6 +173,7 @@ namespace LudumDare50 {
         #region Status
         private void Splash() {
             // IK callback goes here.
+            ik.Splash(1f);
 
             isPlayable = false;
         }
