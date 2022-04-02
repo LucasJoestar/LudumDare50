@@ -28,7 +28,7 @@ namespace LudumDare50 {
         [Space(10f)]
 
         [SerializeField, Enhanced, ReadOnly] private bool isPlayable = true;
-        [SerializeField, Enhanced, ReadOnly, Range(0f, 1f)] private float instability = 0f;
+        [SerializeField, Enhanced, ReadOnly, Range(-1f, 1f)] private float instability = 0f;
         [SerializeField, Enhanced, ReadOnly] private int ingredientCount = BASE_INGREDIENT_COUNT;
 
         // ---------------
@@ -138,7 +138,7 @@ namespace LudumDare50 {
         }
 
         private void Land() {
-            if (instability == 1f) {
+            if (Mathf.Abs(instability) == 1f) {
                 Splash();
                 return;
             }

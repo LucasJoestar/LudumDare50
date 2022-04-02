@@ -35,7 +35,8 @@ namespace LudumDare50 {
         [Section("Game Manager")]
 
         [SerializeField, Enhanced, Required] public GameSettings Settings = null;
-        [SerializeField, Enhanced, Required] public new Camera camera = null;
+        [SerializeField, Enhanced, Required] public Camera mainCamera = null;
+        [SerializeField, Enhanced, Required] public Camera renderCamera = null;
         #endregion
 
         #region Behaviour
@@ -45,6 +46,7 @@ namespace LudumDare50 {
         // ---------------
 
         protected override void OnEnable() {
+            Cursor.visible = false;
             Settings.Inputs.asset.Enable();
 
             base.OnEnable();
@@ -60,13 +62,15 @@ namespace LudumDare50 {
 
             if (heightRatio < 1f) {
                 Rect rect = new Rect(0f, (1f - heightRatio) / 2f, 1f, heightRatio);
-                camera.rect = rect;
+                mainCamera.rect = rect;
+                renderCamera.rect = rect;
             } else
               {
                 float widthRatio = 1f / heightRatio;
 
                 Rect rect = new Rect((1f - widthRatio) / 2f, 0f, widthRatio, 1f);
-                camera.rect = rect;
+                mainCamera.rect = rect;
+                renderCamera.rect = rect;
             }
         }
 

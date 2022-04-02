@@ -25,3 +25,9 @@ MonoBehaviour:
     GUID: b05f6dd2b494ddc408dad2ef42d2447e
   - Name: SampleScene
     GUID: b2e6d86bc4a6a714586e4a1828a5e79d
+  - Name: DOTweenAnimation_Advanced
+    GUID: a5f7a56d339da84449899ecf95fbe33d
+  - Name: DOTweenAnimation_Basics
+    GUID: 6a2ad353325ffe64983c28d69a8738f5
+  - Name: DOTweenPath
+    GUID: a351b59ca54a0bc4083c35844da13a61
