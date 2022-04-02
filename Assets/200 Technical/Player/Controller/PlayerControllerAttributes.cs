@@ -45,8 +45,13 @@ namespace LudumDare50 {
         [Enhanced, EndFoldout] public Ease MovementEase = Ease.Linear;
         #endregion
 
-        #region Collect
-        [Enhanced, BeginFoldout("Collect"), Section("Collect")]
+        #region Ingredient
+        [Enhanced, BeginFoldout("Ingredient"), Section("Ingredient")]
+
+        public LayerMask IngredienMask = new LayerMask();
+        public LayerMask PlayerMask = new LayerMask();
+
+        [Space(10f)]
 
         [EndFoldout, Range(0f, 5f)] public float CollectDuration = .5f;
         #endregion
