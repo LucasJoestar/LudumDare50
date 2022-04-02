@@ -13,9 +13,21 @@ namespace LudumDare50
 	public class PlayerIKAttributes : ScriptableObject
     {
         #region Global Members
-        [Section("PlayerIKAttributes")]
+        [Section("Stretch / Squish ")]
+        public Vector2 BoneLengthMinMax = Vector2.one;
+        public AnimationCurve SquishCurve = AnimationCurve.Linear(0, 0, 1, 1);
+        public AnimationCurve StretchCurve = AnimationCurve.Linear(0, 0, 1, 1);
 
-        [SerializeField, Enhanced, Range(0f, 1f)] private float variable = 1f;
+        [Section("Jump")]
+        public Vector2 HorizontalOffsetMinMax = Vector2.one;
+        public AnimationCurve JumpCurve = AnimationCurve.Linear(0,0,1,1);
+
+        [Section("Landing")]
+        public AnimationCurve LandingCurve = AnimationCurve.Linear(0,0,1,1);
+        public AnimationCurve InstabilityCurve = AnimationCurve.Linear(0,0,1,1);
+        public float InstabilityMax = 45.0f;
+        
+        
         #endregion
     }
 }
