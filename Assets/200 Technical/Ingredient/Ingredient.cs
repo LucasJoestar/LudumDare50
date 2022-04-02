@@ -14,8 +14,10 @@ namespace LudumDare50
         #region Global Members
         [Section("Ingredient")]
 
+        [SerializeField, Enhanced, Required] public EnhancedBehaviour Behaviour = null;
         [SerializeField, Enhanced, Range(0f, 1f)] private float height = 1.0f;
-        public float Height => height; 
+
+        public float Height => height;
         #endregion
     }
 }

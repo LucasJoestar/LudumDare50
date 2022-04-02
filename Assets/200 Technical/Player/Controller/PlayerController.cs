@@ -54,6 +54,10 @@ namespace LudumDare50 {
             // Get inputs.
             moveInput = GameManager.Instance.Settings.Inputs.asset.FindAction(attributes.MoveInput, true);
 
+            foreach (var ingredient in gameObject.GetComponentsInChildren<Ingredient>()) {
+                ingredient.gameObject.layer = attributes.PlayerMask;
+            }
+
             ResetBehaviour();
         }
 
@@ -128,6 +132,8 @@ namespace LudumDare50 {
 
                 moveSequence.Join(thisTransform.DOMove(destination, attributes.MovementDuration).SetEase(attributes.MovementEase));
                 moveSequence.Join(root.DOLocalMoveY(attributes.MovementRootHeight, attributes.MovementDuration).SetEase(attributes.MovementRootCurve));
+
+                moveSequence.OnComplete(Land);
             }
         }
 
@@ -160,9 +166,18 @@ namespace LudumDare50 {
         private void Collect(Ingredient ingredient) {
             isPlayable = false;
 
-            collectSequence = DOTween.Sequence(); {
-                collectSequence.Join(DOVirtual.DelayedCall(attributes.CollectDuration, OnCollect, false));
+            if (collectSequence.IsActive()) {
+                collectSequence.Complete(false);
             }
+
+            float duration = attributes.CollectDuration;
+            ingredient.gameObject.layer = attributes.PlayerMask;
+
+            collectSequence = DOTween.Sequence(); {
+                collectSequence.Join(DOVirtual.DelayedCall(duration, OnCollect, false));
+            }
+
+            ik.ApplyLandingDecal(duration, ingredient);
         }
 
         private void OnCollect() {
@@ -189,7 +204,7 @@ namespace LudumDare50 {
         public void ResetBehaviour() {
             // Stop all tween and sequences.
             if (moveSequence.IsActive()) {
-                collectSequence.Complete(false);
+                moveSequence.Complete(false);
             }
 
             if (collectSequence.IsActive()) {
