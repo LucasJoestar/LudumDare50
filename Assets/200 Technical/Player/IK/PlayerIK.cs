@@ -25,7 +25,7 @@ namespace LudumDare50
 
 
         #region Methods
-        public void Squish(float _squishDuration)
+        public void Squash(float _squishDuration)
         {
             if(verticalSequence.IsActive())
                 verticalSequence.Kill(false);
@@ -88,6 +88,10 @@ namespace LudumDare50
             if (horizontalSequence.IsActive())
                 horizontalSequence.Kill(false);
             horizontalSequence = DOTween.Sequence();
+        }
+
+        public void Splash(float _splashDuration) {
+
         }
         #endregion
 
