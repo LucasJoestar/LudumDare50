@@ -687,9 +687,9 @@ GameObject:
   - component: {fileID: 3732182922343307833}
   - component: {fileID: 3732182922343307832}
   - component: {fileID: 3732182922343307831}
+  - component: {fileID: 1055570206971128109}
   - component: {fileID: 3732182922343307830}
   - component: {fileID: 3732182922343307829}
-  - component: {fileID: 1055570206971128109}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -743,14 +743,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6c29a97b0862b74a867672563f23b09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerIK: {fileID: 1055570206971128109}
   attributes: {fileID: 11400000, guid: e92f50e7754dcf3478bc8fbe1927a983, type: 2}
+  ik: {fileID: 1055570206971128109}
   root: {fileID: 3732182922525175221}
   horizontalBounds: {x: -7, y: 7}
   verticalBounds: {x: -4, y: 3}
   isPlayable: 1
   instability: 0
   ingredientCount: 1
+--- !u!114 &1055570206971128109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3732182922343307828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57d53d3eaaba2844f87113127ff4811b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ingredients:
+  - {fileID: 6264695695831527701}
+  - {fileID: 6339158422609558184}
+  - {fileID: 1256008974932773603}
+  - {fileID: 1099591758012999578}
+  verticalOffset: 0.25
+  attributes: {fileID: 11400000, guid: 791ed888928dcd14cae7672d9fd560e9, type: 2}
 --- !u!61 &3732182922343307830
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -798,25 +817,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &1055570206971128109
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3732182922343307828}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57d53d3eaaba2844f87113127ff4811b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ingredients:
-  - {fileID: 6264695695831527701}
-  - {fileID: 6339158422609558184}
-  - {fileID: 1256008974932773603}
-  - {fileID: 1099591758012999578}
-  verticalOffset: 0.25
-  attributes: {fileID: 11400000, guid: 791ed888928dcd14cae7672d9fd560e9, type: 2}
 --- !u!1 &3732182922525175220
 GameObject:
   m_ObjectHideFlags: 0
