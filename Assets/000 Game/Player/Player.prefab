@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 71709442}
   - component: {fileID: 71709444}
   - component: {fileID: 71709443}
+  - component: {fileID: 6339158422609558184}
   m_Layer: 0
   m_Name: Salad
   m_TagString: Untagged
@@ -48,7 +49,7 @@ MonoBehaviour:
   Tags:
     Tags: []
   lastModifiedBy: ALIEN_3D2
-  lastModifiedDate: 02/04/2022 16:53:14
+  lastModifiedDate: 02/04/2022 18:32:51
   IsPersistent: 0
 --- !u!212 &71709443
 SpriteRenderer:
@@ -101,6 +102,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &6339158422609558184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 71709441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fe26a55695bcb3459510751ffadfd34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  height: 0.1
 --- !u!1 &576418466
 GameObject:
   m_ObjectHideFlags: 0
@@ -112,6 +126,7 @@ GameObject:
   - component: {fileID: 576418467}
   - component: {fileID: 576418469}
   - component: {fileID: 576418468}
+  - component: {fileID: 6264695695831527701}
   m_Layer: 0
   m_Name: Top
   m_TagString: Untagged
@@ -149,7 +164,7 @@ MonoBehaviour:
   Tags:
     Tags: []
   lastModifiedBy: ALIEN_3D2
-  lastModifiedDate: 02/04/2022 16:53:14
+  lastModifiedDate: 02/04/2022 18:32:55
   IsPersistent: 0
 --- !u!212 &576418468
 SpriteRenderer:
@@ -202,6 +217,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &6264695695831527701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 576418466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fe26a55695bcb3459510751ffadfd34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  height: 0.25
 --- !u!1 &1289372273
 GameObject:
   m_ObjectHideFlags: 0
@@ -213,6 +241,7 @@ GameObject:
   - component: {fileID: 1289372274}
   - component: {fileID: 1289372276}
   - component: {fileID: 1289372275}
+  - component: {fileID: 2750943993463931848}
   m_Layer: 0
   m_Name: Bottom
   m_TagString: Untagged
@@ -250,7 +279,7 @@ MonoBehaviour:
   Tags:
     Tags: []
   lastModifiedBy: ALIEN_3D2
-  lastModifiedDate: 02/04/2022 16:53:14
+  lastModifiedDate: 02/04/2022 18:32:38
   IsPersistent: 0
 --- !u!212 &1289372275
 SpriteRenderer:
@@ -303,6 +332,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2750943993463931848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1289372273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fe26a55695bcb3459510751ffadfd34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  height: 0.25
 --- !u!1 &1877897087
 GameObject:
   m_ObjectHideFlags: 0
@@ -314,6 +356,7 @@ GameObject:
   - component: {fileID: 1877897088}
   - component: {fileID: 1877897090}
   - component: {fileID: 1877897089}
+  - component: {fileID: 1256008974932773603}
   m_Layer: 0
   m_Name: Steak
   m_TagString: Untagged
@@ -351,7 +394,7 @@ MonoBehaviour:
   Tags:
     Tags: []
   lastModifiedBy: ALIEN_3D2
-  lastModifiedDate: 02/04/2022 16:53:14
+  lastModifiedDate: 02/04/2022 18:32:47
   IsPersistent: 0
 --- !u!212 &1877897089
 SpriteRenderer:
@@ -404,6 +447,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1256008974932773603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1877897087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fe26a55695bcb3459510751ffadfd34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  height: 0.1
 --- !u!1 &1919778426
 GameObject:
   m_ObjectHideFlags: 0
@@ -415,6 +471,7 @@ GameObject:
   - component: {fileID: 1919778427}
   - component: {fileID: 1919778429}
   - component: {fileID: 1919778428}
+  - component: {fileID: 1099591758012999578}
   m_Layer: 0
   m_Name: Chease
   m_TagString: Untagged
@@ -452,7 +509,7 @@ MonoBehaviour:
   Tags:
     Tags: []
   lastModifiedBy: ALIEN_3D2
-  lastModifiedDate: 02/04/2022 16:53:14
+  lastModifiedDate: 02/04/2022 18:32:43
   IsPersistent: 0
 --- !u!212 &1919778428
 SpriteRenderer:
@@ -505,6 +562,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1099591758012999578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1919778426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fe26a55695bcb3459510751ffadfd34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  height: 0.1
 --- !u!1 &3732182922183648417
 GameObject:
   m_ObjectHideFlags: 0
@@ -619,6 +689,7 @@ GameObject:
   - component: {fileID: 3732182922343307831}
   - component: {fileID: 3732182922343307830}
   - component: {fileID: 3732182922343307829}
+  - component: {fileID: 1055570206971128109}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -658,7 +729,7 @@ MonoBehaviour:
   Tags:
     Tags: []
   lastModifiedBy: ALIEN_3D2
-  lastModifiedDate: 02/04/2022 16:55:07
+  lastModifiedDate: 02/04/2022 18:26:46
   IsPersistent: 0
 --- !u!114 &3732182922343307831
 MonoBehaviour:
@@ -672,10 +743,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6c29a97b0862b74a867672563f23b09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerIK: {fileID: 1055570206971128109}
   attributes: {fileID: 11400000, guid: e92f50e7754dcf3478bc8fbe1927a983, type: 2}
   root: {fileID: 3732182922525175221}
   horizontalBounds: {x: -7, y: 7}
   verticalBounds: {x: -4, y: 3}
+  isPlayable: 1
+  instability: 0
+  ingredientCount: 1
 --- !u!61 &3732182922343307830
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -723,6 +798,25 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1055570206971128109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3732182922343307828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57d53d3eaaba2844f87113127ff4811b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ingredients:
+  - {fileID: 6264695695831527701}
+  - {fileID: 6339158422609558184}
+  - {fileID: 1256008974932773603}
+  - {fileID: 1099591758012999578}
+  verticalOffset: 0.25
+  attributes: {fileID: 11400000, guid: 791ed888928dcd14cae7672d9fd560e9, type: 2}
 --- !u!1 &3732182922525175220
 GameObject:
   m_ObjectHideFlags: 0
