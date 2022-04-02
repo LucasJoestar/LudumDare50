@@ -31,7 +31,8 @@ namespace LudumDare50 {
         [Enhanced, BeginFoldout("Movement"), Section("Movement")]
 
         [Range(0f, 1f)] public float MovementDelay = 0f;
-        [Enhanced, Range(0f, 5f)] public float MovementDuration = 0f;
+        [Enhanced, Range(0f, 5f)] public float MovementDuration = 1f;
+        [Enhanced, Range(0f, 5f)] public float MovementLandingDuration = 1f;
 
         [Space(10f)]
 
