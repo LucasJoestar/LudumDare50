@@ -19,7 +19,7 @@ MonoBehaviour:
   MoveInput: Player/Move
   MovementDelay: 0.171
   MovementDuration: 0.53
-  MovementLandingDuration: 1
+  MovementLandingDuration: 0.15
   MovementRootHeight: 1.2
   MovementUnit: 1
   MovementRootCurve:
@@ -58,8 +58,8 @@ MonoBehaviour:
   MovementEase: 10
   IngredienMask:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 0
   PlayerMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 0
   CollectDuration: 1

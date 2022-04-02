@@ -15,11 +15,12 @@ namespace LudumDare50
         #region Global Members
         [Section("Stretch / Squish ")]
         public float BoneLengthMax = 1.0f;
-        public AnimationCurve SquishCurve = AnimationCurve.Linear(0, 0, 1, 1);
+        public AnimationCurve SquashCurve = AnimationCurve.Linear(0, 0, 1, 1);
+        public float SquashMultiplier = .1f;
         public AnimationCurve StretchCurve = AnimationCurve.Linear(0, 0, 1, 1);
 
         [Section("Jump")]
-        public Vector2 HorizontalOffsetMinMax = Vector2.one;
+        public float HorizontalOffset = .1f;
         public AnimationCurve JumpCurve = AnimationCurve.Linear(0,0,1,1);
 
         [Section("Landing")]
