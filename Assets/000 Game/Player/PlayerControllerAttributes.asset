@@ -17,7 +17,7 @@ MonoBehaviour:
     m_Bits: 129
   OverlapRadius: 0.2
   MoveInput: Player/Move
-  MovementDelay: 0.171
+  MovementDelay: 0.2
   MovementDuration: 0.53
   MovementLandingDuration: 0.15
   MovementRootHeight: 1.2

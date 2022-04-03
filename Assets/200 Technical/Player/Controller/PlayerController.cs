@@ -12,7 +12,7 @@ using Range = EnhancedEditor.RangeAttribute;
 namespace LudumDare50 {
     public class PlayerController : Singleton<PlayerController> {
         #region Global Members
-        private const int BASE_INGREDIENT_COUNT = 1;
+        private const int BASE_INGREDIENT_COUNT = 2;
 
         [Section("Player Controller")]
 
@@ -152,8 +152,9 @@ namespace LudumDare50 {
             int amount = Physics2D.OverlapCircle(transform.position, attributes.OverlapRadius, filter, buffer);
             for (int i = 0; i < amount; i++) {
                 Collider2D collider = buffer[i];
+                Transform parent = collider.transform.parent;
 
-                if (collider.TryGetComponent(out Bonus bonus)) {
+                if (!ReferenceEquals(parent, null) && parent.TryGetComponent(out Bonus bonus)) {
                     UIManager.Instance.IncreaseScore(this, bonus.Score);
 
                     if (bonus is Ingredient ingredient) {
@@ -202,7 +203,11 @@ namespace LudumDare50 {
 
         #region Trigger
         public void EnterTrigger(Collider2D collision) {
+            if (!isPlayable)
+                return;
+
             // Implement behaviour here.
+            // If collision get component Pattern --> Die.
         }
         #endregion
 

@@ -12,7 +12,10 @@ namespace LudumDare50 {
         #region Global Members
         [Section("Bonus")]
 
+        [SerializeField, Enhanced, Required] public SpriteRenderer feedback = null;
         [SerializeField, Enhanced, Range(0f, 100000f)] public float Score = 100f;
         #endregion
+
+
     }
 }
