@@ -4,34 +4,34 @@ TextureImporter:
   internalIDToNameTable:
   - first:
       213: -700770602373854372
-    second: Burger_SpriteSheet_0
+    second: Burger_Top
   - first:
       213: -1095541661701470815
-    second: Burger_SpriteSheet_1
+    second: Steak
   - first:
       213: 696576482084890615
-    second: Burger_SpriteSheet_2
+    second: Salad
   - first:
       213: -1993949082032642160
-    second: Burger_SpriteSheet_3
+    second: Burger_Bottom
   - first:
       213: -898415424234537470
-    second: Burger_SpriteSheet_4
+    second: Tomato
   - first:
       213: 6376549087761771215
-    second: Burger_SpriteSheet_5
+    second: Cheese
   - first:
       213: -5149184257344873937
-    second: Burger_SpriteSheet_6
+    second: Hand01
   - first:
       213: -955132254257116892
-    second: Burger_SpriteSheet_7
+    second: Hand02
   - first:
       213: -7104190069732699558
-    second: Burger_SpriteSheet_8
+    second: Knife
   - first:
       213: 5619074069039827861
-    second: Burger_SpriteSheet_9
+    second: Fork
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -133,7 +133,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Burger_SpriteSheet_0
+      name: Burger_Top
       rect:
         serializedVersion: 2
         x: 96
@@ -141,7 +141,7 @@ TextureImporter:
         width: 512
         height: 288
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -154,7 +154,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Burger_SpriteSheet_1
+      name: Steak
       rect:
         serializedVersion: 2
         x: 800
@@ -162,7 +162,7 @@ TextureImporter:
         width: 384
         height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -175,7 +175,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Burger_SpriteSheet_2
+      name: Salad
       rect:
         serializedVersion: 2
         x: 1408
@@ -183,7 +183,7 @@ TextureImporter:
         width: 464
         height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -196,7 +196,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Burger_SpriteSheet_3
+      name: Burger_Bottom
       rect:
         serializedVersion: 2
         x: 144
@@ -204,7 +204,7 @@ TextureImporter:
         width: 384
         height: 176
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -217,7 +217,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Burger_SpriteSheet_4
+      name: Tomato
       rect:
         serializedVersion: 2
         x: 768
@@ -225,7 +225,7 @@ TextureImporter:
         width: 416
         height: 240
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -238,7 +238,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Burger_SpriteSheet_5
+      name: Cheese
       rect:
         serializedVersion: 2
         x: 1376
@@ -246,7 +246,7 @@ TextureImporter:
         width: 480
         height: 272
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -259,7 +259,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Burger_SpriteSheet_6
+      name: Hand01
       rect:
         serializedVersion: 2
         x: 176
@@ -267,7 +267,7 @@ TextureImporter:
         width: 416
         height: 640
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -280,7 +280,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Burger_SpriteSheet_7
+      name: Hand02
       rect:
         serializedVersion: 2
         x: 816
@@ -288,7 +288,7 @@ TextureImporter:
         width: 464
         height: 576
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -301,7 +301,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Burger_SpriteSheet_8
+      name: Knife
       rect:
         serializedVersion: 2
         x: 1392
@@ -309,7 +309,7 @@ TextureImporter:
         width: 144
         height: 864
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -322,7 +322,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Burger_SpriteSheet_9
+      name: Fork
       rect:
         serializedVersion: 2
         x: 1664
@@ -330,7 +330,7 @@ TextureImporter:
         width: 176
         height: 800
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
