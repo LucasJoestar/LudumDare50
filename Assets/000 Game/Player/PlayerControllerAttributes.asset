@@ -58,8 +58,8 @@ MonoBehaviour:
   MovementEase: 10
   IngredienMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   PlayerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   CollectDuration: 1

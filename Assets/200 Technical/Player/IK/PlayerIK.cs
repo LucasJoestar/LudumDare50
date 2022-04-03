@@ -27,33 +27,38 @@ namespace LudumDare50
 
 
         #region Methods
+        /// <summary>
+        /// Called when a new ingredient is added to the burger
+        /// </summary>
+        /// <param name="_duration">Duration of the sequence</param>
+        /// <param name="_newIngredient">New Ingredient to add</param>
         private void AddNewIngredient(float _duration, Ingredient _newIngredient)
         {
-            Debug.Log("IMPROVE THIS METHOD");
             ingredients.Add(_newIngredient);
-            verticalSequence.AppendInterval(0);
+            _newIngredient.transform.SetParent(transform);
             float _height = verticalOffset;
             // Jump
+            verticalSequence.AppendInterval(0);
             for (int i = ingredients.Count; i-- > 0;)
             {
                 _height += ingredients[i].Height;
                 verticalSequence.Join(ingredients[i].transform.DOLocalMoveY(_height + attributes.BoneLengthMax * (ingredients.Count - i), _duration/2).SetEase(attributes.StretchCurve));
-
-                verticalSequence.Join(transform.DOScaleY(1, _duration/2).SetEase(attributes.SquashCurve));
-                verticalSequence.Join(transform.DOScaleX(1, _duration/2).SetEase(attributes.SquashCurve));
             }
-            _height = verticalOffset;
-            verticalSequence.AppendInterval(0);
+            horizontalSequence.Append(_newIngredient.transform.DOLocalMoveX(0, _duration/2).SetEase(attributes.HorizontalIngredientCurve));
             // Squash
+            verticalSequence.AppendInterval(0);
+            _height = verticalOffset;
             for (int i = ingredients.Count; i-- > 0;)
             {
                 verticalSequence.Join(ingredients[i].transform.DOLocalMoveY(_height, _duration/2).SetEase(attributes.SquashCurve));
                 _height += ingredients[i].Height;
             }
-            verticalSequence.Join(transform.DOScaleY(1.0f - attributes.SquashMultiplier, _duration/2).SetEase(attributes.SquashCurve));
-            verticalSequence.Join(transform.DOScaleX(1.0f + attributes.SquashMultiplier, _duration/2).SetEase(attributes.SquashCurve));
         }
 
+        /// <summary>
+        /// Called before a jump to squash the burger
+        /// </summary>
+        /// <param name="_squashDuration">Duration of the sequence</param>
         public void Squash(float _squashDuration)
         {
             if(verticalSequence.IsActive())
@@ -70,6 +75,11 @@ namespace LudumDare50
             verticalSequence.Play();
         }
 
+        /// <summary>
+        /// Called during a jump.
+        /// Stretch the burger
+        /// </summary>
+        /// <param name="_stretchDuration">Duration of the sequence</param>
         public void JumpVertical(float _stretchDuration)
         {
             if (verticalSequence.IsActive())
@@ -87,10 +97,14 @@ namespace LudumDare50
             }
             verticalSequence.Play();
         }
-
+        
+        /// <summary>
+        /// Called during a jump and apply offset on X.
+        /// </summary>
+        /// <param name="_jumpDuration">Duratio of the sequence</param>
+        /// <param name="_horizontalVelocity">Direction of the jump</param>
         private void JumpHorizontal(float _jumpDuration, float _horizontalVelocity)
         {
-            Debug.Log("IMPROVE HERE AS WELL");
             if (horizontalSequence.IsActive())
                 horizontalSequence.Kill(false);
 
@@ -99,17 +113,27 @@ namespace LudumDare50
             float _endValue = attributes.HorizontalOffset * -_horizontalVelocity; 
             for (int i = ingredients.Count; i-- > 0;)
             {
-                horizontalSequence.Join(ingredients[i].transform.DOLocalMoveX(Mathf.Lerp(0, _endValue, 1f - (float)i / ingredients.Count), _jumpDuration).SetEase(attributes.JumpCurve));
+                horizontalSequence.Join(ingredients[i].transform.DOLocalMoveX(Mathf.Lerp(0, _endValue, 1f - (float)i / ingredients.Count), _jumpDuration).SetEase(attributes.HorizontalJumpCurve));
             }
             horizontalSequence.Play();
         }
 
+        /// <summary>
+        /// Call the methods JumpHorizontal and JumpVertical
+        /// </summary>
+        /// <param name="_jumpDuration">Duration of the sequence</param>
+        /// <param name="_horizontalVelocity">Direction of the jump</param>
         public void ApplyJumpIK(float _jumpDuration, float _horizontalVelocity)
         {
             JumpVertical(_jumpDuration);
             if (_horizontalVelocity != 0) JumpHorizontal(_jumpDuration, _horizontalVelocity);
         }
 
+        /// <summary>
+        /// Call the methods Landing Vertical and Horizontal and start de sequences
+        /// </summary>
+        /// <param name="_landingDuration">Duration of the sequence</param>
+        /// <param name="_instability">Instability of the player</param>
         public void ApplyLandingIK(float _landingDuration, float _instability)
         {
             LandingHorizontal(_landingDuration, _instability);
@@ -119,6 +143,11 @@ namespace LudumDare50
             verticalSequence.Play();
         }
 
+        /// <summary>
+        /// Call the methods Landing Vertical and Horizontal and start de sequences and add a new Ingredients
+        /// </summary>
+        /// <param name="_landingDuration">Duration of the sequence</param>
+        /// <param name="_newIngredient">Added Ingredient</param>
         public void ApplyLandingIK(float _landingDuration, /*float _gettingIngredientDuration,*/ Ingredient _newIngredient)
         {
             LandingHorizontal(_landingDuration, 0);
@@ -128,7 +157,10 @@ namespace LudumDare50
             verticalSequence.Play();
         }
 
-
+        /// <summary>
+        /// Apply Vertical Landing Movement 
+        /// </summary>
+        /// <param name="_landingDuration">Duration of the sequence</param>
         private void LandingVertical(float _landingDuration)
         {
             if (verticalSequence.IsActive())
@@ -137,14 +169,18 @@ namespace LudumDare50
             float _height = verticalOffset;
             for (int i = ingredients.Count; i-- > 0;)
             {
-                verticalSequence.Join(ingredients[i].transform.DOLocalMoveY(_height, _landingDuration).SetEase(attributes.LandingCurve));
+                verticalSequence.Join(ingredients[i].transform.DOLocalMoveY(_height, _landingDuration).SetEase(attributes.VerticalLandingCurve));
                 _height += ingredients[i].Height;
             }
         }
 
+        /// <summary>
+        /// Apply Horizontal Landing Movement
+        /// </summary>
+        /// <param name="_landingDuration">Duration of the sequence</param>
+        /// <param name="_instability"></param>
         private void LandingHorizontal(float _landingDuration, float _instability)
         {
-            Debug.Log("IMRPOVE HERE");
             if (horizontalSequence.IsActive())
                 horizontalSequence.Kill(false);
             horizontalSequence = DOTween.Sequence();
@@ -156,7 +192,7 @@ namespace LudumDare50
             float _direction = Mathf.Sin(attributes.InstabilityMax * _instability) * _distance;
             for (int i = ingredients.Count; i-- > 0;)
             {
-                horizontalSequence.Join(ingredients[i].transform.DOLocalMoveX(Mathf.Lerp(0, _direction, 1f - (float)i / ingredients.Count), _landingDuration).SetEase(attributes.JumpCurve));
+                horizontalSequence.Join(ingredients[i].transform.DOLocalMoveX(Mathf.Lerp(0, _direction, 1f - (float)i / ingredients.Count), _landingDuration).SetEase(attributes.HorizontalLandingCurve));
             }
         }
 

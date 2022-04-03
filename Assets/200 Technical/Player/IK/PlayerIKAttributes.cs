@@ -14,20 +14,24 @@ namespace LudumDare50
     {
         #region Global Members
         [Section("Stretch / Squish ")]
-        public float BoneLengthMax = 1.0f;
         public AnimationCurve SquashCurve = AnimationCurve.Linear(0, 0, 1, 1);
         public float SquashMultiplier = .1f;
         public AnimationCurve StretchCurve = AnimationCurve.Linear(0, 0, 1, 1);
+        public float BoneLengthMax = 1.0f;
 
         [Section("Jump")]
         public float HorizontalOffset = .1f;
-        public AnimationCurve JumpCurve = AnimationCurve.Linear(0,0,1,1);
+        public AnimationCurve HorizontalJumpCurve = AnimationCurve.Linear(0,0,1,1);
 
         [Section("Landing")]
-        public AnimationCurve LandingCurve = AnimationCurve.Linear(0,0,1,1);
-        public AnimationCurve InstabilityCurve = AnimationCurve.Linear(0,0,1,1);
+        public AnimationCurve HorizontalLandingCurve = AnimationCurve.Linear(0,0,1,1);
+        public AnimationCurve VerticalLandingCurve = AnimationCurve.Linear(0,0,1,1);
+        // -- // 
         public float InstabilityMax = 45.0f;
         
+        [Section("Get Ingredient")]
+        public AnimationCurve HorizontalIngredientCurve = AnimationCurve.Linear(0,0,1,1);
+
         
         #endregion
     }
