@@ -50,5 +50,12 @@ namespace LudumDare50 {
 
         [EndFoldout, Range(0f, 5f)] public float CollectDuration = .5f;
         #endregion
+
+        #region Game Over
+        [BeginFoldout("Game Over"), Section("Game Over")]
+
+        [Enhanced, Range(0f, 5f)] public float SplashDuration = 1f;
+        [EndFoldout, Enhanced, Range(0f, 5f)] public float EatDuration = 1f;
+        #endregion
     }
 }

@@ -31,8 +31,8 @@ namespace LudumDare50 {
         [SerializeField, Enhanced, ReadOnly, Range(-1f, 1f)] private float instability = 0f;
         [SerializeField, Enhanced, ReadOnly] private int ingredientCount = BASE_INGREDIENT_COUNT;
 
-        public static readonly int IngredienMask = LayerMask.NameToLayer("Ingredient");
-        public static readonly int PlayerMask = LayerMask.NameToLayer("Player");
+        public static int IngredienMask { get; private set; }
+        public static int PlayerMask { get; private set; }
 
         // ---------------
 
@@ -55,7 +55,10 @@ namespace LudumDare50 {
             filter.useTriggers = true;
             filter.useLayerMask = true;
             filter.layerMask = attributes.LayerMask;
-        }
+
+            IngredienMask = LayerMask.NameToLayer("Ingredient");
+            PlayerMask = LayerMask.NameToLayer("Player");
+    }
 
         private void Start() {
             // Get inputs.
@@ -63,6 +66,10 @@ namespace LudumDare50 {
         }
 
         private void Update() {
+            if (!isPlayable) {
+                return;
+            }
+
             UpdateMovement();
         }
         #endregion
@@ -76,10 +83,6 @@ namespace LudumDare50 {
         // ---------------
 
         private void UpdateMovement() {
-            if (!isPlayable) {
-                return;
-            }
-
             Vector2 input = moveInput.ReadValue<Vector2>();
             if (moveSequence.IsActive()) {
                 if (input != Vector2.zero) {
@@ -166,7 +169,8 @@ namespace LudumDare50 {
         // ---------------
 
         public void Collect(Ingredient ingredient) {
-            isPlayable = false;
+            SetPlayable(false);
+            instability = 0f;
 
             if (collectSequence.IsActive()) {
                 collectSequence.Complete(false);
@@ -182,26 +186,47 @@ namespace LudumDare50 {
         }
 
         private void OnCollect() {
-            isPlayable = true;
+            ingredientCount++;
+            SetPlayable(true);
         }
         #endregion
 
-        #region Status
+        #region Gameplay
+        private Sequence gameOverSequence = null;
+
+        // ---------------
+
         private void Splash() {
-            // IK callback goes here.
-            ik.Splash(1f);
+            float duration = attributes.SplashDuration;
 
-            isPlayable = false;
+            // Splash animation is in IK.
+            ik.Splash(duration);
+            SetPlayable(false);
+
+            gameOverSequence = DOTween.Sequence(); {
+                gameOverSequence.Join(DOVirtual.DelayedCall(duration, GameOver, false));
+            }
         }
-        #endregion
 
-        #region Trigger
         public void EnterTrigger(Collider2D collision) {
             if (!isPlayable)
                 return;
 
-            // Implement behaviour here.
-            // If collision get component Pattern --> Die.
+            float duration = attributes.EatDuration;
+            SetPlayable(false);
+
+            if (moveSequence.IsActive()) {
+                moveSequence.Pause();
+            }
+
+            // Eat sequence goes here.
+            gameOverSequence = DOTween.Sequence(); {
+                gameOverSequence.Join(DOVirtual.DelayedCall(duration, GameOver, false));
+            }
+        }
+
+        private void GameOver() {
+            GameManager.Instance.GameOver();
         }
         #endregion
 
@@ -220,12 +245,16 @@ namespace LudumDare50 {
                 collectSequence.Complete(false);
             }
 
+            if (gameOverSequence.IsActive()) {
+                gameOverSequence.Complete(false);
+            }
+
             // Reset the whole behaviour.
             thisTransform.position = initialPosition;
 
             ingredientCount = BASE_INGREDIENT_COUNT;
             instability = 0f;
-            isPlayable = false;
+            SetPlayable(false);
 
             ik.OnReset(BASE_INGREDIENT_COUNT);
         }

@@ -13,7 +13,9 @@ namespace LudumDare50 {
         [Section("Ingredient")]
 
         [SerializeField, Enhanced, Required] public SpriteRenderer Sprite = null;
-        [SerializeField, Enhanced, Range(0f, 1f)] public float Height = 1.0f;
+        [SerializeField, Enhanced, Range(0f, 1f)] public float Height = 1f;
+
+        public override bool DestroyOnCollect => false;
         #endregion
 
         #region Behaviour
@@ -26,6 +28,7 @@ namespace LudumDare50 {
         public void OnCollect(int order) {
             // Collect it.
             gameObject.layer = PlayerController.PlayerMask;
+            Sprite.gameObject.layer = PlayerController.PlayerMask;
             Sprite.sortingOrder = order;
         }
         #endregion

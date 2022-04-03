@@ -390,7 +390,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &126319095
 GameObject:
@@ -459,7 +459,7 @@ MonoBehaviour:
   Tags:
     Tags: []
   lastModifiedBy: ALIEN_3D2
-  lastModifiedDate: 03/04/2022 14:21:59
+  lastModifiedDate: 03/04/2022 16:51:59
   IsPersistent: 0
 --- !u!1001 &180660783
 PrefabInstance:
@@ -502,11 +502,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4374690893467574072, guid: f2dd9683eca0f9d4fb47111db7ab3364, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 400
+      value: 900
       objectReference: {fileID: 0}
     - target: {fileID: 4374690893467574072, guid: f2dd9683eca0f9d4fb47111db7ab3364, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 100
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 4374690893467574072, guid: f2dd9683eca0f9d4fb47111db7ab3364, type: 3}
       propertyPath: m_LocalPosition.x
@@ -556,9 +556,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4374690893467574073, guid: f2dd9683eca0f9d4fb47111db7ab3364, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 429598e52a5e9dd4daefd884c30d097b, type: 3}
+    - target: {fileID: 4374690893467574077, guid: f2dd9683eca0f9d4fb47111db7ab3364, type: 3}
+      propertyPath: lastModifiedBy
+      value: ALIEN_3D2
+      objectReference: {fileID: 0}
     - target: {fileID: 4374690893467574077, guid: f2dd9683eca0f9d4fb47111db7ab3364, type: 3}
       propertyPath: lastModifiedDate
-      value: 03/04/2022 11:23:52
+      value: 03/04/2022 17:34:54
       objectReference: {fileID: 0}
     - target: {fileID: 4374690895424240225, guid: f2dd9683eca0f9d4fb47111db7ab3364, type: 3}
       propertyPath: m_text
@@ -729,7 +737,7 @@ MonoBehaviour:
   Tags:
     Tags: []
   lastModifiedBy: ALIEN_3D2
-  lastModifiedDate: 03/04/2022 14:21:59
+  lastModifiedDate: 03/04/2022 16:51:59
   IsPersistent: 0
 --- !u!225 &323998391
 CanvasGroup:
@@ -935,8 +943,8 @@ MonoBehaviour:
   comment: 
   Tags:
     Tags: []
-  lastModifiedBy: Lucas
-  lastModifiedDate: 03/04/2022 00:16:00
+  lastModifiedBy: ALIEN_3D2
+  lastModifiedDate: 03/04/2022 18:34:08
   IsPersistent: 0
 --- !u!1 &700235632
 GameObject:
@@ -1319,8 +1327,8 @@ MonoBehaviour:
   comment: 
   Tags:
     Tags: []
-  lastModifiedBy: Lucas
-  lastModifiedDate: 02/04/2022 21:27:23
+  lastModifiedBy: ALIEN_3D2
+  lastModifiedDate: 03/04/2022 18:33:33
   IsPersistent: 0
 --- !u!4 &1056797575
 Transform:
@@ -1331,7 +1339,7 @@ Transform:
   m_GameObject: {fileID: 1056797572}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 17, y: 9, z: 1}
+  m_LocalScale: {x: 10, y: 5.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 6
@@ -1426,8 +1434,8 @@ MonoBehaviour:
   comment: 
   Tags:
     Tags: []
-  lastModifiedBy: Lucas
-  lastModifiedDate: 02/04/2022 21:18:00
+  lastModifiedBy: ALIEN_3D2
+  lastModifiedDate: 03/04/2022 18:34:08
   IsPersistent: 0
 --- !u!1 &1240560976
 GameObject:
@@ -1805,7 +1813,7 @@ MonoBehaviour:
   Tags:
     Tags: []
   lastModifiedBy: ALIEN_3D2
-  lastModifiedDate: 03/04/2022 14:21:59
+  lastModifiedDate: 03/04/2022 17:35:03
   IsPersistent: 0
 --- !u!1 &1460355858
 GameObject:
@@ -1879,7 +1887,7 @@ Transform:
   - {fileID: 1044401031}
   - {fileID: 700235633}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1461321040
 GameObject:
@@ -2005,7 +2013,7 @@ Transform:
   - {fileID: 1295284572}
   - {fileID: 1813093743}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1622195448
 GameObject:
@@ -2040,7 +2048,7 @@ Transform:
   - {fileID: 618320496}
   - {fileID: 1153116278}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1622195450
 MonoBehaviour:
@@ -2228,7 +2236,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 3
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -2259,8 +2267,8 @@ MonoBehaviour:
   comment: 
   Tags:
     Tags: []
-  lastModifiedBy: Lucas
-  lastModifiedDate: 03/04/2022 11:51:19
+  lastModifiedBy: ALIEN_3D2
+  lastModifiedDate: 03/04/2022 18:34:08
   IsPersistent: 0
 --- !u!1 &1875476650
 GameObject:
@@ -2321,8 +2329,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Game Title
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: a23e5d4b0451f8a4481b046c8b843742, type: 2}
-  m_sharedMaterial: {fileID: -573566832748437503, guid: a23e5d4b0451f8a4481b046c8b843742, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 72ad825eba18dd94a8fc40a7f978b2aa, type: 2}
+  m_sharedMaterial: {fileID: 1173494643966128036, guid: 72ad825eba18dd94a8fc40a7f978b2aa, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2655,8 +2663,8 @@ MonoBehaviour:
   comment: 
   Tags:
     Tags: []
-  lastModifiedBy: Lucas
-  lastModifiedDate: 03/04/2022 00:16:00
+  lastModifiedBy: ALIEN_3D2
+  lastModifiedDate: 03/04/2022 18:33:33
   IsPersistent: 0
 --- !u!1001 &3732182923428171056
 PrefabInstance:
@@ -2665,13 +2673,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2718366547123671867, guid: 338ad29048c189f47bd11d4f5a921cf7, type: 3}
+      propertyPath: lastModifiedDate
+      value: 03/04/2022 18:14:58
+      objectReference: {fileID: 0}
     - target: {fileID: 3732182922343307828, guid: 338ad29048c189f47bd11d4f5a921cf7, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 3732182922343307833, guid: 338ad29048c189f47bd11d4f5a921cf7, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3732182922343307833, guid: 338ad29048c189f47bd11d4f5a921cf7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2712,10 +2724,6 @@ PrefabInstance:
     - target: {fileID: 3732182922343307833, guid: 338ad29048c189f47bd11d4f5a921cf7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 14.368
-      objectReference: {fileID: 0}
-    - target: {fileID: 3732182922525175222, guid: 338ad29048c189f47bd11d4f5a921cf7, type: 3}
-      propertyPath: lastModifiedDate
-      value: 03/04/2022 14:46:30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 338ad29048c189f47bd11d4f5a921cf7, type: 3}
@@ -2760,11 +2768,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4374690893467574072, guid: f2dd9683eca0f9d4fb47111db7ab3364, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 400
+      value: 900
       objectReference: {fileID: 0}
     - target: {fileID: 4374690893467574072, guid: f2dd9683eca0f9d4fb47111db7ab3364, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 100
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 4374690893467574072, guid: f2dd9683eca0f9d4fb47111db7ab3364, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2815,36 +2823,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4374690893467574076, guid: f2dd9683eca0f9d4fb47111db7ab3364, type: 3}
-      propertyPath: onClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4374690893467574076, guid: f2dd9683eca0f9d4fb47111db7ab3364, type: 3}
-      propertyPath: onClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4374690893467574076, guid: f2dd9683eca0f9d4fb47111db7ab3364, type: 3}
       propertyPath: onClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 488658169}
-    - target: {fileID: 4374690893467574076, guid: f2dd9683eca0f9d4fb47111db7ab3364, type: 3}
-      propertyPath: onClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4374690893467574076, guid: f2dd9683eca0f9d4fb47111db7ab3364, type: 3}
-      propertyPath: onClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: PlayGame
-      objectReference: {fileID: 0}
-    - target: {fileID: 4374690893467574076, guid: f2dd9683eca0f9d4fb47111db7ab3364, type: 3}
-      propertyPath: onClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: LudumDare50.GameManager, LudumDare50
-      objectReference: {fileID: 0}
-    - target: {fileID: 4374690893467574076, guid: f2dd9683eca0f9d4fb47111db7ab3364, type: 3}
-      propertyPath: onClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 4374690893467574077, guid: f2dd9683eca0f9d4fb47111db7ab3364, type: 3}
       propertyPath: lastModifiedDate
-      value: 03/04/2022 11:48:46
+      value: 03/04/2022 17:34:37
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f2dd9683eca0f9d4fb47111db7ab3364, type: 3}

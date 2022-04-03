@@ -64,6 +64,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fe26a55695bcb3459510751ffadfd34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attributes: {fileID: 0}
+  feedback: {fileID: 0}
+  collider: {fileID: 0}
   Score: 100
   Sprite: {fileID: 4013398755552877513}
   Height: 1
@@ -116,7 +119,7 @@ MonoBehaviour:
   Tags:
     Tags: []
   lastModifiedBy: ALIEN_3D2
-  lastModifiedDate: 03/04/2022 14:35:22
+  lastModifiedDate: 03/04/2022 18:15:41
   IsPersistent: 0
 --- !u!212 &4013398755552877513
 SpriteRenderer:
@@ -157,7 +160,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1835525033
   m_SortingLayer: 1
-  m_SortingOrder: 1000
+  m_SortingOrder: -1
   m_Sprite: {fileID: -1993949082032642160, guid: 39bc2f3566b1e9d4ea2feed377ac10e2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -185,7 +188,7 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.5, y: 0}
     oldSize: {x: 3.84, y: 1.76}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
