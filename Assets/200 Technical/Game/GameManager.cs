@@ -2,8 +2,11 @@
 //
 // ============================================================================ //
 
+using DG.Tweening;
 using EnhancedEditor;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.Playables;
 
 using Range = EnhancedEditor.RangeAttribute;
 
@@ -35,8 +38,23 @@ namespace LudumDare50 {
         [Section("Game Manager")]
 
         [SerializeField, Enhanced, Required] public GameSettings Settings = null;
+        [SerializeField, Enhanced, Required] public PlayableDirector Intro = null;
         [SerializeField, Enhanced, Required] public Camera mainCamera = null;
         [SerializeField, Enhanced, Required] public Camera renderCamera = null;
+
+        [Space(10f)]
+
+        [SerializeField, Enhanced, ReadOnly] private bool isInMenu = false;
+        [SerializeField, Enhanced, ReadOnly] private bool isInIntro = false;
+        [SerializeField, Enhanced, ReadOnly] private bool isInTransition = false;
+        [SerializeField, Enhanced, ReadOnly] private bool isPaused = false;
+
+        // ---------------
+
+        private InputAction skipInput = null;
+        private InputAction pauseInput = null;
+        private InputAction restartInput = null;
+        private InputAction menuInput = null;
         #endregion
 
         #region Behaviour
@@ -46,13 +64,41 @@ namespace LudumDare50 {
         // ---------------
 
         protected override void OnEnable() {
+            base.OnEnable();
+
             Cursor.visible = false;
             Settings.Inputs.asset.Enable();
+            Intro.stopped += OnIntroStopped;
 
-            base.OnEnable();
+            // Load inputs.
+            skipInput = Settings.Inputs.asset.FindAction(Settings.SkipInput, true);
+            pauseInput = Settings.Inputs.asset.FindAction(Settings.PauseInput, true);
+            restartInput = Settings.Inputs.asset.FindAction(Settings.RestartInput, true);
+            menuInput = Instance.Settings.Inputs.asset.FindAction(Settings.MenuInput, true);
+        }
+
+        private void Start() {
+            ShowMenu(true);
         }
 
         private void Update() {
+            // Inputs.
+            if (isInIntro) {
+                if (skipInput.WasPerformedThisFrame()) {
+                    Intro.Stop();
+                }
+            } else if (!isInTransition && !isInMenu) {
+                // In-game inputs.
+                if (pauseInput.WasPerformedThisFrame()) {
+                    PauseGame();
+                } else if (restartInput.WasPerformedThisFrame()) {
+                    RestartGame();
+                } else if (menuInput.WasPerformedThisFrame()) {
+                    ShowMenu();
+                }
+            }
+
+            // Aspec ratio.
             float ratio = (float)Screen.width / Screen.height;
             if (ratio == lastRatio)
                 return;
@@ -78,6 +124,64 @@ namespace LudumDare50 {
             base.OnDisable();
 
             Settings.Inputs.asset.Disable();
+        }
+        #endregion
+
+        #region Menu
+        public void PlayGame() {
+            if (!isInMenu)
+                return;
+
+            isInMenu = false;
+
+            UIManager.Instance.HideMenu();
+            DOVirtual.DelayedCall(Settings.IntroDelay, OnIntroStart);
+        }
+
+        // ---------------
+
+        private void OnIntroStart() {
+            isInIntro = true;
+            Intro.Play();
+        }
+
+        private void OnIntroStopped(PlayableDirector playable) {
+            PlayerController.Instance.SetPlayable(true);
+            isInIntro = false;
+        }
+
+        #endregion
+
+        #region Management
+        public void PauseGame() {
+            isPaused = !isPaused;
+            Time.timeScale = isPaused
+                           ? 0f
+                           : 1f;
+
+            UIManager.Instance.PauseGame(isPaused);
+        }
+
+        public void ShowMenu(bool doForceFade = false) {
+            isInTransition = true;
+            isInMenu = true;
+
+            UIManager.Instance.ShowMenu(doForceFade);
+        }
+
+        public void RestartGame() {
+            isInTransition = true;
+
+            UIManager.Instance.RestartGame();
+        }
+
+        // ---------------
+
+        public void ResetGame() {
+            PlayerController.Instance.ResetBehaviour();
+            UIManager.Instance.ResetBehaviour();
+
+            isInTransition = false;
         }
         #endregion
     }

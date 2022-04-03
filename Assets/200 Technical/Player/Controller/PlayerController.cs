@@ -42,7 +42,9 @@ namespace LudumDare50 {
         #endregion
 
         #region Behaviour
-        private void Start() {
+        protected override void OnEnable() {
+            base.OnEnable();
+
             // Initialization.
             thisTransform = transform;
             initialPosition = thisTransform.position;
@@ -50,15 +52,15 @@ namespace LudumDare50 {
             filter.useTriggers = true;
             filter.useLayerMask = true;
             filter.layerMask = attributes.LayerMask;
+        }
+
+        private void Start() {
+            foreach (var ingredient in gameObject.GetComponentsInChildren<Ingredient>()) {
+                ingredient.gameObject.layer = LayerMask.NameToLayer(attributes.PlayerMask);
+            }
 
             // Get inputs.
             moveInput = GameManager.Instance.Settings.Inputs.asset.FindAction(attributes.MoveInput, true);
-
-            foreach (var ingredient in gameObject.GetComponentsInChildren<Ingredient>()) {
-                ingredient.gameObject.layer = attributes.PlayerMask;
-            }
-
-            ResetBehaviour();
         }
 
         private void Update() {
@@ -151,8 +153,12 @@ namespace LudumDare50 {
             for (int i = 0; i < amount; i++) {
                 Collider2D collider = buffer[i];
 
-                if (collider.TryGetComponent(out Ingredient ingredient)) {
-                    Collect(ingredient);
+                if (collider.TryGetComponent(out Bonus bonus)) {
+                    UIManager.Instance.IncreaseScore(this, bonus.Score);
+
+                    if (bonus is Ingredient ingredient) {
+                        Collect(ingredient);
+                    }
                 }
             }
         }
@@ -171,7 +177,7 @@ namespace LudumDare50 {
             }
 
             float duration = attributes.CollectDuration;
-            ingredient.gameObject.layer = attributes.PlayerMask;
+            ingredient.gameObject.layer = LayerMask.NameToLayer(attributes.PlayerMask);
 
             collectSequence = DOTween.Sequence(); {
                 collectSequence.Join(DOVirtual.DelayedCall(duration, OnCollect, false));
@@ -200,7 +206,11 @@ namespace LudumDare50 {
         }
         #endregion
 
-        #region Reset
+        #region Playable
+        public void SetPlayable(bool _isPlayable) {
+            isPlayable = _isPlayable;
+        }
+
         public void ResetBehaviour() {
             // Stop all tween and sequences.
             if (moveSequence.IsActive()) {
@@ -216,9 +226,9 @@ namespace LudumDare50 {
 
             ingredientCount = BASE_INGREDIENT_COUNT;
             instability = 0f;
-            isPlayable = true;
+            isPlayable = false;
 
-            //ik.OnReset(BASE_INGREDIENT_COUNT);
+            ik.OnReset(BASE_INGREDIENT_COUNT);
         }
         #endregion
     }

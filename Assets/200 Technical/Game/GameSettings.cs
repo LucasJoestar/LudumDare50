@@ -16,6 +16,16 @@ namespace LudumDare50 {
 
         [Enhanced, Required] public InputActionMap Inputs = null;
         [Enhanced, Range(.01f, 5f)] public float Unit = 1f;
+        [Enhanced, Range(.01f, 5f)] public float IntroDelay = 1f;
+        #endregion
+
+        #region Inputs
+        [Enhanced, BeginFoldout("Inputs"), Section("Inputs")]
+
+        public string SkipInput = "Shortcuts/Skip";
+        public string PauseInput = "Shortcuts/Pause";
+        public string RestartInput = "Shortcuts/Restart";
+        [Enhanced, EndFoldout] public string MenuInput = "Shortcuts/Menu";
         #endregion
     }
 }
