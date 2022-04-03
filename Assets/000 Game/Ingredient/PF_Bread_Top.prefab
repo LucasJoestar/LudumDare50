@@ -15,6 +15,10 @@ PrefabInstance:
       propertyPath: Height
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4013398754524800374, guid: 9398029bfe68b2d40baefb9abafb4de3, type: 3}
+      propertyPath: collider
+      value: 
+      objectReference: {fileID: 691302946934377518}
     - target: {fileID: 4013398754524800375, guid: 9398029bfe68b2d40baefb9abafb4de3, type: 3}
       propertyPath: lastModifiedDate
       value: 03/04/2022 14:37:41
@@ -93,3 +97,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9398029bfe68b2d40baefb9abafb4de3, type: 3}
+--- !u!61 &691302946934377518 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 4669432201014458198, guid: 9398029bfe68b2d40baefb9abafb4de3, type: 3}
+  m_PrefabInstance: {fileID: 5284173197557169016}
+  m_PrefabAsset: {fileID: 0}

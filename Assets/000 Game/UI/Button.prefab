@@ -30,7 +30,7 @@ RectTransform:
   m_GameObject: {fileID: 4374690893467574071}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children:
   - {fileID: 4374690895424240224}
   - {fileID: 4374690894474050054}
@@ -57,8 +57,8 @@ MonoBehaviour:
   comment: 
   Tags:
     Tags: []
-  lastModifiedBy: Lucas
-  lastModifiedDate: 03/04/2022 11:12:08
+  lastModifiedBy: ALIEN_3D2
+  lastModifiedDate: 03/04/2022 17:34:24
   IsPersistent: 0
 --- !u!222 &4374690893467574074
 CanvasRenderer:
@@ -115,7 +115,19 @@ MonoBehaviour:
   flash: {fileID: 4374690894474050055}
   onClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: LudumDare50.GameManager, LudumDare50
+        m_MethodName: PlayGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &4374690893467574073
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -136,7 +148,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: 429598e52a5e9dd4daefd884c30d097b, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -333,15 +345,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: Play
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: a23e5d4b0451f8a4481b046c8b843742, type: 2}
-  m_sharedMaterial: {fileID: -573566832748437503, guid: a23e5d4b0451f8a4481b046c8b843742, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 1f31ed58e5d1643428e96fa1d9a1cdf3, type: 2}
+  m_sharedMaterial: {fileID: -9105848359793857682, guid: 1f31ed58e5d1643428e96fa1d9a1cdf3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -358,8 +370,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 64
-  m_fontSizeBase: 64
+  m_fontSize: 88
+  m_fontSizeBase: 88
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

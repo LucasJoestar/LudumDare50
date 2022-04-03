@@ -44,3 +44,6 @@ TagManager:
   - name: Burger
     uniqueID: 2459442263
     locked: 0
+  - name: Foreground
+    uniqueID: 4240168493
+    locked: 0

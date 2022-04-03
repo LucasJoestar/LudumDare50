@@ -9,12 +9,13 @@ using UnityEngine;
 
 using Range = EnhancedEditor.RangeAttribute;
 
-namespace LudumDare50
-{
-	public class PlayerIK : MonoBehaviour
-    {
+namespace LudumDare50 {
+	public class PlayerIK : MonoBehaviour {
         #region Global Members
-        [Section("PlayerIK")]
+        private const int BASE_INGREDIENT_LAYER = 999;
+
+        [Section("Player IK")]
+
         [SerializeField] private List<Ingredient> ingredients = new List<Ingredient>();
         [SerializeField, Enhanced, Range(0.0f, 1.0f)] private float verticalOffset = .5f;
         [SerializeField, Enhanced] private PlayerIKAttributes attributes = null;
@@ -25,6 +26,17 @@ namespace LudumDare50
         public List<Ingredient> Ingredients => ingredients;
         #endregion
 
+        #region Behaviour
+        private void Start() {
+            // Initialization.
+            for (int i = 0; i < ingredients.Count; i++) {
+                Ingredient _ingredient = ingredients[i];
+                int order = BASE_INGREDIENT_LAYER - i;
+
+                _ingredient.OnCollect(order);
+            }
+        }
+        #endregion
 
         #region Methods
         /// <summary>
@@ -32,9 +44,15 @@ namespace LudumDare50
         /// </summary>
         /// <param name="_duration">Duration of the sequence</param>
         /// <param name="_newIngredient">New Ingredient to add</param>
-        private void AddNewIngredient(float _duration, Ingredient _newIngredient)
-        {
+        private void AddNewIngredient(float _duration, Ingredient _newIngredient) {
+            Debug.Log("Add ingredient", _newIngredient);
+
             ingredients.Add(_newIngredient);
+
+            // Call OnCollect after a delay.
+            int order = BASE_INGREDIENT_LAYER - (ingredients.Count - 1);
+            _newIngredient.OnCollect(order);
+
             _newIngredient.transform.SetParent(transform);
             float _height = verticalOffset;
             // Jump
@@ -201,14 +219,15 @@ namespace LudumDare50
         }
         #endregion
 
-        public void OnReset(int _baseIngredient)
-        {
-            for (int i = ingredients.Count; i-- > _baseIngredient;)
-            {
-                Destroy(ingredients[i].gameObject);
+        #region Reset
+        public void OnReset(int _baseIngredient) {
+            for (int i = ingredients.Count; i-- > _baseIngredient;) {
+                ingredients[i].Destroy();
                 ingredients.RemoveAt(i);
             }
-            ApplyLandingIK(0, 0);
+
+            ApplyLandingIK(0f, 0f);
         }
+        #endregion
     }
 }

@@ -175,6 +175,10 @@ namespace LudumDare50 {
             UIManager.Instance.RestartGame();
         }
 
+        public void GameOver() {
+
+        }
+
         // ---------------
 
         public void ResetGame() {

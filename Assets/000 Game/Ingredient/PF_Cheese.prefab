@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4013398754524800374, guid: 9398029bfe68b2d40baefb9abafb4de3, type: 3}
       propertyPath: Height
-      value: 0.25
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 4013398754524800375, guid: 9398029bfe68b2d40baefb9abafb4de3, type: 3}
       propertyPath: lastModifiedDate
@@ -71,6 +71,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 6376549087761771215, guid: 39bc2f3566b1e9d4ea2feed377ac10e2, type: 3}
+    - target: {fileID: 4669432201014458198, guid: 9398029bfe68b2d40baefb9abafb4de3, type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.4
+      objectReference: {fileID: 0}
     - target: {fileID: 4669432201014458198, guid: 9398029bfe68b2d40baefb9abafb4de3, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
       value: 4.8

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &3501282103555490847
+--- !u!1001 &99894769201681542
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -9,15 +9,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4013398754524800374, guid: 9398029bfe68b2d40baefb9abafb4de3, type: 3}
       propertyPath: Height
-      value: 0.15
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 4013398754524800375, guid: 9398029bfe68b2d40baefb9abafb4de3, type: 3}
       propertyPath: lastModifiedDate
-      value: 03/04/2022 14:41:15
+      value: 03/04/2022 18:12:34
       objectReference: {fileID: 0}
     - target: {fileID: 4013398754524800376, guid: 9398029bfe68b2d40baefb9abafb4de3, type: 3}
       propertyPath: m_Name
-      value: PF_Steak
+      value: PF_Bacon
       objectReference: {fileID: 0}
     - target: {fileID: 4013398754524800377, guid: 9398029bfe68b2d40baefb9abafb4de3, type: 3}
       propertyPath: m_RootOrder
@@ -29,7 +29,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4013398754524800377, guid: 9398029bfe68b2d40baefb9abafb4de3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.467
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 4013398754524800377, guid: 9398029bfe68b2d40baefb9abafb4de3, type: 3}
       propertyPath: m_LocalPosition.z
@@ -65,15 +65,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4013398755552877510, guid: 9398029bfe68b2d40baefb9abafb4de3, type: 3}
       propertyPath: lastModifiedDate
-      value: 03/04/2022 14:41:11
+      value: 03/04/2022 18:12:34
       objectReference: {fileID: 0}
     - target: {fileID: 4013398755552877513, guid: 9398029bfe68b2d40baefb9abafb4de3, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -1095541661701470815, guid: 39bc2f3566b1e9d4ea2feed377ac10e2, type: 3}
+      objectReference: {fileID: -5197087808704785148, guid: 0622cba48c75f944ba3322f6229fd3c2, type: 3}
+    - target: {fileID: 4013398755552877513, guid: 9398029bfe68b2d40baefb9abafb4de3, type: 3}
+      propertyPath: m_SortingLayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4669432201014458198, guid: 9398029bfe68b2d40baefb9abafb4de3, type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4669432201014458198, guid: 9398029bfe68b2d40baefb9abafb4de3, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 4.48
+      objectReference: {fileID: 0}
     - target: {fileID: 4669432201014458198, guid: 9398029bfe68b2d40baefb9abafb4de3, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 1.92
+      value: 2.56
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9398029bfe68b2d40baefb9abafb4de3, type: 3}

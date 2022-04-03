@@ -8,14 +8,12 @@ using UnityEngine;
 using Range = EnhancedEditor.RangeAttribute;
 
 namespace LudumDare50 {
-	public class Bonus : MonoBehaviour {
+    [CreateAssetMenu(fileName = "BonusAttributes", menuName = "LudumDare50/BonusAttributes")]
+	public class BonusAttributes : ScriptableObject {
         #region Global Members
-        [Section("Bonus")]
+        [Section("BonusAttributes")]
 
-        [SerializeField, Enhanced, Required] public SpriteRenderer feedback = null;
-        [SerializeField, Enhanced, Range(0f, 100000f)] public float Score = 100f;
+        [SerializeField, Enhanced, Range(0f, 1f)] private float variable = 1f;
         #endregion
-
-
     }
 }

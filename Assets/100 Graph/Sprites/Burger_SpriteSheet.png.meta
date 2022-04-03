@@ -4,7 +4,7 @@ TextureImporter:
   internalIDToNameTable:
   - first:
       213: -700770602373854372
-    second: Burger_Top
+    second: Bread_Top
   - first:
       213: -1095541661701470815
     second: Steak
@@ -13,7 +13,7 @@ TextureImporter:
     second: Salad
   - first:
       213: -1993949082032642160
-    second: Burger_Bottom
+    second: Bread_Bottom
   - first:
       213: -898415424234537470
     second: Tomato
@@ -22,16 +22,22 @@ TextureImporter:
     second: Cheese
   - first:
       213: -5149184257344873937
-    second: Hand01
+    second: Hand_01
   - first:
       213: -955132254257116892
-    second: Hand02
+    second: Hand_02
   - first:
       213: -7104190069732699558
     second: Knife
   - first:
       213: 5619074069039827861
     second: Fork
+  - first:
+      213: -5150173266768292218
+    second: Foot_01
+  - first:
+      213: 311093683634971096
+    second: Foot_012
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -133,15 +139,15 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Burger_Top
+      name: Bread_Top
       rect:
         serializedVersion: 2
         x: 96
         y: 1648
         width: 512
         height: 288
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -161,8 +167,8 @@ TextureImporter:
         y: 1696
         width: 384
         height: 192
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -178,12 +184,12 @@ TextureImporter:
       name: Salad
       rect:
         serializedVersion: 2
-        x: 1408
+        x: 1411
         y: 1696
         width: 464
         height: 192
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -196,15 +202,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Burger_Bottom
+      name: Bread_Bottom
       rect:
         serializedVersion: 2
         x: 144
         y: 1248
         width: 384
         height: 176
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -224,8 +230,8 @@ TextureImporter:
         y: 1232
         width: 416
         height: 240
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -245,8 +251,8 @@ TextureImporter:
         y: 1216
         width: 480
         height: 272
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -259,7 +265,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Hand01
+      name: Hand_01
       rect:
         serializedVersion: 2
         x: 176
@@ -280,10 +286,10 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Hand02
+      name: Hand_02
       rect:
         serializedVersion: 2
-        x: 816
+        x: 819
         y: 128
         width: 464
         height: 576
@@ -308,8 +314,8 @@ TextureImporter:
         y: 112
         width: 144
         height: 864
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 2
+      pivot: {x: 0.5, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -329,8 +335,8 @@ TextureImporter:
         y: 128
         width: 176
         height: 800
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 2
+      pivot: {x: 0.5, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -338,6 +344,48 @@ TextureImporter:
       bones: []
       spriteID: 59b4abb3816fafd40800000000000000
       internalID: 5619074069039827861
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Foot_01
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 912
+        width: 240
+        height: 160
+      alignment: 2
+      pivot: {x: 0.5, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 686109e53b8e688b0800000000000000
+      internalID: -5150173266768292218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Foot_012
+      rect:
+        serializedVersion: 2
+        x: 656
+        y: 992
+        width: 192
+        height: 96
+      alignment: 2
+      pivot: {x: 0.5, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d12ee89e0a315400800000000000000
+      internalID: 311093683634971096
       vertices: []
       indices: 
       edges: []
