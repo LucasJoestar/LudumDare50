@@ -9,12 +9,11 @@ using UnityEngine;
 
 using Range = EnhancedEditor.RangeAttribute;
 
-namespace LudumDare50
-{
-	public class PlayerIK : MonoBehaviour
-    {
+namespace LudumDare50 {
+	public class PlayerIK : MonoBehaviour {
         #region Global Members
-        [Section("PlayerIK")]
+        [Section("Player IK")]
+
         [SerializeField] private List<Ingredient> ingredients = new List<Ingredient>();
         [SerializeField, Enhanced, Range(0.0f, 1.0f)] private float verticalOffset = .5f;
         [SerializeField, Enhanced] private PlayerIKAttributes attributes = null;
@@ -25,6 +24,32 @@ namespace LudumDare50
         public List<Ingredient> Ingredients => ingredients;
         #endregion
 
+        #region Behaviour
+        private const int BASE_INGREDIENT_LAYER = 999;
+
+        // ---------------
+
+        private void Start() {
+            // Initialization.
+            for (int i = 0; i < ingredients.Count; i++) {
+                Ingredient _ingredient = ingredients[i];
+                int order = BASE_INGREDIENT_LAYER - i;
+
+                _ingredient.Collect();
+                _ingredient.OnCollect(order);
+            }
+        }
+        #endregion
+
+        #region Ingredient
+        private void OnCollectIngredient(Ingredient _ingredient, int index) {
+            // Initialize this ingredient.
+            _ingredient.gameObject.layer = PlayerController.Instance.PlayerMask;
+            _ingredient.collider.enabled = false;
+
+            _ingredient.Sprite.sortingOrder = BASE_INGREDIENT_LAYER - index;
+        }
+        #endregion
 
         #region Methods
         /// <summary>
@@ -32,9 +57,13 @@ namespace LudumDare50
         /// </summary>
         /// <param name="_duration">Duration of the sequence</param>
         /// <param name="_newIngredient">New Ingredient to add</param>
-        private void AddNewIngredient(float _duration, Ingredient _newIngredient)
-        {
+        private void AddNewIngredient(float _duration, Ingredient _newIngredient) {
             ingredients.Add(_newIngredient);
+
+            // Call OnCollect after a delay.
+            int order = BASE_INGREDIENT_LAYER - (ingredients.Count - 1);
+            _newIngredient.OnCollect(order);
+
             _newIngredient.transform.SetParent(transform);
             float _height = verticalOffset;
             // Jump
@@ -201,14 +230,15 @@ namespace LudumDare50
         }
         #endregion
 
-        public void OnReset(int _baseIngredient)
-        {
-            for (int i = ingredients.Count; i-- > _baseIngredient;)
-            {
+        #region Reset
+        public void OnReset(int _baseIngredient) {
+            for (int i = ingredients.Count; i-- > _baseIngredient;) {
                 Destroy(ingredients[i].gameObject);
                 ingredients.RemoveAt(i);
             }
-            ApplyLandingIK(0, 0);
+
+            ApplyLandingIK(0f, 0f);
         }
+        #endregion
     }
 }

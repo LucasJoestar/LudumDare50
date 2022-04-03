@@ -13,9 +13,16 @@ namespace LudumDare50 {
         [Section("Bonus")]
 
         [SerializeField, Enhanced, Required] public SpriteRenderer feedback = null;
+        [SerializeField, Enhanced, Required] public new Collider2D collider = null;
         [SerializeField, Enhanced, Range(0f, 100000f)] public float Score = 100f;
         #endregion
 
+        #region Collect
+        public virtual void Collect(PlayerController player) {
+            collider.enabled = false;
 
+            // Play feedback here.
+        }
+        #endregion
     }
 }

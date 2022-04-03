@@ -48,11 +48,6 @@ namespace LudumDare50 {
         #region Ingredient
         [Enhanced, BeginFoldout("Ingredient"), Section("Ingredient")]
 
-        public string IngredienMask = "Ingredient";
-        public string PlayerMask = "Player";
-
-        [Space(10f)]
-
         [EndFoldout, Range(0f, 5f)] public float CollectDuration = .5f;
         #endregion
     }

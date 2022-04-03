@@ -31,6 +31,9 @@ namespace LudumDare50 {
         [SerializeField, Enhanced, ReadOnly, Range(-1f, 1f)] private float instability = 0f;
         [SerializeField, Enhanced, ReadOnly] private int ingredientCount = BASE_INGREDIENT_COUNT;
 
+        public static readonly int IngredienMask = LayerMask.NameToLayer("Ingredient");
+        public static readonly int PlayerMask = LayerMask.NameToLayer("Player");
+
         // ---------------
 
         private Transform thisTransform = null;
@@ -55,10 +58,6 @@ namespace LudumDare50 {
         }
 
         private void Start() {
-            foreach (var ingredient in gameObject.GetComponentsInChildren<Ingredient>()) {
-                ingredient.gameObject.layer = LayerMask.NameToLayer(attributes.PlayerMask);
-            }
-
             // Get inputs.
             moveInput = GameManager.Instance.Settings.Inputs.asset.FindAction(attributes.MoveInput, true);
         }
@@ -154,23 +153,19 @@ namespace LudumDare50 {
                 Collider2D collider = buffer[i];
                 Transform parent = collider.transform.parent;
 
-                if (!ReferenceEquals(parent, null) && parent.TryGetComponent(out Bonus bonus)) {
-                    UIManager.Instance.IncreaseScore(this, bonus.Score);
-
-                    if (bonus is Ingredient ingredient) {
-                        Collect(ingredient);
-                    }
+                if (!ReferenceEquals(parent, null) && parent.TryGetComponent(out Bonus _bonus)) {
+                    _bonus.Collect(this);
                 }
             }
         }
         #endregion
 
-        #region Ingredient
+        #region Bonus
         private Sequence collectSequence = null;
 
         // ---------------
 
-        private void Collect(Ingredient ingredient) {
+        public void Collect(Ingredient ingredient) {
             isPlayable = false;
 
             if (collectSequence.IsActive()) {
@@ -178,7 +173,6 @@ namespace LudumDare50 {
             }
 
             float duration = attributes.CollectDuration;
-            ingredient.gameObject.layer = LayerMask.NameToLayer(attributes.PlayerMask);
 
             collectSequence = DOTween.Sequence(); {
                 collectSequence.Join(DOVirtual.DelayedCall(duration, OnCollect, false));

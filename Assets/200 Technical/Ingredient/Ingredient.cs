@@ -15,5 +15,19 @@ namespace LudumDare50 {
         [SerializeField, Enhanced, Required] public SpriteRenderer Sprite = null;
         [SerializeField, Enhanced, Range(0f, 1f)] public float Height = 1.0f;
         #endregion
+
+        #region Behaviour
+        public override void Collect(PlayerController player) {
+            base.Collect(player);
+
+            player.Collect(this);
+        }
+
+        public void OnCollect(int order) {
+            // Collect it.
+            gameObject.layer = PlayerController.PlayerMask;
+            Sprite.sortingOrder = order;
+        }
+        #endregion
     }
 }
