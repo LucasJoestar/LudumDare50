@@ -41,3 +41,6 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Burger
+    uniqueID: 2459442263
+    locked: 0

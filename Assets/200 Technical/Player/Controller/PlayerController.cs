@@ -12,7 +12,7 @@ using Range = EnhancedEditor.RangeAttribute;
 namespace LudumDare50 {
     public class PlayerController : Singleton<PlayerController> {
         #region Global Members
-        private const int BASE_INGREDIENT_COUNT = 1;
+        private const int BASE_INGREDIENT_COUNT = 2;
 
         [Section("Player Controller")]
 
