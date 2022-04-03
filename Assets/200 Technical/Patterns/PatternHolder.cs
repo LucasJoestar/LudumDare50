@@ -88,6 +88,10 @@ namespace LudumDare50
             }
         }
 
+        public void Stop() {
+
+        }
+
         [Button("test")]
         private void Test(Pattern _test)
         {

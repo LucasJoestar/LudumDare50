@@ -212,6 +212,13 @@ namespace LudumDare50 {
             if (!isPlayable)
                 return;
 
+            Transform parent = collision.transform.parent;
+            if (ReferenceEquals(parent, null) || !parent.TryGetComponent(out PatternHolder pattern)) {
+                return;
+            }
+
+            pattern.Stop();
+
             float duration = attributes.EatDuration;
             SetPlayable(false);
 
