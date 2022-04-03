@@ -129,13 +129,13 @@ namespace LudumDare50 {
                 destination.x = Mathf.Clamp(destination.x, horizontalBounds.x, horizontalBounds.y);
                 destination.y = Mathf.Clamp(destination.y, verticalBounds.x, verticalBounds.y);
 
-                float duration = attributes.MovementDelay;
+                float duration = attributes.MovementDuration;
                 Vector2 velocity = destination - (Vector2)thisTransform.position;
 
                 ik.ApplyJumpIK(duration, velocity.x);
 
-                moveSequence.Join(thisTransform.DOMove(destination, attributes.MovementDuration).SetEase(attributes.MovementEase));
-                moveSequence.Join(root.DOLocalMoveY(attributes.MovementRootHeight, attributes.MovementDuration).SetEase(attributes.MovementRootCurve));
+                moveSequence.Join(thisTransform.DOMove(destination, duration).SetEase(attributes.MovementEase));
+                moveSequence.Join(root.DOLocalMoveY(attributes.MovementRootHeight, duration).SetEase(attributes.MovementRootCurve));
 
                 moveSequence.OnComplete(Land);
             }
@@ -233,11 +233,19 @@ namespace LudumDare50 {
         }
 
         private void GameOver() {
+            if (idleSequence.IsActive()) {
+                idleSequence.Complete(false);
+            }
+
             GameManager.Instance.GameOver();
         }
         #endregion
 
         #region Playable
+        private Sequence idleSequence = null;
+
+        // ---------------
+
         public void SetPlayable(bool _isPlayable) {
             isPlayable = _isPlayable;
         }
@@ -256,8 +264,20 @@ namespace LudumDare50 {
                 gameOverSequence.Complete(false);
             }
 
+            if (idleSequence.IsActive()) {
+                idleSequence.Complete(false);
+            }
+
             // Reset the whole behaviour.
             thisTransform.position = initialPosition;
+            thisTransform.localScale = Vector3.one;
+
+            idleSequence = DOTween.Sequence(); {
+                idleSequence.AppendInterval(attributes.IdleDelay);
+                idleSequence.Join(thisTransform.DOScale(attributes.IdleScale, attributes.IdleDuration).SetEase(attributes.IdleCurve));
+
+                idleSequence.SetLoops(-1, LoopType.Restart);
+            }
 
             ingredientCount = BASE_INGREDIENT_COUNT;
             instability = 0f;
