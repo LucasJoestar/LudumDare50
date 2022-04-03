@@ -202,7 +202,7 @@ MonoBehaviour:
   Tags:
     Tags: []
   lastModifiedBy: Lucas
-  lastModifiedDate: 03/04/2022 21:47:31
+  lastModifiedDate: 04/04/2022 00:31:18
   IsPersistent: 0
 --- !u!114 &3732182922343307831
 MonoBehaviour:
@@ -217,7 +217,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attributes: {fileID: 11400000, guid: e92f50e7754dcf3478bc8fbe1927a983, type: 2}
-  ik: {fileID: 1193624943931604657}
+  IK: {fileID: 1193624943931604657}
+  Anchor: {fileID: 3079912280274691682}
   root: {fileID: 3732182922525175221}
   HorizontalBounds: {x: -5, y: 5}
   VerticalBounds: {x: -5, y: 5}
