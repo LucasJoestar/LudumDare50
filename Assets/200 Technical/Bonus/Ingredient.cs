@@ -2,6 +2,7 @@
 //
 // ============================================================================ //
 
+using DG.Tweening;
 using EnhancedEditor;
 using UnityEngine;
 
@@ -21,16 +22,8 @@ namespace LudumDare50 {
         public override void Collect(PlayerController player) {
             base.Collect(player);
 
-            player.Collect(this);
-        }
-
-        public void OnCollect(int order) {
-            // Collect it.
-            gameObject.layer = PlayerController.PlayerMask;
-            group.gameObject.layer = PlayerController.PlayerMask;
-            group.sortingOrder = order;
-
-            isCollected = true;
+            float duration = collectSequence.Duration();
+            player.Collect(this, duration);
         }
         #endregion
     }

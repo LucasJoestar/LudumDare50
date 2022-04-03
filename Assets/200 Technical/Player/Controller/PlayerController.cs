@@ -168,21 +168,21 @@ namespace LudumDare50 {
 
         // ---------------
 
-        public void Collect(Ingredient ingredient) {
+        public void Collect(Ingredient ingredient, float collectDuration) {
             SetPlayable(false);
             instability = 0f;
 
             if (collectSequence.IsActive()) {
-                collectSequence.Complete(false);
+                collectSequence.Complete(true);
             }
 
-            float duration = attributes.CollectDuration;
+            float delay = attributes.CollectDuration;
 
             collectSequence = DOTween.Sequence(); {
-                collectSequence.Join(DOVirtual.DelayedCall(duration, OnCollect, false));
+                collectSequence.AppendInterval(collectDuration);
+                collectSequence.AppendCallback(() => { ik.ApplyLandingIK(delay, ingredient); });
+                collectSequence.Append(DOVirtual.DelayedCall(delay, OnCollect, false));
             }
-
-            ik.ApplyLandingIK(duration, ingredient);
         }
 
         private void OnCollect() {
