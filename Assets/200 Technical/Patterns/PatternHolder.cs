@@ -25,8 +25,6 @@ namespace LudumDare50
         private Vector2 startPosition, endPosition;
         private Sequence sequence = null; 
         public bool IsActive { get; private set; } = false;
-
-        [SerializeField] private Pattern tempPattern; 
         #endregion
 
         #region Methods 
@@ -34,14 +32,11 @@ namespace LudumDare50
         {
             pattern = _pattern;
             renderer.sprite = _pattern.Sprite;
-            collider.offset = _pattern.ColliderBounds.center;
-            collider.size = _pattern.ColliderBounds.size;
+            collider.offset = _pattern.ColliderOffset;
+            collider.size = _pattern.ColliderSize;
             startPosition = _start;
             endPosition = _end;
-            /*
-            warningTransform.position = endPosition;
-            warningTransform.gameObject.SetActive(true); 
-            */
+
             IsActive = true;
             StartPattern();
         }
@@ -50,11 +45,17 @@ namespace LudumDare50
         {
             root.transform.localPosition = startPosition;
             collider.enabled = pattern.IsTriggerContinuous;
-            warningRenderer.transform.position = endPosition;
-            warningRenderer.enabled = true; 
+            root.gameObject.SetActive(true);
+
+            if (pattern.IsTriggerContinuous)
+                warningRenderer.transform.position = (startPosition + endPosition)/2 + Vector2.one;
+            else warningRenderer.transform.position = endPosition + Vector2.one;
+            warningRenderer.gameObject.SetActive(true);
+
             float _duration = Vector2.Distance(startPosition, endPosition)/pattern.Speed;
             sequence = DOTween.Sequence();
-            sequence.Join(warningRenderer.DOFade(0, pattern.StartingDelay/4f).SetEase(Ease.Linear).SetLoops(5, LoopType.Yoyo)) ;
+            sequence.Join(warningRenderer.DOFade(0, pattern.StartingDelay/4f).SetEase(Ease.Linear).SetLoops(5, LoopType.Yoyo));
+            sequence.Join(root.transform.DOShakePosition(pattern.StartingDelay, .1f));
             switch (pattern.PatternType)
             {
                 case PatternType.Linear:
@@ -66,8 +67,8 @@ namespace LudumDare50
                     Vector3[] _path = new Vector3[3]
                     {
                         endPosition,
-                        startPosition + Vector2.Perpendicular(endPosition - startPosition) * .5f,
-                        endPosition + Vector2.Perpendicular(endPosition - startPosition) * .5f
+                        startPosition + Vector2.Perpendicular(endPosition - startPosition).normalized,
+                        endPosition + Vector2.Perpendicular(endPosition - startPosition).normalized
                     };
                     sequence.Append(root.transform.DOLocalPath(_path, _duration, PathType.CubicBezier).SetEase(pattern.Acceleration));
                     break;
@@ -75,27 +76,45 @@ namespace LudumDare50
                     break;
             }
             sequence.onComplete += EndPattern; 
-            sequence.Play();
         }
 
         private void EndPattern()
         {
-            //warningRenderer.enabled = false;
+            warningRenderer.gameObject.SetActive(false);
             if (!pattern.IsTriggerContinuous) collider.enabled = true;
             sequence = DOTween.Sequence();
             {
                 root.transform.DOShakePosition(pattern.EndDuration, pattern.EndForce, pattern.EndVibrato,  90,  false,  false) ;
             }
+            sequence.AppendInterval(pattern.RestingDuration);
+            sequence.AppendCallback(Reset);
         }
 
         public void Stop() {
+                Debug.Log("Stop");
+            if (pattern.IsTriggerContinuous)
+            {
+                sequence.Kill(true);
+            }
+        }
 
+        private void Reset(){
+            warningRenderer.gameObject.SetActive(false);
+            root.gameObject.SetActive(false);
+            IsActive = false;
+            PatternsManager.Instance.PushHolderToQueue(this);
+        }
+
+        private void Start()
+        {
+            warningRenderer.gameObject.SetActive(false);
+            root.gameObject.SetActive(false);
         }
 
         [Button("test")]
         private void Test(Pattern _test)
         {
-            InitPattern(_test, new Vector2(-10, 0), Vector2.zero);
+            InitPattern(_test, new Vector2(-2, 0), new Vector2(2, 0));
         }
         #endregion
     }
