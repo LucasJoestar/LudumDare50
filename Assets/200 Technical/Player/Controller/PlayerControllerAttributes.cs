@@ -48,8 +48,8 @@ namespace LudumDare50 {
         #region Ingredient
         [Enhanced, BeginFoldout("Ingredient"), Section("Ingredient")]
 
-        public LayerMask IngredienMask = new LayerMask();
-        public LayerMask PlayerMask = new LayerMask();
+        public string IngredienMask = "Ingredient";
+        public string PlayerMask = "Player";
 
         [Space(10f)]
 

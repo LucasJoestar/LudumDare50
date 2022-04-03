@@ -56,10 +56,6 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   MovementEase: 10
-  IngredienMask:
-    serializedVersion: 2
-    m_Bits: 128
-  PlayerMask:
-    serializedVersion: 2
-    m_Bits: 64
+  IngredienMask: Ingredient
+  PlayerMask: Player
   CollectDuration: 1

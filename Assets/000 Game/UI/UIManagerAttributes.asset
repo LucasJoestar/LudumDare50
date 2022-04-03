@@ -1,0 +1,115 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abee146ce7a0aff48928c982f4207a2f, type: 3}
+  m_Name: UIManagerAttributes
+  m_EditorClassIdentifier: 
+  MenuFadeInBlackDelay: 0
+  MenuFadeInBlackDuration: 0.5
+  MenuFadeInBlackEase: 3
+  MenuFadeOutBlackDelay: 0.5
+  MenuFadeOutBlackDuration: 1
+  MenuFadeOutBlackEase: 2
+  MenuFadeInDelay: 0.5
+  MenuFadeInDuration: 1
+  MenuFadeInEase: 3
+  MenuFadeOutDelay: 0
+  MenuFadeOutDuration: 0.5
+  MenuFadeOutEase: 2
+  TitleInDelay: 1
+  TitleFadeInDuration: 0.5
+  TitleFadeInEase: 3
+  TitleScaleInSize: {x: 0.2, y: 0.2, z: 1}
+  TitleScaleInDuration: 1
+  TitleScaleInEase: 3
+  TitleRotateInLoop: 2
+  TitleRotateInDuration: 0.5
+  TitleRotateInEase: 3
+  TitleScaleIdle: {x: 1.1, y: 1.1, z: 1}
+  TitleScaleIdleDuration: 1
+  TitleScaleIdleCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.5
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  TitleMoveIdleFrom: 0
+  TitleMoveIdle: -10
+  TitleMoveIdleDuration: 0.5
+  TitleMoveIdleCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.5
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  TitleOutDelay: 0.2
+  TitleFadeOutDuration: 0.7
+  TitleFadeOutEase: 3
+  TitleScaleOut: {x: 1.2, y: 1.15, z: 1}
+  TitleScaleOutDuration: 1
+  TitleScaleOutEase: 3
+  TitleRotateOutLoop: 0
+  TitleRotateOutDuration: 0.1
+  TitleRotateOutEase: 2

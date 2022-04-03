@@ -8,13 +8,12 @@ using UnityEngine;
 using Range = EnhancedEditor.RangeAttribute;
 
 namespace LudumDare50 {
-	public class Ingredient : Bonus {
+    [CreateAssetMenu(fileName = "ScoreUIFeedbackAttributes", menuName = "LudumDare50/ScoreUIFeedbackAttributes")]
+	public class ScoreUIFeedbackAttributes : ScriptableObject {
         #region Global Members
-        [Section("Ingredient")]
+        [Section("Score UI Feedback Attributes")]
 
-        [SerializeField, Enhanced, Range(0f, 1f)] private float height = 1.0f;
-
-        public float Height => height;
+        [SerializeField, Enhanced, Range(0f, 1f)] private float variable = 1f;
         #endregion
     }
 }

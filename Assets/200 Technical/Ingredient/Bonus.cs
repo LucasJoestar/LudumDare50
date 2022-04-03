@@ -8,13 +8,11 @@ using UnityEngine;
 using Range = EnhancedEditor.RangeAttribute;
 
 namespace LudumDare50 {
-	public class Ingredient : Bonus {
+	public class Bonus : MonoBehaviour {
         #region Global Members
-        [Section("Ingredient")]
+        [Section("Bonus")]
 
-        [SerializeField, Enhanced, Range(0f, 1f)] private float height = 1.0f;
-
-        public float Height => height;
+        [SerializeField, Enhanced, Range(0f, 100000f)] public float Score = 100f;
         #endregion
     }
 }

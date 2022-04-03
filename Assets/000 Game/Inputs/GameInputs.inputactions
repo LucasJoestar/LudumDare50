@@ -258,6 +258,15 @@
             "id": "815a8bb7-c30c-4be3-8444-47f76cee7fc4",
             "actions": [
                 {
+                    "name": "Skip",
+                    "type": "Button",
+                    "id": "ca584702-76cb-40d0-8775-7dc042b13712",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Pause",
                     "type": "Button",
                     "id": "abf4e899-94fd-46c6-bf38-6eafb9f2e1df",
@@ -349,6 +358,28 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "Menu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4ddccad6-db09-4a62-a05a-1df1614269dc",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Skip",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "34e14216-48f8-4248-836d-5eb401e58bd4",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Skip",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
