@@ -17,13 +17,14 @@ namespace LudumDare50 {
         [Section("Player Controller")]
 
         [SerializeField, Enhanced, Required] private PlayerControllerAttributes attributes = null;
-        [SerializeField, Enhanced, Required] private PlayerIK ik = null;
+        [SerializeField, Enhanced, Required] public PlayerIK IK = null;
+        [SerializeField, Enhanced, Required] public Transform Anchor = null;
         [SerializeField, Enhanced, Required] private Transform root = null;
 
         [Space(10f)]
 
-        [SerializeField, Enhanced, MinMax(-100f, 100f)] private Vector2 horizontalBounds = new Vector2(-5f, 5f);
-        [SerializeField, Enhanced, MinMax(-100f, 100f)] private Vector2 verticalBounds = new Vector2(-5f, 5f);
+        [SerializeField, Enhanced, MinMax(-100f, 100f)] public Vector2 HorizontalBounds = new Vector2(-5f, 5f);
+        [SerializeField, Enhanced, MinMax(-100f, 100f)] public Vector2 VerticalBounds = new Vector2(-5f, 5f);
 
         [Space(10f)]
 
@@ -95,7 +96,7 @@ namespace LudumDare50 {
             if (input != Vector2.zero) {
                 float duration = attributes.MovementDelay;
 
-                ik.Squash(duration);
+                IK.Squash(duration);
                 movementInput = input;
 
                 // Wait during interval.
@@ -126,16 +127,16 @@ namespace LudumDare50 {
                     destination.y += GameManager.Instance.Settings.Unit * attributes.MovementUnit * Mathf.Sign(input.y);
                 }
 
-                destination.x = Mathf.Clamp(destination.x, horizontalBounds.x, horizontalBounds.y);
-                destination.y = Mathf.Clamp(destination.y, verticalBounds.x, verticalBounds.y);
+                destination.x = Mathf.Clamp(destination.x, HorizontalBounds.x, HorizontalBounds.y);
+                destination.y = Mathf.Clamp(destination.y, VerticalBounds.x, VerticalBounds.y);
 
-                float duration = attributes.MovementDelay;
+                float duration = attributes.MovementDuration;
                 Vector2 velocity = destination - (Vector2)thisTransform.position;
 
-                ik.ApplyJumpIK(duration, velocity.x);
+                IK.ApplyJumpIK(duration, velocity.x);
 
-                moveSequence.Join(thisTransform.DOMove(destination, attributes.MovementDuration).SetEase(attributes.MovementEase));
-                moveSequence.Join(root.DOLocalMoveY(attributes.MovementRootHeight, attributes.MovementDuration).SetEase(attributes.MovementRootCurve));
+                moveSequence.Join(thisTransform.DOMove(destination, duration).SetEase(attributes.MovementEase));
+                moveSequence.Join(root.DOLocalMoveY(attributes.MovementRootHeight, duration).SetEase(attributes.MovementRootCurve));
 
                 moveSequence.OnComplete(Land);
             }
@@ -148,7 +149,7 @@ namespace LudumDare50 {
             }
 
             // Landing callback.
-            ik.ApplyLandingIK(attributes.MovementLandingDuration, instability);
+            IK.ApplyLandingIK(attributes.MovementLandingDuration, instability);
 
             // Land without falling in pieces.
             int amount = Physics2D.OverlapCircle(transform.position, attributes.OverlapRadius, filter, buffer);
@@ -168,21 +169,21 @@ namespace LudumDare50 {
 
         // ---------------
 
-        public void Collect(Ingredient ingredient) {
+        public void Collect(Ingredient ingredient, float collectDuration) {
             SetPlayable(false);
             instability = 0f;
 
             if (collectSequence.IsActive()) {
-                collectSequence.Complete(false);
+                collectSequence.Complete(true);
             }
 
-            float duration = attributes.CollectDuration;
+            float delay = attributes.CollectDuration;
 
             collectSequence = DOTween.Sequence(); {
-                collectSequence.Join(DOVirtual.DelayedCall(duration, OnCollect, false));
+                collectSequence.AppendInterval(collectDuration);
+                collectSequence.AppendCallback(() => { IK.ApplyLandingIK(delay, ingredient); });
+                collectSequence.Append(DOVirtual.DelayedCall(delay, OnCollect, false));
             }
-
-            ik.ApplyLandingIK(duration, ingredient);
         }
 
         private void OnCollect() {
@@ -200,7 +201,7 @@ namespace LudumDare50 {
             float duration = attributes.SplashDuration;
 
             // Splash animation is in IK.
-            ik.Splash(duration);
+            IK.Splash(duration);
             SetPlayable(false);
 
             gameOverSequence = DOTween.Sequence(); {
@@ -233,11 +234,19 @@ namespace LudumDare50 {
         }
 
         private void GameOver() {
+            if (idleSequence.IsActive()) {
+                idleSequence.Complete(false);
+            }
+
             GameManager.Instance.GameOver();
         }
         #endregion
 
         #region Playable
+        private Sequence idleSequence = null;
+
+        // ---------------
+
         public void SetPlayable(bool _isPlayable) {
             isPlayable = _isPlayable;
         }
@@ -256,14 +265,26 @@ namespace LudumDare50 {
                 gameOverSequence.Complete(false);
             }
 
+            if (idleSequence.IsActive()) {
+                idleSequence.Complete(false);
+            }
+
             // Reset the whole behaviour.
             thisTransform.position = initialPosition;
+            thisTransform.localScale = Vector3.one;
+
+            idleSequence = DOTween.Sequence(); {
+                idleSequence.AppendInterval(attributes.IdleDelay);
+                idleSequence.Join(Anchor.DOScale(attributes.IdleScale, attributes.IdleDuration).SetEase(attributes.IdleCurve));
+
+                idleSequence.SetLoops(-1, LoopType.Restart);
+            }
 
             ingredientCount = BASE_INGREDIENT_COUNT;
             instability = 0f;
             SetPlayable(false);
 
-            ik.OnReset(BASE_INGREDIENT_COUNT);
+            IK.OnReset(BASE_INGREDIENT_COUNT);
         }
         #endregion
     }

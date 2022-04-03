@@ -45,19 +45,19 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  SquashMultiplier: 0.5
+  SquashMultiplier: 0.56
   StretchCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 2
-      outSlope: 2
+      inSlope: 2.191132
+      outSlope: 2.191132
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0
+      outWeight: 0.045207955
     - serializedVersion: 3
       time: 1
       value: 1
@@ -70,7 +70,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  BoneLengthMax: 0.1
+  BoneLengthMax: 0.17
   HorizontalOffset: 0.2
   HorizontalJumpCurve:
     serializedVersion: 2
@@ -78,29 +78,38 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: -3.2363348
-      outSlope: -3.2363348
+      inSlope: -1.1341099
+      outSlope: -1.1341099
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.17485632
+      outWeight: 0.2140068
     - serializedVersion: 3
-      time: 0.5
-      value: -1
-      inSlope: 0.06964244
-      outSlope: 0.06964244
+      time: 0.24965975
+      value: -0.06016121
+      inSlope: 2.035157
+      outSlope: 2.035157
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
-      outWeight: 0.238186
+      outWeight: 0.1606165
     - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 8.638574
-      outSlope: 8.638574
+      time: 0.6560608
+      value: 1.0188675
+      inSlope: 0.0000013453617
+      outSlope: 0.0000013453617
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.07984722
+      inWeight: 0.13427028
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: -1
+      inSlope: -8.151529
+      outSlope: -8.151529
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.07233278
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -109,31 +118,22 @@ MonoBehaviour:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0
+      time: -0.0022354126
       value: 0
-      inSlope: 0
-      outSlope: 0
+      inSlope: -4.953372
+      outSlope: -4.953372
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.12863919
-    - serializedVersion: 3
-      time: 0.8
-      value: 0
-      inSlope: -0.031220146
-      outSlope: 4.1221824
-      tangentMode: 1
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.40609124
+      outWeight: 0.036166392
     - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: 4.202404
-      outSlope: 4.202404
+      inSlope: 0.02844632
+      outSlope: 0.02844632
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.04831807
+      inWeight: 0.5421283
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -151,8 +151,8 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 0.6812089
-      value: 0.74267054
+      time: 0.7758134
+      value: 1.2470345
       inSlope: 1.7688698
       outSlope: 1.7688698
       tangentMode: 0
@@ -162,11 +162,11 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: -0.59091985
-      outSlope: -0.59091985
+      inSlope: -4.6714654
+      outSlope: -4.6714654
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.24521565
+      inWeight: 0.12495736
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2

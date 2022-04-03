@@ -2,6 +2,7 @@
 //
 // ============================================================================ //
 
+using DG.Tweening;
 using EnhancedEditor;
 using UnityEngine;
 
@@ -12,7 +13,6 @@ namespace LudumDare50 {
         #region Global Members
         [Section("Ingredient")]
 
-        [SerializeField, Enhanced, Required] public SpriteRenderer Sprite = null;
         [SerializeField, Enhanced, Range(0f, 1f)] public float Height = 1f;
 
         public override bool DestroyOnCollect => false;
@@ -22,14 +22,8 @@ namespace LudumDare50 {
         public override void Collect(PlayerController player) {
             base.Collect(player);
 
-            player.Collect(this);
-        }
-
-        public void OnCollect(int order) {
-            // Collect it.
-            gameObject.layer = PlayerController.PlayerMask;
-            Sprite.gameObject.layer = PlayerController.PlayerMask;
-            Sprite.sortingOrder = order;
+            float duration = collectSequence.Duration();
+            player.Collect(this, duration);
         }
         #endregion
     }

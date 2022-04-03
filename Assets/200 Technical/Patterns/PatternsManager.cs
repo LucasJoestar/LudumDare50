@@ -42,9 +42,11 @@ namespace LudumDare50
         public void StartRandomPattern()
         {
             PatternHolder _holder = GetHolderFromQueue();
-            Pattern _pattern = null;
-            Vector2 _startPosition = Vector2.zero; // new Vector2(Random.Range(PlayerController.Instance.HorizontalBounds.x, PlayerController.Instance.HorizontalBounds.y), Random.Range(PlayerController.Instance.VerticalBounds.x, PlayerController.Instance.VerticalBounds.y));
-            Vector2 _endPosition = Vector2.one; //  new Vector2(Random.Range(PlayerController.Instance.HorizontalBounds.x, PlayerController.Instance.HorizontalBounds.y), Random.Range(PlayerController.Instance.VerticalBounds.x, PlayerController.Instance.VerticalBounds.y));
+            lastPatternIndex++;
+            if (lastPatternIndex >= patterns.Length /*|| patterns[lastPatternIndex].MinimumIngredient > PlayerController.Instance.IngredientCount*/) return;
+            Pattern _pattern = patterns[lastPatternIndex].GetRandomPattern();
+            Vector2 _startPosition = new Vector2(Random.Range(PlayerController.Instance.HorizontalBounds.x, PlayerController.Instance.HorizontalBounds.y), Random.Range(PlayerController.Instance.VerticalBounds.x, PlayerController.Instance.VerticalBounds.y));
+            Vector2 _endPosition = new Vector2(Random.Range(PlayerController.Instance.HorizontalBounds.x, PlayerController.Instance.HorizontalBounds.y), Random.Range(PlayerController.Instance.VerticalBounds.x, PlayerController.Instance.VerticalBounds.y));
             _holder.InitPattern(_pattern, _startPosition, _endPosition);
             StartSequence();
         }
@@ -62,6 +64,8 @@ namespace LudumDare50
     public class PatternInfos
     {
         public int MinimumIngredient = 0;
-        public Pattern[] Patterns = new Pattern[]{};
+        [SerializeField] private Pattern[] patterns = new Pattern[]{};
+
+        public Pattern GetRandomPattern() => patterns[Random.Range(0, patterns.Length)];
     }
 }

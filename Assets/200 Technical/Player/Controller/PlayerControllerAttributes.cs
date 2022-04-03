@@ -27,6 +27,16 @@ namespace LudumDare50 {
         [EndFoldout] public string MoveInput = "Player/Move";
         #endregion
 
+        #region Idle
+        [Enhanced, BeginFoldout("Idle"), Section("Idle")]
+
+        [Range(0f, 10f)] public float IdleDelay = 0f;
+        [Enhanced, Range(0f, 10f)] public float IdleDuration = 1f;
+        public Vector3 IdleScale = new Vector3(1f, 1f, 1f);
+
+        [Enhanced, EndFoldout] public AnimationCurve IdleCurve = AnimationCurve.Linear(0f, 0f, 1f, 0f);
+        #endregion
+
         #region Movement
         [Enhanced, BeginFoldout("Movement"), Section("Movement")]
 

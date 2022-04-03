@@ -17,10 +17,46 @@ MonoBehaviour:
     m_Bits: 129
   OverlapRadius: 0.2
   MoveInput: Player/Move
+  IdleDelay: 1.5
+  IdleDuration: 5
+  IdleScale: {x: 1.02, y: 0.95, z: 1}
+  IdleCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 1.956368
+      outSlope: 1.956368
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.16636528
+    - serializedVersion: 3
+      time: 0.5
+      value: 1
+      inSlope: 0.025324574
+      outSlope: 0.025324574
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.18625677
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -2.6084902
+      outSlope: -2.6084902
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.07233274
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   MovementDelay: 0.2
-  MovementDuration: 0.53
-  MovementLandingDuration: 0.15
-  MovementRootHeight: 1.2
+  MovementDuration: 0.4
+  MovementLandingDuration: 0.12
+  MovementRootHeight: 1.27
   MovementUnit: 1
   MovementRootCurve:
     serializedVersion: 2
@@ -35,8 +71,8 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0.27047005
     - serializedVersion: 3
-      time: 0.72083336
-      value: 0.92514986
+      time: 0.69913536
+      value: 1
       inSlope: -0.0018288109
       outSlope: -0.0018288109
       tangentMode: 0
@@ -55,7 +91,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  MovementEase: 10
-  IngredienMask: Ingredient
-  PlayerMask: Player
+  MovementEase: 7
   CollectDuration: 1
+  SplashDuration: 1
+  EatDuration: 1
