@@ -43,14 +43,25 @@ namespace LudumDare50
         {
             PatternHolder _holder = GetHolderFromQueue();
             lastPatternIndex++;
-            if (lastPatternIndex >= patterns.Length /*|| patterns[lastPatternIndex].MinimumIngredient > PlayerController.Instance.IngredientCount*/) return;
+            if (lastPatternIndex >= patterns.Length /*|| patterns[lastPatternIndex].MinimumIngredient > PlayerController.Instance.IngredientCount*/) 
+                lastPatternIndex = 0;
             Pattern _pattern = patterns[lastPatternIndex].GetRandomPattern();
-            Vector2 _startPosition = new Vector2(Random.Range(PlayerController.Instance.HorizontalBounds.x, PlayerController.Instance.HorizontalBounds.y), Random.Range(PlayerController.Instance.VerticalBounds.x, PlayerController.Instance.VerticalBounds.y));
-            Vector2 _endPosition = new Vector2(Random.Range(PlayerController.Instance.HorizontalBounds.x, PlayerController.Instance.HorizontalBounds.y), Random.Range(PlayerController.Instance.VerticalBounds.x, PlayerController.Instance.VerticalBounds.y));
+
+            Vector2 _startPosition = (Vector2)PlayerController.Instance.transform.position + (Vector2.right * Random.value * 5.5f) + (Vector2.up * Random.value * 5.5f);
+            // if (Random.value >= .5f) _startPosition *= -1;
+            // _startPosition = Vector2.Max(_startPosition, new Vector2(PlayerController.Instance.HorizontalBounds.x, PlayerController.Instance.VerticalBounds.x)); 
+            // _startPosition = Vector2.Min(_startPosition, new Vector2(PlayerController.Instance.HorizontalBounds.y, PlayerController.Instance.VerticalBounds.y)); 
+
+            Vector2 _endPosition = (Vector2)PlayerController.Instance.transform.position + (Vector2.right * Random.value * 5.5f) + (Vector2.up * Random.value * 5.5f);
+            // if (Random.value >= .5f) _endPosition *= -1;
+            // _endPosition = Vector2.Max(_endPosition, new Vector2(PlayerController.Instance.HorizontalBounds.x, PlayerController.Instance.VerticalBounds.x));
+            // _endPosition = Vector2.Min(_endPosition, new Vector2(PlayerController.Instance.HorizontalBounds.y, PlayerController.Instance.VerticalBounds.y));
+
             _holder.InitPattern(_pattern, _startPosition, _endPosition);
             StartSequence();
         }
 
+        [Button]
         void StartSequence()
         {
             sequence = DOTween.Sequence();

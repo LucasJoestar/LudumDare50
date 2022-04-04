@@ -110,12 +110,6 @@ namespace LudumDare50
             warningRenderer.gameObject.SetActive(false);
             root.gameObject.SetActive(false);
         }
-
-        [Button("test")]
-        private void Test(Pattern _test)
-        {
-            InitPattern(_test, new Vector2(-2, 0), new Vector2(2, 0));
-        }
         #endregion
     }
 }
