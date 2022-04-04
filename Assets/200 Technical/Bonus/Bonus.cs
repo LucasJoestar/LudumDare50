@@ -64,8 +64,8 @@ namespace LudumDare50 {
             // Play feedback here.
             PlayCollect();
             UIManager.Instance.IncreaseScore((int)Score);
-
             isCollected = true;
+            SpawnManager.Instance.OnBonusGet(this);
         }
 
         public virtual void OnCollect(int order) {

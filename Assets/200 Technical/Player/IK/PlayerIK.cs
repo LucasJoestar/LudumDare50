@@ -45,7 +45,6 @@ namespace LudumDare50 {
         /// <param name="_duration">Duration of the sequence</param>
         /// <param name="_newIngredient">New Ingredient to add</param>
         private void AddNewIngredient(float _duration, Ingredient _newIngredient) {
-            Debug.Log("Add ingredient", _newIngredient);
 
             ingredients.Add(_newIngredient);
 
@@ -166,11 +165,11 @@ namespace LudumDare50 {
         /// </summary>
         /// <param name="_landingDuration">Duration of the sequence</param>
         /// <param name="_newIngredient">Added Ingredient</param>
-        public void ApplyLandingIK(float _landingDuration, /*float _gettingIngredientDuration,*/ Ingredient _newIngredient)
+        public void ApplyLandingIK(float _landingDuration, float _gettingIngredientDuration, Ingredient _newIngredient)
         {
             LandingHorizontal(_landingDuration, 0);
             LandingVertical(_landingDuration);
-            AddNewIngredient(_landingDuration, _newIngredient);
+            AddNewIngredient(_gettingIngredientDuration, _newIngredient);
             horizontalSequence.Play();
             verticalSequence.Play();
         }
@@ -207,7 +206,8 @@ namespace LudumDare50 {
             {
                 _distance += ingredients[i].Height;
             }
-            float _direction = Mathf.Sin(attributes.InstabilityMax * _instability) * _distance;
+            _instability = Mathf.Clamp(_instability,-1 ,1);
+            float _direction = Mathf.Sin(Mathf.Deg2Rad * attributes.InstabilityMax * _instability ) * _distance;
             for (int i = ingredients.Count; i-- > 0;)
             {
                 horizontalSequence.Join(ingredients[i].transform.DOLocalMoveX(Mathf.Lerp(0, _direction, 1f - (float)i / ingredients.Count), _landingDuration).SetEase(attributes.HorizontalLandingCurve));
@@ -215,7 +215,13 @@ namespace LudumDare50 {
         }
 
         public void Splash(float _splashDuration) {
-
+            horizontalSequence.Kill(false);
+            verticalSequence.Kill(false);
+            verticalSequence = DOTween.Sequence();
+            for (int i = 0; i < ingredients.Count; i++)
+            {
+                verticalSequence.Join(ingredients[i].transform.DOLocalMoveY(0, _splashDuration));
+            }
         }
         #endregion
 

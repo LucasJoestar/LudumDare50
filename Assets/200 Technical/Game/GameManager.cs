@@ -194,7 +194,7 @@ namespace LudumDare50 {
         public void ResetGame() {
             PlayerController.Instance.ResetBehaviour();
             UIManager.Instance.ResetBehaviour();
-
+            SpawnManager.Instance.Reset();
             isInTransition = false;
         }
         #endregion

@@ -1680,6 +1680,8 @@ GameObject:
   - component: {fileID: 488658171}
   - component: {fileID: 488658170}
   - component: {fileID: 488658169}
+  - component: {fileID: 488658172}
+  - component: {fileID: 488658173}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1722,8 +1724,8 @@ MonoBehaviour:
   comment: 
   Tags:
     Tags: []
-  lastModifiedBy: Lucas
-  lastModifiedDate: 03/04/2022 11:15:48
+  lastModifiedBy: CKG_Alexis
+  lastModifiedDate: 04/04/2022 12:14:00
   IsPersistent: 0
 --- !u!4 &488658171
 Transform:
@@ -1739,6 +1741,42 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &488658172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 488658168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce6f60a6fc63ca94795c95e7ecb2bf9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mixer: {fileID: 24100000, guid: 8f58641b06101f540939718c89439e56, type: 2}
+  sourcePrefab: {fileID: 5747326188592772366, guid: c1d108635355fb44fade625f4a5de547, type: 3}
+--- !u!114 &488658173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 488658168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cc70532083aef3438752262b183fac8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnInterval: 2
+  bonuses:
+  - {fileID: 8166062241511524609, guid: 46ae248c16de0354ba39e1e211b718c5, type: 3}
+  - {fileID: 4081468868322638066, guid: c70ea70d84a07854c8d1fb26fc201832, type: 3}
+  - {fileID: 4360421727233442449, guid: 64185457b39bfc844b7691e4ed2d272a, type: 3}
+  - {fileID: 514951196527141225, guid: ef421f93b8d4d444db249938b934b535, type: 3}
+  - {fileID: 7479422467403424538, guid: d37f74cb5073f3f45aa3bb428bc16b13, type: 3}
+  - {fileID: 3949816457686004208, guid: dcc5a4a4ae43f58478d41f873c6fc235, type: 3}
+  - {fileID: 4013873111074737308, guid: 82aa6974aa7cb8640b34d315d41e08aa, type: 3}
+  useEarlyRespawn: 0
 --- !u!1 &530415719 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4374690893467574071, guid: f2dd9683eca0f9d4fb47111db7ab3364, type: 3}

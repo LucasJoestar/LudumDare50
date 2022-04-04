@@ -92,6 +92,11 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   MovementEase: 7
+  InstabilityIngredientCoef: 0.01
+  InstabilityMovementMax: 0.15
+  InstabilityMinIngredient: 5
+  InstabilityDecrease: 0.99
+  InstabilityDecreaseEase: 1
   CollectDuration: 1
   SplashDuration: 1
   EatDuration: 1

@@ -106,6 +106,8 @@ namespace LudumDare50 {
             } else {
                 // Decrease instability.
                 float decrease = DOVirtual.EasedValue(0f, attributes.InstabilityDecrease, instability, attributes.InstabilityDecreaseEase) * Time.deltaTime;
+                if (instability < 0) decrease *= -1;
+                if (Mathf.Abs(instability) <= .001f) instability = 0;
                 instability = Mathf.MoveTowards(instability, 0f, decrease);
             }
         }
@@ -190,8 +192,7 @@ namespace LudumDare50 {
             float delay = attributes.CollectDuration;
 
             collectSequence = DOTween.Sequence(); {
-                collectSequence.AppendInterval(collectDuration);
-                collectSequence.AppendCallback(() => { IK.ApplyLandingIK(delay, ingredient); });
+                collectSequence.AppendCallback(() => { IK.ApplyLandingIK(delay, collectDuration, ingredient); });
                 collectSequence.Append(DOVirtual.DelayedCall(delay, OnCollect, false));
             }
         }
