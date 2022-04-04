@@ -10,19 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 081b8cf66e571ac4280f3da50e8e2d25, type: 3}
-  m_Name: HandPattern
+  m_Name: DogPattern
   m_EditorClassIdentifier: 
   Sprites:
-  - {fileID: -5149184257344873937, guid: 39bc2f3566b1e9d4ea2feed377ac10e2, type: 3}
-  ColliderOffset: {x: 0, y: 0}
-  ColliderSize: {x: 0.8, y: 1.25}
-  FadeInDuration: 1
-  StartingDelay: 2
-  Speed: 10
+  - {fileID: 7885720487722556239, guid: 2641f280796fb5e46a3950bdc563f95f, type: 3}
+  - {fileID: -1984895800772824843, guid: 2641f280796fb5e46a3950bdc563f95f, type: 3}
+  ColliderOffset: {x: 0, y: -0.2}
+  ColliderSize: {x: 0.65, y: 0.75}
+  FadeInDuration: 0.5
+  StartingDelay: 3
+  Speed: 0.25
   Acceleration: 1
-  IsTriggerContinuous: 1
-  PatternType: 1
+  IsTriggerContinuous: 0
+  PatternType: 3
   EndDuration: 0.2
-  EndForce: 0.02
+  EndForce: 0.05
   EndVibrato: 25
   FadeOutDuration: 2

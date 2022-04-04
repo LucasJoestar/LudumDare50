@@ -12,15 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 081b8cf66e571ac4280f3da50e8e2d25, type: 3}
   m_Name: ForkPattern
   m_EditorClassIdentifier: 
-  Sprite: {fileID: 5619074069039827861, guid: 39bc2f3566b1e9d4ea2feed377ac10e2, type: 3}
-  ColliderOffset: {x: 0, y: 0}
-  ColliderSize: {x: 1, y: 1}
+  Sprites:
+  - {fileID: 5619074069039827861, guid: 39bc2f3566b1e9d4ea2feed377ac10e2, type: 3}
+  ColliderOffset: {x: 0, y: -0.25}
+  ColliderSize: {x: 0.4, y: 0.5}
+  FadeInDuration: 1
+  StartingDelay: 2
   Speed: 15
   Acceleration: 1
   IsTriggerContinuous: 0
-  StartingDelay: 2
   PatternType: 0
   EndDuration: 0.2
   EndForce: 0.02
   EndVibrato: 25
-  RestingDuration: 2
+  FadeOutDuration: 2
