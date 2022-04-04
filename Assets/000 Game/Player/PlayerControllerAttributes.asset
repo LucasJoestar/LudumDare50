@@ -100,3 +100,10 @@ MonoBehaviour:
   CollectDuration: 1
   SplashDuration: 1
   EatDuration: 1
+  VolumeScale: 0.559
+  jumpingClips:
+  - {fileID: 8300000, guid: 851f43651f127ed44a03daec58d5acdc, type: 3}
+  landingClips:
+  - {fileID: 8300000, guid: 0a81884ba7167f54fa5f608bf94dae5f, type: 3}
+  bonusClip:
+  - {fileID: 8300000, guid: b97494bf0f2f5a34b8fb2ecc00ccb5f3, type: 3}

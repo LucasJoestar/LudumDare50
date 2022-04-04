@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 081b8cf66e571ac4280f3da50e8e2d25, type: 3}
+  m_Name: BigSlap
+  m_EditorClassIdentifier: 
+  Sprites:
+  - {fileID: 3406127972691431740, guid: 2641f280796fb5e46a3950bdc563f95f, type: 3}
+  ColliderOffset: {x: 0, y: 0.2}
+  ColliderSize: {x: 1.5, y: 1.5}
+  SizeMultiplier: 1.4
+  FadeInDuration: 1
+  StartingDelay: 0.5
+  Speed: 1
+  Acceleration: 1
+  IsTriggerContinuous: 0
+  PatternType: 2
+  EndDuration: 0.2
+  EndForce: 0.05
+  EndVibrato: 25
+  FadeOutDuration: 2.5
+  StartSounds: []
+  HitSounds:
+  - {fileID: 8300000, guid: ed83359d15e52ee4c9d7c6b6c0c1bdb0, type: 3}
+  - {fileID: 8300000, guid: 20c867e3bb1033c44a5fa1bc73c782bf, type: 3}
+  - {fileID: 8300000, guid: ab156b8633799064d885b277bfa2161e, type: 3}

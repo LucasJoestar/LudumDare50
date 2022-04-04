@@ -58,8 +58,8 @@ MonoBehaviour:
   comment: 
   Tags:
     Tags: []
-  lastModifiedBy: ALIEN_3D2
-  lastModifiedDate: 03/04/2022 17:34:37
+  lastModifiedBy: CKG_Alexis
+  lastModifiedDate: 05/04/2022 00:55:56
   IsPersistent: 0
 --- !u!222 &4374690893467574074
 CanvasRenderer:
@@ -86,6 +86,8 @@ MonoBehaviour:
   rectTransform: {fileID: 4374690893467574072}
   buttonImage: {fileID: 4374690893467574073}
   flash: {fileID: 4374690894474050055}
+  selectClip: {fileID: 8300000, guid: 3f8509393ecb5564ba3c65172d700014, type: 3}
+  clickClip: {fileID: 8300000, guid: 5aa5abfcbb325644d9dfbc76e3e13703, type: 3}
   onClick:
     m_PersistentCalls:
       m_Calls:

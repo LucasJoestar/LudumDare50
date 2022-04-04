@@ -23,7 +23,6 @@ namespace LudumDare50
         #endregion
 
         #region Methods
-        [Button]
         public void StartSpawnSequence()
         {
             sequence = DOTween.Sequence();

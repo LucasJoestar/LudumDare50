@@ -89,5 +89,14 @@ namespace LudumDare50 {
         [Enhanced, Range(0f, 5f)] public float SplashDuration = 1f;
         [EndFoldout, Enhanced, Range(0f, 5f)] public float EatDuration = 1f;
         #endregion
+
+        #region Sounds
+        [BeginFoldout("Sounds"), Section("Sounds")]
+        [Enhanced, Range(0f, 1f)] public float VolumeScale = 1f;
+        public AudioClip[] jumpingClips = new AudioClip[] { };
+        public AudioClip[] landingClips = new AudioClip[] { };
+        [EndFoldout] public AudioClip[] bonusClip = new AudioClip[] { };
+
+        #endregion
     }
 }

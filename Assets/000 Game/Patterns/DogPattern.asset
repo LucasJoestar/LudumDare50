@@ -10,24 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 081b8cf66e571ac4280f3da50e8e2d25, type: 3}
-  m_Name: Knife Pattern
+  m_Name: DogPattern
   m_EditorClassIdentifier: 
   Sprites:
-  - {fileID: -7104190069732699558, guid: 39bc2f3566b1e9d4ea2feed377ac10e2, type: 3}
-  ColliderOffset: {x: 0, y: -0.5}
-  ColliderSize: {x: 0.4, y: 1}
+  - {fileID: 7885720487722556239, guid: 2641f280796fb5e46a3950bdc563f95f, type: 3}
+  - {fileID: -1984895800772824843, guid: 2641f280796fb5e46a3950bdc563f95f, type: 3}
+  ColliderOffset: {x: 0, y: -0.2}
+  ColliderSize: {x: 0.65, y: 0.75}
   SizeMultiplier: 1
-  FadeInDuration: 1
-  StartingDelay: 2
-  Speed: 15
+  FadeInDuration: 0.5
+  StartingDelay: 3
+  Speed: 0.25
   Acceleration: 1
-  IsTriggerContinuous: 1
-  PatternType: 0
+  IsTriggerContinuous: 0
+  PatternType: 3
   EndDuration: 0.2
-  EndForce: 0.02
+  EndForce: 0.05
   EndVibrato: 25
   FadeOutDuration: 2
-  StartSounds:
-  - {fileID: 8300000, guid: 711f770ad1e330246bc12678b52529ed, type: 3}
+  StartSounds: []
   HitSounds:
-  - {fileID: 8300000, guid: 7f0d196109ab00643b2b9bcf66cff26c, type: 3}
+  - {fileID: 8300000, guid: ab156b8633799064d885b277bfa2161e, type: 3}

@@ -10,24 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 081b8cf66e571ac4280f3da50e8e2d25, type: 3}
-  m_Name: Knife Pattern
+  m_Name: SlapPattern
   m_EditorClassIdentifier: 
   Sprites:
-  - {fileID: -7104190069732699558, guid: 39bc2f3566b1e9d4ea2feed377ac10e2, type: 3}
-  ColliderOffset: {x: 0, y: -0.5}
-  ColliderSize: {x: 0.4, y: 1}
-  SizeMultiplier: 1
-  FadeInDuration: 1
-  StartingDelay: 2
-  Speed: 15
+  - {fileID: -955132254257116892, guid: 39bc2f3566b1e9d4ea2feed377ac10e2, type: 3}
+  ColliderOffset: {x: 0, y: 0}
+  ColliderSize: {x: 0.9, y: 1.25}
+  SizeMultiplier: 1.5
+  FadeInDuration: 0.5
+  StartingDelay: 1.5
+  Speed: 1
   Acceleration: 1
-  IsTriggerContinuous: 1
-  PatternType: 0
+  IsTriggerContinuous: 0
+  PatternType: 2
   EndDuration: 0.2
   EndForce: 0.02
   EndVibrato: 25
   FadeOutDuration: 2
-  StartSounds:
-  - {fileID: 8300000, guid: 711f770ad1e330246bc12678b52529ed, type: 3}
+  StartSounds: []
   HitSounds:
-  - {fileID: 8300000, guid: 7f0d196109ab00643b2b9bcf66cff26c, type: 3}
+  - {fileID: 8300000, guid: 9802d5bd88c65ab4cade3d509562b048, type: 3}
+  - {fileID: 8300000, guid: 87481217ce0a9b643a45577ec3d71e5e, type: 3}
