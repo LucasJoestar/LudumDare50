@@ -994,7 +994,7 @@ MonoBehaviour:
   Tags:
     Tags: []
   lastModifiedBy: Lucas
-  lastModifiedDate: 04/04/2022 22:45:39
+  lastModifiedDate: 04/04/2022 23:38:54
   IsPersistent: 0
 --- !u!114 &4933287911180586123
 MonoBehaviour:
@@ -1034,6 +1034,7 @@ MonoBehaviour:
   ingame: {fileID: 4933287911977776737}
   pause: {fileID: 4933287912151153830}
   scoreText: {fileID: 4933287911227688860}
+  highscoreText: {fileID: 4933287911142456010}
   menuBackground: {fileID: 1558587398063482592}
   creditsAnchor: {fileID: 7618241669813529786}
   scoreFlash: {fileID: 4933287911911335625}
