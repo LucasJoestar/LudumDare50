@@ -15,7 +15,7 @@ MonoBehaviour:
   Sprite: {fileID: -5149184257344873937, guid: 39bc2f3566b1e9d4ea2feed377ac10e2, type: 3}
   ColliderBounds:
     m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 1, y: 1, z: 0}
   Speed: 10
   Acceleration: 1
   IsTriggerContinuous: 1
@@ -24,3 +24,4 @@ MonoBehaviour:
   EndDuration: 0.2
   EndForce: 0.02
   EndVibrato: 25
+  RestingDuration: 2

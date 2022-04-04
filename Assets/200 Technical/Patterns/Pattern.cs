@@ -15,7 +15,8 @@ namespace LudumDare50
         #region Global Members
         [Section("Pattern")]
         public Sprite Sprite = null;
-        public Bounds ColliderBounds = new Bounds(); 
+        public Vector2 ColliderOffset = Vector2.zero;
+        public Vector2 ColliderSize = Vector2.one;
         [Section("Movement")]
         public float Speed = 1.0f;
         public Ease Acceleration = Ease.Linear;
@@ -26,6 +27,7 @@ namespace LudumDare50
         public float EndDuration = 1.0f;
         public float EndForce = 1.0f;
         public int EndVibrato = 10;
+        public float RestingDuration = 2.0f;
         #endregion
 
         #region Method
