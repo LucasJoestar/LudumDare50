@@ -33,7 +33,6 @@ namespace LudumDare50 {
         [SerializeField, Enhanced, Required] private CanvasGroup pause = null;
         [SerializeField, Enhanced, Required] private TextMeshProUGUI scoreText = null;
         [SerializeField, Enhanced, Required] private Image scoreFlash = null;
-
 		private DOTweenTMPAnimator animator = null;
         #endregion
 

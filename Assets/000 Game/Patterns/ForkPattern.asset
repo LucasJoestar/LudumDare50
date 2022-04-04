@@ -17,7 +17,7 @@ MonoBehaviour:
   ColliderSize: {x: 1, y: 1}
   Speed: 15
   Acceleration: 1
-  IsTriggerContinuous: 1
+  IsTriggerContinuous: 0
   StartingDelay: 2
   PatternType: 0
   EndDuration: 0.2

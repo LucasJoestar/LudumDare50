@@ -20,7 +20,9 @@ namespace LudumDare50
         [SerializeField] private new SpriteRenderer renderer = null;
         [SerializeField] private new BoxCollider2D collider = null;
         [SerializeField] private SpriteRenderer warningRenderer = null;
-
+        [SerializeField] private SpriteRenderer targetRenderer = null;
+        [SerializeField] private LineRenderer lineRenderer = null;
+        [SerializeField, Enhanced, Range(.1f, 2f)] private float scrollSpeed = 1.0f ;
         private Pattern pattern = null;
         private Vector2 startPosition, endPosition;
         private Sequence sequence = null; 
@@ -41,29 +43,39 @@ namespace LudumDare50
             StartPattern();
         }
 
-        private void StartPattern()
-        {
+        private void StartPattern(){
             root.transform.localPosition = startPosition;
+            root.eulerAngles = Vector3.forward * Vector2.SignedAngle(Vector2.up, endPosition - startPosition);
             collider.enabled = pattern.IsTriggerContinuous;
             root.gameObject.SetActive(true);
+            warningRenderer.gameObject.SetActive(true);
 
             if (pattern.IsTriggerContinuous)
-                warningRenderer.transform.position = (startPosition + endPosition)/2 + Vector2.one;
-            else warningRenderer.transform.position = endPosition + Vector2.one;
+            {
+                warningRenderer.transform.localPosition = (startPosition + endPosition) / 2 + Vector2.one;
+
+            }
+            else
+            {
+                endPosition = Vector2.Lerp(startPosition, endPosition, Random.Range(.5f, 1f));
+                targetRenderer.transform.localPosition = endPosition;
+                targetRenderer.enabled = true;
+                warningRenderer.transform.localPosition = endPosition + Vector2.one;
+            }
             warningRenderer.gameObject.SetActive(true);
 
             float _duration = Vector2.Distance(startPosition, endPosition)/pattern.Speed;
             sequence = DOTween.Sequence();
-            sequence.Join(warningRenderer.DOFade(0, pattern.StartingDelay/4f).SetEase(Ease.Linear).SetLoops(5, LoopType.Yoyo));
+            sequence.Join(warningRenderer.DOFade(0, pattern.StartingDelay/4f).SetLoops(6, LoopType.Yoyo));
             sequence.Join(root.transform.DOShakePosition(pattern.StartingDelay, .1f));
             switch (pattern.PatternType)
             {
                 case PatternType.Linear:
-                    root.transform.eulerAngles = Vector3.back * Vector2.Angle(Vector2.up, endPosition - startPosition);
                     sequence.Append(root.transform.DOLocalMove(endPosition, _duration).SetEase(pattern.Acceleration));
                     break;
                 case PatternType.Circular:
-                    root.transform.eulerAngles = Vector3.zero;
+                    root.eulerAngles = Vector3.zero;
+                    renderer.flipX = startPosition.x > endPosition.x;
                     Vector3[] _path = new Vector3[3]
                     {
                         endPosition,
@@ -72,15 +84,20 @@ namespace LudumDare50
                     };
                     sequence.Append(root.transform.DOLocalPath(_path, _duration, PathType.CubicBezier).SetEase(pattern.Acceleration));
                     break;
+                case PatternType.Slap:
+                    // Insert Slap Behaviour here
+                    break;
                 default:
                     break;
             }
+            lineRenderer.SetPositions(new Vector3[2] { startPosition, endPosition });
+            lineRenderer.enabled = true;
             sequence.onComplete += EndPattern; 
         }
 
-        private void EndPattern()
-        {
-            warningRenderer.gameObject.SetActive(false);
+        private void EndPattern(){
+            lineRenderer.enabled = false;
+            lineRenderer.material.SetTextureOffset("_MainTex", Vector2.zero);
             if (!pattern.IsTriggerContinuous) collider.enabled = true;
             sequence = DOTween.Sequence();
             {
@@ -91,24 +108,30 @@ namespace LudumDare50
         }
 
         public void Stop() {
-                Debug.Log("Stop");
+            PatternsManager.Instance.Stop();
+            collider.enabled = false;
             if (pattern.IsTriggerContinuous)
             {
-                sequence.Kill(true);
+                sequence.Kill(false);
+                EndPattern();
             }
         }
 
         private void Reset(){
             warningRenderer.gameObject.SetActive(false);
             root.gameObject.SetActive(false);
+            renderer.flipX = false;
+            targetRenderer.enabled = false;
             IsActive = false;
             PatternsManager.Instance.PushHolderToQueue(this);
         }
 
-        private void Start()
+        private void Update()
         {
-            warningRenderer.gameObject.SetActive(false);
-            root.gameObject.SetActive(false);
+            if(IsActive)
+            {
+                lineRenderer.material.SetTextureOffset("_MainTex", Vector2.left * Time.time * scrollSpeed);
+            }
         }
         #endregion
     }

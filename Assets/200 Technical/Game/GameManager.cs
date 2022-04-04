@@ -155,6 +155,8 @@ namespace LudumDare50 {
         public void StartPlay() {
             UIManager.Instance.StartPlay();
             PlayerController.Instance.SetPlayable(true);
+            PatternsManager.Instance.StartSequence();
+            SpawnManager.Instance.StartSpawnSequence();
 
             isInIntro = false;
             isInTransition = false;
@@ -176,12 +178,16 @@ namespace LudumDare50 {
             isInMenu = true;
 
             UIManager.Instance.ShowMenu(doForceFade);
+            SpawnManager.Instance.Reset();
+            PatternsManager.Instance.Stop();
         }
 
         public void RestartGame() {
             isInTransition = true;
 
             UIManager.Instance.RestartGame();
+            SpawnManager.Instance.Reset();
+            PatternsManager.Instance.Stop();
         }
 
         public void GameOver() {
@@ -195,6 +201,7 @@ namespace LudumDare50 {
             PlayerController.Instance.ResetBehaviour();
             UIManager.Instance.ResetBehaviour();
             SpawnManager.Instance.Reset();
+            PatternsManager.Instance.Stop();
             isInTransition = false;
         }
         #endregion

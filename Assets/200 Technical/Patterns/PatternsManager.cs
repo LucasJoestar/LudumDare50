@@ -39,34 +39,64 @@ namespace LudumDare50
 
         public void PushHolderToQueue(PatternHolder _holder) => availableHolders.Enqueue(_holder);
 
-        public void StartRandomPattern()
+        [Button]
+        private void StartRandomPattern()
         {
             PatternHolder _holder = GetHolderFromQueue();
             lastPatternIndex++;
-            if (lastPatternIndex >= patterns.Length /*|| patterns[lastPatternIndex].MinimumIngredient > PlayerController.Instance.IngredientCount*/) 
+            if (lastPatternIndex >= patterns.Length || patterns[lastPatternIndex].MinimumIngredient > PlayerController.Instance.IngredientCount) 
                 lastPatternIndex = 0;
             Pattern _pattern = patterns[lastPatternIndex].GetRandomPattern();
 
-            Vector2 _startPosition = (Vector2)PlayerController.Instance.transform.position + (Vector2.right * Random.value * 5.5f) + (Vector2.up * Random.value * 5.5f);
-            // if (Random.value >= .5f) _startPosition *= -1;
-            // _startPosition = Vector2.Max(_startPosition, new Vector2(PlayerController.Instance.HorizontalBounds.x, PlayerController.Instance.VerticalBounds.x)); 
-            // _startPosition = Vector2.Min(_startPosition, new Vector2(PlayerController.Instance.HorizontalBounds.y, PlayerController.Instance.VerticalBounds.y)); 
+            Vector2 _startPosition = Vector2.zero, _endPosition = Vector2.zero;
+            // From Left - Right 
+            if(Random.value >= .5f) {
+                // Horizontal
+                if (Random.value >= .5f) {
+                    _startPosition.x = PlayerController.Instance.HorizontalBounds.x + 1;
+                    _endPosition.x = PlayerController.Instance.HorizontalBounds.y - 1;
 
-            Vector2 _endPosition = (Vector2)PlayerController.Instance.transform.position + (Vector2.right * Random.value * 5.5f) + (Vector2.up * Random.value * 5.5f);
-            // if (Random.value >= .5f) _endPosition *= -1;
-            // _endPosition = Vector2.Max(_endPosition, new Vector2(PlayerController.Instance.HorizontalBounds.x, PlayerController.Instance.VerticalBounds.x));
-            // _endPosition = Vector2.Min(_endPosition, new Vector2(PlayerController.Instance.HorizontalBounds.y, PlayerController.Instance.VerticalBounds.y));
+                }
+                else {
+                    _startPosition.x = PlayerController.Instance.HorizontalBounds.y - 1;
+                    _endPosition.x = PlayerController.Instance.HorizontalBounds.x + 1;
+                }
+
+                _startPosition.y = Random.Range(PlayerController.Instance.VerticalBounds.x + 1, PlayerController.Instance.VerticalBounds.y - 1);
+                _endPosition.y = Random.Range(PlayerController.Instance.VerticalBounds.x + 1, PlayerController.Instance.VerticalBounds.y - 1);
+            }
+            else { // Top - Bottom
+                // Vertical
+                if (Random.value >= .5f)
+                {
+                    _startPosition.y = PlayerController.Instance.VerticalBounds.x + 1;
+                    _endPosition.y = PlayerController.Instance.VerticalBounds.y - 1;
+
+                }
+                else
+                {
+                    _startPosition.y = PlayerController.Instance.VerticalBounds.y - 1;
+                    _endPosition.y = PlayerController.Instance.VerticalBounds.x + 1;
+                }
+
+                _startPosition.x = Random.Range(PlayerController.Instance.HorizontalBounds.x + 1, PlayerController.Instance.HorizontalBounds.y - 1);
+                _endPosition.x = Random.Range(PlayerController.Instance.HorizontalBounds.x + 1, PlayerController.Instance.HorizontalBounds.y - 1);
+            }
 
             _holder.InitPattern(_pattern, _startPosition, _endPosition);
             StartSequence();
         }
 
-        [Button]
-        void StartSequence()
+        public void StartSequence()
         {
             sequence = DOTween.Sequence();
             sequence.AppendInterval(waitingInterval);
             sequence.AppendCallback(StartRandomPattern);               
+        }
+
+        public void Stop()
+        {
+            sequence.Kill(false);
         }
         #endregion
     }

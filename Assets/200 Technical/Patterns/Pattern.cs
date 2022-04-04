@@ -38,6 +38,7 @@ namespace LudumDare50
     public enum PatternType
     {
         Linear, 
-        Circular
+        Circular, 
+        Slap
     }
 }
