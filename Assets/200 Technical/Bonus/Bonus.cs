@@ -63,6 +63,7 @@ namespace LudumDare50 {
         public virtual void Collect(PlayerController player) {
             // Play feedback here.
             PlayCollect();
+            UIManager.Instance.IncreaseScore((int)Score);
 
             isCollected = true;
         }

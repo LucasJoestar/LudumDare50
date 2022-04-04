@@ -4,13 +4,10 @@
 
 using DG.Tweening;
 using EnhancedEditor;
-using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-
-using Range = EnhancedEditor.RangeAttribute;
 
 namespace LudumDare50 {
 	public class UIManager : Singleton<UIManager> {
@@ -22,37 +19,236 @@ namespace LudumDare50 {
 
         [Space(10f)]
 
+        [SerializeField, Enhanced, Required] private Canvas worldCanvas = null;
         [SerializeField, Enhanced, Required] private ScoreUIFeedback feedback = null;
         [SerializeField, Enhanced, Required] private UIButton[] buttons = null;
 
         [Space(10f)]
 
         [SerializeField, Enhanced, Required] private CanvasGroup fadeToBlack = null;
-        [SerializeField, Enhanced, Required] private CanvasGroup menu = null;
+		[SerializeField, Enhanced, Required] private RectTransform titleTransform = null;
+		[SerializeField, Enhanced, Required] private CanvasGroup menu = null;
         [SerializeField, Enhanced, Required] private CanvasGroup title = null;
-        [SerializeField, Enhanced, Required] private RectTransform titleTransform = null;
+        [SerializeField, Enhanced, Required] private CanvasGroup ingame = null;
+        [SerializeField, Enhanced, Required] private CanvasGroup pause = null;
+        [SerializeField, Enhanced, Required] private TextMeshProUGUI scoreText = null;
+        [SerializeField, Enhanced, Required] private Image scoreFlash = null;
+
+		private DOTweenTMPAnimator animator = null;
+        #endregion
+
+        #region Behaviour
+        private void Start() {
+			animator = new DOTweenTMPAnimator(scoreText);
+		}
         #endregion
 
         #region Score
         private List<ScoreUIFeedback> allFeedbacks = new List<ScoreUIFeedback>();
 
-        // ---------------
+		private Sequence increaseSequence = null;
+		private Sequence resizeSequence = null;
+		private Sequence flashSequence = null;
+		private Sequence completeSequence = null;
 
-        public void IncreaseScore(PlayerController player, float increase) {
-            
-        }
+		private int nextScore = 0;
+		private float currentScore = 0f;
+		private float scoreIncrease = 0f;
 
-        private void SpawnFeedback(PlayerController player, float increase) {
+		private bool isWaitingForNextUpdate = true;
 
-        }
+		// ---------------
+
+		public void IncreaseScore(int increase) {
+            // Spawn feedback.
+            var _feedback = Instantiate(feedback, worldCanvas.transform);
+            _feedback.Initialize(feedbackAttributes, increase);
+
+			// Score increase.
+			UpdateScore(nextScore + increase);
+		}
 
         public void OnFeedbackComplete(ScoreUIFeedback feedback) {
             allFeedbacks.Remove(feedback);
         }
-        #endregion
 
-        #region Management
-        private Sequence sequence = null;
+		// -----------------------
+
+		public void UpdateScore(int score) {
+			if (score == currentScore)
+				return;
+
+			// If already increase, wait for it to complete.
+			if (increaseSequence.IsActive()) {
+				isWaitingForNextUpdate = true;
+
+				return;
+			}
+
+			// Increase.
+			int scoreCurrent = Mathf.FloorToInt(nextScore);
+			float scoreIncrement = score - scoreCurrent;
+
+			if (scoreIncrement < 1)
+				return;
+
+			float amount = Mathf.Min(scoreIncrement, attributes.ScoreIncreaseMaxAmount);
+
+			scoreIncrease = scoreIncrement / amount;
+			nextScore = score;
+
+			// Highscore.
+			float highscore = PlayerPrefs.GetInt(GameManager.HIGHSCORE_KEY, 0);
+			if (nextScore > highscore) {
+				PlayerPrefs.SetInt(GameManager.HIGHSCORE_KEY, nextScore);
+			}
+
+			DoIncrease();
+
+			// Bounce.
+			if (!resizeSequence.IsActive()) {
+				resizeSequence = DOTween.Sequence();
+
+				int count = animator.textInfo.characterCount;
+
+				for (int i = 0; i < count; i++) {
+					if (!animator.textInfo.characterInfo[i].isVisible)
+						continue;
+
+					resizeSequence.Join(animator.DOScaleChar(i, attributes.ScoreScaleSize, attributes.ScoreScaleDuration).SetEase(attributes.ScoreScaleCurve));
+				}
+
+				// Flash.
+				if (!flashSequence.IsActive()) {
+					flashSequence = DOTween.Sequence(); {
+						flashSequence.Join(scoreFlash.DOFade(1f, attributes.ScoreScaleFlashDuration).SetEase(attributes.ScoreScaleFlashCurve).SetDelay(attributes.ScoreScaleFlashDelay));
+					}
+
+					resizeSequence.Join(flashSequence);
+				}
+			}
+		}
+
+		// -----------------------
+
+		private void DoIncrease() {
+			// Increase.
+			increaseSequence = DOTween.Sequence(); {
+				string currentString = currentScore.ToString("0");
+				string newString = (currentScore + scoreIncrease).ToString("0");
+
+				// Get the total amount of changed digits.
+				int digits = 0;
+				int nextDigits = 0;
+
+				if (newString.Length > currentString.Length) {
+					digits = currentString.Length;
+					nextDigits = newString.Length;
+				} else {
+					for (int i = 0; i < newString.Length; i++) {
+						if (newString[i] != currentString[i]) {
+							digits = newString.Length - i;
+							nextDigits = digits;
+
+							break;
+						}
+					}
+				}
+
+				float increaseDuration = attributes.ScoreIncreaseDuration * .5f;
+
+				for (int i = digits; i-- > 0;) {
+					if (!animator.textInfo.characterInfo[i].isVisible)
+						continue;
+
+					Sequence _sequence = DOTween.Sequence(); {
+						_sequence.Join(animator.DORotateChar(i, new Vector3(45f, 0f, 0f), increaseDuration).SetEase(Ease.OutCirc));
+						_sequence.Join(animator.DOOffsetChar(i, new Vector3(0f, attributes.ScoreOffset.y, 0f), increaseDuration).SetEase(attributes.ScoreOffsetInEase));
+
+						increaseSequence.Join(_sequence);
+					}
+				}
+
+				increaseSequence.PrependInterval(attributes.ScoreIncreaseInterval);
+				increaseSequence.OnComplete(() => OnIncreaseUpdate(nextDigits));
+			}
+
+			// Complete.
+			if (Mathf.RoundToInt(currentScore + scoreIncrease) == nextScore) {
+				if (completeSequence.IsActive()) {
+					completeSequence.Complete(false);
+				}
+
+				completeSequence = DOTween.Sequence();
+
+				// Shake.
+				Sequence shakeSequence = DOTween.Sequence(); {
+					shakeSequence.Join(scoreText.rectTransform.DOShakeAnchorPos(attributes.ScoreShakeDuration, attributes.ScoreShakeStrength, (int)attributes.ScoreShakeVibrato, attributes.ScoreShakeRandomness, true).SetEase(attributes.ScoreShakeEase));
+
+					shakeSequence.PrependInterval(attributes.ScoreShakeDelay);
+					completeSequence.Join(shakeSequence);
+				}
+
+				// Flash.
+				if (flashSequence.IsActive()) {
+					flashSequence.Complete(false);
+				}
+
+				flashSequence = DOTween.Sequence(); {
+					flashSequence.Join(scoreFlash.DOFade(1f, attributes.ScoreFlashDuration).SetEase(attributes.ScoreFlashCurve).SetDelay(attributes.ScoreFlashDelay));
+					completeSequence.Join(flashSequence);
+				}
+			}
+		}
+
+		private void OnIncreaseUpdate(int digits) {
+			increaseSequence.Complete(false);
+
+			currentScore += scoreIncrease;
+			scoreText.text = currentScore.ToString("### ### 000");
+
+			increaseSequence = DOTween.Sequence(); {
+				float increaseDuration = attributes.ScoreIncreaseDuration * .5f;
+
+				for (int i = digits; i-- > 0;) {
+					if (!animator.textInfo.characterInfo[i].isVisible)
+						continue;
+
+					Sequence _sequence = DOTween.Sequence(); {
+						_sequence.Join(animator.DORotateChar(i, new Vector3(-45f, 0f, 0f), 0f));
+						_sequence.Join(animator.DOOffsetChar(i, new Vector3(0f, attributes.ScoreOffset.x, 0f), 0f));
+
+						_sequence.Join(animator.DORotateChar(i, new Vector3(0f, 0f, 0f), increaseDuration).SetEase(Ease.InCirc));
+						_sequence.Join(animator.DOOffsetChar(i, new Vector3(0f, 0f, 0f), increaseDuration).SetEase(attributes.ScoreOffsetOutEase));
+
+						increaseSequence.Join(_sequence);
+					}
+				}
+
+				increaseSequence.OnComplete(OnIncreaseComplete);
+			}
+		}
+
+		private void OnIncreaseComplete() {
+			if (isWaitingForNextUpdate) {
+				increaseSequence.Kill(false);
+				isWaitingForNextUpdate = false;
+
+				UpdateScore(nextScore);
+				return;
+			}
+
+			if (Mathf.RoundToInt(currentScore) != nextScore) {
+				DoIncrease();
+			} else {
+				currentScore = nextScore;
+			}
+		}
+		#endregion
+
+		#region Management
+		private Sequence sequence = null;
+		private Sequence fadeSequence = null;
 
         // ---------------
 
@@ -106,8 +302,10 @@ namespace LudumDare50 {
             void OnFaded() {
                 menu.alpha = 0f;
                 title.alpha = 0f;
+				ingame.alpha = 0f;
+				pause.alpha = 0;
 
-                titleTransform.localScale = attributes.TitleScaleInSize;
+				titleTransform.localScale = attributes.TitleScaleInSize;
                 titleTransform.rotation = Quaternion.identity;
                 titleTransform.anchoredPosition = new Vector2(titleTransform.anchoredPosition.x, attributes.TitleMoveIdleFrom);
 
@@ -132,8 +330,10 @@ namespace LudumDare50 {
 
         public void HideMenu() {
             if (sequence.IsActive()) {
-                sequence.Kill(false);
+                sequence.Complete(false);
             }
+
+            sequence = DOTween.Sequence();
 
             // Fade.
             Sequence _fadeOut = DOTween.Sequence(); {
@@ -157,6 +357,18 @@ namespace LudumDare50 {
             }
         }
 
+		public void StartPlay() {
+			ingame.alpha = 0f;
+
+			if (fadeSequence.IsActive()) {
+				fadeSequence.Complete();
+			}
+
+			fadeSequence = DOTween.Sequence(); {
+				fadeSequence.Join(ingame.DOFade(1f, attributes.PlayFadeDuration).SetEase(attributes.PlayFadeEase).SetDelay(attributes.PlayFadeDelay));
+			}
+		}
+
         public void EnableButtons(bool enabled) {
             foreach (var button in buttons) {
                 button.interactable = enabled;
@@ -166,19 +378,75 @@ namespace LudumDare50 {
         // ---------------
 
         public void PauseGame(bool isPaused) {
-        }
+			if (fadeSequence.IsActive()) {
+				fadeSequence.Complete();
+			}
+
+			fadeSequence = DOTween.Sequence();
+
+			if (isPaused) {
+				fadeSequence.Join(pause.DOFade(1f, attributes.PauseFadeInDuration).SetEase(attributes.PauseFadeInEase).SetDelay(attributes.PauseFadeInDelay));
+            } else {
+				fadeSequence.Join(pause.DOFade(0f, attributes.PauseFadeOutDuration).SetEase(attributes.PauseFadeOutEase).SetDelay(attributes.PauseFadeOutDelay));
+			}
+
+			fadeSequence.SetUpdate(true);
+		}
 
         public void RestartGame() {
-        }
+			if (fadeSequence.IsActive()) {
+				fadeSequence.Complete();
+			}
+
+			fadeSequence = DOTween.Sequence();
+
+			fadeSequence.Join(fadeToBlack.DOFade(1f, attributes.RestartFadeInDuration).SetEase(attributes.RestartFadeInEase).SetDelay(attributes.RestartFadeInDelay));
+			fadeSequence.AppendInterval(attributes.RestartFadeOutDelay);
+
+			fadeSequence.OnComplete(OnComplete);
+
+			void OnComplete() {
+				if (sequence.IsActive()) {
+					sequence.Kill(true);
+				}
+
+				sequence = DOTween.Sequence();
+
+				sequence.Join(fadeToBlack.DOFade(0f, attributes.RestartFadeOutDuration).SetEase(attributes.RestartFadeOutEase));
+
+				GameManager.Instance.ResetGame();
+				GameManager.Instance.StartPlay();
+			}
+		}
         #endregion
 
         #region Reset
         public void ResetBehaviour() {
-            foreach (var _feedback in allFeedbacks) {
+            if (increaseSequence.IsActive()) {
+				increaseSequence.Complete(false);
+            }
+
+			if (completeSequence.IsActive()) {
+				completeSequence.Complete(false);
+			}
+
+			if (fadeSequence.IsActive()) {
+				fadeSequence.Kill();
+			}
+
+			foreach (var _feedback in allFeedbacks) {
                 _feedback.Complete();
             }
 
             allFeedbacks.Clear();
+
+			isWaitingForNextUpdate = false;
+			nextScore = 0;
+			currentScore = scoreIncrease
+						 = 0f;
+
+			scoreText.text = "000";
+			pause.alpha = 0f;
         }
         #endregion
     }

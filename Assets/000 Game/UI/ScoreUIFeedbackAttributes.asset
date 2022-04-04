@@ -12,4 +12,113 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de3a651ff03d8d144b29eb0f96126143, type: 3}
   m_Name: ScoreUIFeedbackAttributes
   m_EditorClassIdentifier: 
-  variable: 1
+  BaseAlpha: 0
+  BaseOffset: 1.11
+  BaseScale: {x: 0, y: 0, z: 1}
+  MoveOffset: 1.5
+  MoveOffsetDelay: 0
+  MoveOffsetDuration: 0.93
+  MoveOffsetEase: 4
+  ResizeScale: {x: 0.5, y: 0.5, z: 1}
+  ResizeScaleDelay: 0
+  ResizeScaleDuration: 0.92
+  ResizeScaleCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 1.956368
+      outSlope: 1.956368
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.16636528
+    - serializedVersion: 3
+      time: 0.7017319
+      value: 1.5248165
+      inSlope: 0.025324574
+      outSlope: 0.025324574
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.18625677
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: -2.6084902
+      outSlope: -2.6084902
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.07233274
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  FadeDelay: 0
+  FadeDuration: 0.89
+  FadeCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 1.956368
+      outSlope: 1.956368
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.16636528
+    - serializedVersion: 3
+      time: 0.5
+      value: 1
+      inSlope: 0.025324574
+      outSlope: 0.025324574
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.18625677
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -2.6084902
+      outSlope: -2.6084902
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.07233274
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  Gradient:
+    serializedVersion: 2
+    key0: {r: 0.17986828, g: 0.8867924, b: 0.68971986, a: 1}
+    key1: {r: 0.38967502, g: 0.27033645, b: 0.764151, a: 1}
+    key2: {r: 0.41876185, g: 0.24954176, b: 0.78229284, a: 0}
+    key3: {r: 0.7678113, g: 0, b: 1, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 4819
+    ctime1: 26985
+    ctime2: 48380
+    ctime3: 55898
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 4
+    m_NumAlphaKeys: 2
+  GradientDelay: 0
+  GradientDuration: 0.93
+  GradientEase: 3

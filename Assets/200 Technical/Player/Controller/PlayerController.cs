@@ -30,7 +30,7 @@ namespace LudumDare50 {
 
         [SerializeField, Enhanced, ReadOnly] private bool isPlayable = true;
         [SerializeField, Enhanced, ReadOnly, Range(-1f, 1f)] private float instability = 0f;
-        [SerializeField, Enhanced, ReadOnly] private int ingredientCount = BASE_INGREDIENT_COUNT;
+        [SerializeField, Enhanced, ReadOnly] public int IngredientCount = BASE_INGREDIENT_COUNT;
 
         public static int IngredienMask { get; private set; }
         public static int PlayerMask { get; private set; }
@@ -103,6 +103,10 @@ namespace LudumDare50 {
                 moveSequence = DOTween.Sequence(); {
                     moveSequence.Join(DOVirtual.DelayedCall(duration, Move, false));
                 }
+            } else {
+                // Decrease instability.
+                float decrease = DOVirtual.EasedValue(0f, attributes.InstabilityDecrease, instability, attributes.InstabilityDecreaseEase) * Time.deltaTime;
+                instability = Mathf.MoveTowards(instability, 0f, decrease);
             }
         }
 
@@ -132,6 +136,12 @@ namespace LudumDare50 {
 
                 float duration = attributes.MovementDuration;
                 Vector2 velocity = destination - (Vector2)thisTransform.position;
+
+                // Increase instability.
+                if ((velocity.x != 0f) && (IngredientCount >= attributes.InstabilityMinIngredient)) {
+                    float increase = Mathf.Min(IngredientCount * attributes.InstabilityIngredientCoef, attributes.InstabilityMovementMax);
+                    instability = Mathf.Clamp(instability + (increase * Mathf.Sign(velocity.x)), -1f, 1f);
+                }
 
                 IK.ApplyJumpIK(duration, velocity.x);
 
@@ -187,7 +197,7 @@ namespace LudumDare50 {
         }
 
         private void OnCollect() {
-            ingredientCount++;
+            IngredientCount++;
             SetPlayable(true);
         }
         #endregion
@@ -280,10 +290,10 @@ namespace LudumDare50 {
                 idleSequence.SetLoops(-1, LoopType.Restart);
             }
 
-            ingredientCount = BASE_INGREDIENT_COUNT;
+            IngredientCount = BASE_INGREDIENT_COUNT;
             instability = 0f;
-            SetPlayable(false);
 
+            SetPlayable(false);
             IK.OnReset(BASE_INGREDIENT_COUNT);
         }
         #endregion

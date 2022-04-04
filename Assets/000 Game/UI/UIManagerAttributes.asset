@@ -113,3 +113,180 @@ MonoBehaviour:
   TitleRotateOutLoop: 0
   TitleRotateOutDuration: 0.1
   TitleRotateOutEase: 2
+  PauseFadeInDelay: 0
+  PauseFadeInDuration: 0.1
+  PauseFadeInEase: 3
+  PauseFadeOutDelay: 0
+  PauseFadeOutDuration: 0.1
+  PauseFadeOutEase: 2
+  RestartFadeInDelay: 0
+  RestartFadeInDuration: 0.25
+  RestartFadeInEase: 3
+  RestartFadeOutDelay: 0
+  RestartFadeOutDuration: 0.15
+  RestartFadeOutEase: 2
+  PlayFadeDelay: 0
+  PlayFadeDuration: 0.25
+  PlayFadeEase: 3
+  ScoreIncreaseDuration: 0.01
+  ScoreIncreaseInterval: 0.02
+  ScoreIncreaseMaxAmount: 3
+  ScoreScaleDuration: 0.25
+  ScoreScaleSize: 1.5
+  ScoreScaleCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 3.2253897
+      outSlope: 3.2253897
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.39200643
+    - serializedVersion: 3
+      time: 0.14874965
+      value: 1.0047188
+      inSlope: 0.025324574
+      outSlope: 0.025324574
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.18625677
+    - serializedVersion: 3
+      time: 0.272294
+      value: -0.6113491
+      inSlope: 0.012978077
+      outSlope: 0.012978077
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.15766378
+    - serializedVersion: 3
+      time: 0.42295045
+      value: 0.87419057
+      inSlope: 0.0033500143
+      outSlope: 0.0033500143
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.15863073
+    - serializedVersion: 3
+      time: 0.5786509
+      value: -0.5114591
+      inSlope: 0.4122651
+      outSlope: 0.4122651
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.32216045
+      outWeight: 0.4250995
+    - serializedVersion: 3
+      time: 0.74504584
+      value: 1.0766746
+      inSlope: -0.00083447
+      outSlope: -0.00083447
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.6006175
+    - serializedVersion: 3
+      time: 0.89418083
+      value: -0.34499997
+      inSlope: 0.39954835
+      outSlope: 0.39954835
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 1
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 10.037838
+      outSlope: 10.037838
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.12507191
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  ScoreScaleFlashDelay: 0.05
+  ScoreScaleFlashDuration: 0.05
+  ScoreScaleFlashCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0.4514696
+      outSlope: 0.4514696
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.28209764
+    - serializedVersion: 3
+      time: 0.5
+      value: 0.25
+      inSlope: 0.025324574
+      outSlope: 0.025324574
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.18625677
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -0.74873376
+      outSlope: -0.74873376
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.19529831
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  ScoreOffset: {x: -50, y: 30}
+  ScoreOffsetInEase: 3
+  ScoreOffsetOutEase: 2
+  ScoreShakeStrength: 16.3
+  ScoreShakeVibrato: 27.7
+  ScoreShakeRandomness: 90
+  ScoreShakeDelay: 0.05
+  ScoreShakeDuration: 0.25
+  ScoreShakeEase: 3
+  ScoreFlashDelay: 0.05
+  ScoreFlashDuration: 0.1
+  ScoreFlashCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 1.956368
+      outSlope: 1.956368
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.16636528
+    - serializedVersion: 3
+      time: 0.5
+      value: 1
+      inSlope: 0.025324574
+      outSlope: 0.025324574
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.18625677
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -2.6084902
+      outSlope: -2.6084902
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.07233274
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4

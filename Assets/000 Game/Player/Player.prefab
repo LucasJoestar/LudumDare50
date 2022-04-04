@@ -202,7 +202,7 @@ MonoBehaviour:
   Tags:
     Tags: []
   lastModifiedBy: Lucas
-  lastModifiedDate: 04/04/2022 00:31:18
+  lastModifiedDate: 04/04/2022 02:55:36
   IsPersistent: 0
 --- !u!114 &3732182922343307831
 MonoBehaviour:
@@ -224,7 +224,7 @@ MonoBehaviour:
   VerticalBounds: {x: -5, y: 5}
   isPlayable: 1
   instability: 0
-  ingredientCount: 1
+  IngredientCount: 2
 --- !u!210 &66999595697705858
 SortingGroup:
   m_ObjectHideFlags: 0

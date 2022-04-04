@@ -91,8 +91,85 @@ namespace LudumDare50 {
         [Enhanced, EndFoldout] public Ease TitleRotateOutEase = Ease.InSine;
         #endregion
 
-        #region Score
+        #region Pause
+        [BeginFoldout("Pause"), Section("Pause")]
 
+        [Enhanced, Range(0f, 1f)] public float PauseFadeInDelay = 0f;
+        [Enhanced, Range(0f, 5f)] public float PauseFadeInDuration = .1f;
+        public Ease PauseFadeInEase = Ease.OutSine;
+
+        [Space(10f)]
+
+        [Enhanced, Range(0f, 1f)] public float PauseFadeOutDelay = 0f;
+        [Enhanced, Range(0f, 5f)] public float PauseFadeOutDuration = .1f;
+        [Enhanced, EndFoldout] public Ease PauseFadeOutEase = Ease.InSine;
+        #endregion
+
+        #region Restart / Play
+        [BeginFoldout("Restart / Play"), Section("Restart / Play")]
+
+        [Enhanced, Range(0f, 1f)] public float RestartFadeInDelay = 0f;
+        [Enhanced, Range(0f, 5f)] public float RestartFadeInDuration = .1f;
+        public Ease RestartFadeInEase = Ease.OutSine;
+
+        [Space(10f)]
+
+        [Enhanced, Range(0f, 1f)] public float RestartFadeOutDelay = 0f;
+        [Enhanced, Range(0f, 5f)] public float RestartFadeOutDuration = .1f;
+        public Ease RestartFadeOutEase = Ease.InSine;
+
+        [Space(10f)]
+
+        [Enhanced, Range(0f, 1f)] public float PlayFadeDelay = 0f;
+        [Enhanced, Range(0f, 5f)] public float PlayFadeDuration = .1f;
+        [Enhanced, EndFoldout] public Ease PlayFadeEase = Ease.InSine;
+        #endregion
+
+        #region Score
+        [BeginFoldout("Score"), Section("Score")]
+
+        [Enhanced, Range(0f, 1f)] public float ScoreIncreaseDuration = .1f;
+        [Enhanced, Range(0f, 1f)] public float ScoreIncreaseInterval = .1f;
+
+        [Space(10f)]
+
+        [Enhanced, Range(0f, 100f)] public float ScoreIncreaseMaxAmount = 1f;
+
+        [Space(5f), HorizontalLine(SuperColor.Indigo), Space(5f)]
+
+        [Enhanced, Range(0f, 5f)] public float ScoreScaleDuration = .1f;
+        [Enhanced, Range(0f, 10f)] public float ScoreScaleSize = .1f;
+        public AnimationCurve ScoreScaleCurve = AnimationCurve.Linear(0f, 0f, 1f, 1f);
+
+        [Space(10f)]
+
+        [Space(5f), HorizontalLine(SuperColor.Indigo), Space(5f)]
+
+        [Enhanced, Range(0f, 1f)] public float ScoreScaleFlashDelay = .1f;
+        [Enhanced, Range(0f, 5f)] public float ScoreScaleFlashDuration = .1f;
+        public AnimationCurve ScoreScaleFlashCurve = AnimationCurve.Linear(0f, 0f, 1f, 1f);
+
+        [Space(5f), HorizontalLine(SuperColor.Indigo), Space(5f)]
+
+        [Enhanced, MinMax(-100, 100f)] public Vector2 ScoreOffset = Vector2.zero;
+        public Ease ScoreOffsetInEase = Ease.Linear;
+        public Ease ScoreOffsetOutEase = Ease.Linear;
+
+        [Space(5f), HorizontalLine(SuperColor.Indigo), Space(5f)]
+
+        [Enhanced, Range(0f, 100f)] public float ScoreShakeStrength = 1f;
+        [Enhanced, Range(0f, 100f)] public float ScoreShakeVibrato = 10f;
+        [Enhanced, Range(0f, 90f)] public float ScoreShakeRandomness = 90f;
+        [Enhanced, Range(0f, 5f)] public float ScoreShakeDelay = .1f;
+        [Enhanced, Range(0f, 5f)] public float ScoreShakeDuration = .1f;
+        public Ease ScoreShakeEase = Ease.Linear;
+
+        [Space(5f), HorizontalLine(SuperColor.Indigo), Space(5f)]
+
+        [Enhanced, Range(0f, 1f)] public float ScoreFlashDelay = .1f;
+        [Enhanced, Range(0f, 5f)] public float ScoreFlashDuration = .1f;
+
+        [Enhanced, EndFoldout] public AnimationCurve ScoreFlashCurve = AnimationCurve.Linear(0f, 0f, 1f, 1f);
         #endregion
     }
 }

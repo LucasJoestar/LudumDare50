@@ -35,6 +35,8 @@ namespace LudumDare50 {
 
     public class GameManager : Singleton<GameManager> {
         #region Global Members
+        public const string HIGHSCORE_KEY = "PicnicPanicHighscore";
+
         [Section("Game Manager")]
 
         [SerializeField, Enhanced, Required] public GameSettings Settings = null;
@@ -91,9 +93,9 @@ namespace LudumDare50 {
                 // In-game inputs.
                 if (pauseInput.WasPerformedThisFrame()) {
                     PauseGame();
-                } else if (restartInput.WasPerformedThisFrame()) {
+                } else if (!isPaused && restartInput.WasPerformedThisFrame()) {
                     RestartGame();
-                } else if (menuInput.WasPerformedThisFrame()) {
+                } else if (!isPaused && menuInput.WasPerformedThisFrame()) {
                     ShowMenu();
                 }
             }
@@ -133,6 +135,7 @@ namespace LudumDare50 {
                 return;
 
             isInMenu = false;
+            isInTransition = true;
 
             UIManager.Instance.HideMenu();
             DOVirtual.DelayedCall(Settings.IntroDelay, OnIntroStart);
@@ -146,10 +149,16 @@ namespace LudumDare50 {
         }
 
         private void OnIntroStopped(PlayableDirector playable) {
-            PlayerController.Instance.SetPlayable(true);
-            isInIntro = false;
+            StartPlay();
         }
 
+        public void StartPlay() {
+            UIManager.Instance.StartPlay();
+            PlayerController.Instance.SetPlayable(true);
+
+            isInIntro = false;
+            isInTransition = false;
+        }
         #endregion
 
         #region Management
@@ -176,7 +185,8 @@ namespace LudumDare50 {
         }
 
         public void GameOver() {
-
+            // Show game over screen.
+            ShowMenu();
         }
 
         // ---------------

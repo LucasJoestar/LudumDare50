@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1417267090757094428}
   - component: {fileID: 3623030463373492824}
   - component: {fileID: 652233240145576700}
+  - component: {fileID: 7342016879969535326}
   m_Layer: 5
   m_Name: Score Feedback
   m_TagString: Untagged
@@ -55,7 +56,7 @@ MonoBehaviour:
   Tags:
     Tags: []
   lastModifiedBy: Lucas
-  lastModifiedDate: 03/04/2022 10:32:20
+  lastModifiedDate: 04/04/2022 02:51:53
   IsPersistent: 0
 --- !u!222 &1417267090757094428
 CanvasRenderer:
@@ -77,7 +78,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbe5fdecf34130b41bf6a327909c6c6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  variable: 1
+  group: {fileID: 7342016879969535326}
+  text: {fileID: 652233240145576700}
 --- !u!114 &652233240145576700
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,3 +169,15 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!225 &7342016879969535326
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7573902164971337771}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0

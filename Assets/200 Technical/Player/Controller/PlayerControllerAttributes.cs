@@ -55,6 +55,19 @@ namespace LudumDare50 {
         [Enhanced, EndFoldout] public Ease MovementEase = Ease.Linear;
         #endregion
 
+        #region Instability
+        [BeginFoldout("Instability"), Section("Instability")]
+
+        [Enhanced, Range(0f, .1f)] public float InstabilityIngredientCoef = .01f;
+        [Enhanced, Range(0f, 1f)] public float InstabilityMovementMax = .1f;
+        [Enhanced, Range(2f, 10f)] public float InstabilityMinIngredient = 5f;
+
+        [Space(10f)]
+
+        [Enhanced, Range(0f, 5f)] public float InstabilityDecrease = 1f;
+        [Enhanced, EndFoldout] public Ease InstabilityDecreaseEase = Ease.Linear;
+        #endregion
+
         #region Ingredient
         [Enhanced, BeginFoldout("Ingredient"), Section("Ingredient")]
 
