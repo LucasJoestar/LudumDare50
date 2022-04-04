@@ -10,10 +10,11 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace LudumDare50 {
-	public class UIButton : Selectable, ISubmitHandler {
+	public class UIButton : MonoBehaviour, ISubmitHandler, ISelectHandler, IDeselectHandler {
         #region Global Members
         [Section("UI Button")]
 
+        [SerializeField, Enhanced, Required] public Selectable Selectable = null;
         [SerializeField, Enhanced, Required] private UIButtonAttributes attributes = null;
         [SerializeField, Enhanced, Required] private RectTransform rectTransform = null;
         [SerializeField, Enhanced, Required] private Image buttonImage = null;
@@ -25,18 +26,22 @@ namespace LudumDare50 {
         #endregion
 
         #region Behaviour
+        private static bool isSubmitting = false;
+
         private Sequence sequence = null;
         private Sequence colorSequence = null;
 
-        private static bool isSubmitting = false;
+        private Vector3 baseScale = Vector3.one;
 
         // ---------------
 
-        public override void OnSelect(BaseEventData eventData) {
+        protected void OnEnable() {
+            baseScale = rectTransform.localScale;
+        }
+
+        public void OnSelect(BaseEventData eventData) {
             if (isSubmitting)
                 return;
-
-            base.OnSelect(eventData);
 
             // Animation.
             if (sequence.IsActive()) {
@@ -44,7 +49,7 @@ namespace LudumDare50 {
             }
 
             sequence = DOTween.Sequence(); {
-                sequence.Join(rectTransform.DOScale(attributes.ButtonScaleStartIdle, .1f));
+                sequence.Join(rectTransform.DOScale(attributes.ButtonScaleStartIdle, attributes.ButtonScaleStartIdleDuration).SetEase(attributes.ButtonScaleStartIdleEase));
                 sequence.OnComplete(OnComplete);
             }
 
@@ -54,7 +59,7 @@ namespace LudumDare50 {
             }
 
             colorSequence = DOTween.Sequence(); {
-                colorSequence.Join(image.DOColor(attributes.ButtonSelectedColor, attributes.ButtonSelectedColorDuration).SetEase(attributes.ButtonSelectedColorEase));
+                colorSequence.Join(buttonImage.DOColor(attributes.ButtonSelectedColor, attributes.ButtonSelectedColorDuration).SetEase(attributes.ButtonSelectedColorEase));
             }
 
             // ----- Local Method ----- \\
@@ -91,15 +96,13 @@ namespace LudumDare50 {
 
                 isSubmitting = false;
                 UIManager.Instance.EnableButtons(true);
-                Select();
+                Selectable.Select();
             }
         }
 
-        public override void OnDeselect(BaseEventData eventData) {
+        public void OnDeselect(BaseEventData eventData) {
             if (isSubmitting)
                 return;
-
-            base.OnDeselect(eventData);
 
             // Animation.
             if (sequence.IsActive()) {
@@ -107,7 +110,7 @@ namespace LudumDare50 {
             }
 
             sequence = DOTween.Sequence(); {
-                sequence.Join(rectTransform.DOScale(1f, attributes.ButtonDefaultColorDuration).SetEase(attributes.ButtonDefaultColorEase));
+                sequence.Join(rectTransform.DOScale(baseScale, attributes.ButtonDefaultScaleDuration).SetEase(attributes.ButtonDefaultScaleEase));
             }
 
             // Color.
@@ -116,7 +119,7 @@ namespace LudumDare50 {
             }
 
             colorSequence = DOTween.Sequence(); {
-                colorSequence.Join(image.DOColor(attributes.ButtonDefaultColor, attributes.ButtonDefaultColorDuration).SetEase(attributes.ButtonDefaultColorEase));
+                colorSequence.Join(buttonImage.DOColor(attributes.ButtonDefaultColor, attributes.ButtonDefaultColorDuration).SetEase(attributes.ButtonDefaultColorEase));
             }
         }
         #endregion

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4374690893467574077}
   - component: {fileID: 4374690893467574074}
   - component: {fileID: 4374690893467574076}
+  - component: {fileID: 530415726}
   - component: {fileID: 4374690893467574073}
   - component: {fileID: 4374690893467574075}
   m_Layer: 5
@@ -58,7 +59,7 @@ MonoBehaviour:
   Tags:
     Tags: []
   lastModifiedBy: ALIEN_3D2
-  lastModifiedDate: 03/04/2022 17:34:24
+  lastModifiedDate: 03/04/2022 17:34:37
   IsPersistent: 0
 --- !u!222 &4374690893467574074
 CanvasRenderer:
@@ -80,8 +81,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f0ab8c37871163419391a66daf8ddcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Selectable: {fileID: 530415726}
+  attributes: {fileID: 11400000, guid: 1854aee17587bdf49b90c621e4a3e84c, type: 2}
+  rectTransform: {fileID: 4374690893467574072}
+  buttonImage: {fileID: 4374690893467574073}
+  flash: {fileID: 4374690894474050055}
+  onClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: LudumDare50.GameManager, LudumDare50
+        m_MethodName: PlayGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &530415726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4374690893467574071}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -109,25 +142,9 @@ MonoBehaviour:
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 4374690893467574073}
-  attributes: {fileID: 11400000, guid: 1854aee17587bdf49b90c621e4a3e84c, type: 2}
-  rectTransform: {fileID: 4374690893467574072}
-  buttonImage: {fileID: 4374690893467574073}
-  flash: {fileID: 4374690894474050055}
-  onClick:
+  m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: LudumDare50.GameManager, LudumDare50
-        m_MethodName: PlayGame
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &4374690893467574073
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -28,16 +28,17 @@ namespace LudumDare50 {
 
         [Space(5f), HorizontalLine(SuperColor.Crimson), Space(5f)]
 
-        [Enhanced, Range(0f, 5f)] public float MenuFadeInDelay = 0f;
-        [Enhanced, Range(0f, 5f)] public float MenuFadeInDuration = .1f;
-        public Ease MenuFadeInEase = Ease.OutSine;
-
-        [Space(10f)]
-
         [Enhanced, Range(0f, 1f)] public float MenuFadeOutDelay = 0f;
         [Enhanced, Range(0f, 5f)] public float MenuFadeOutDuration = .1f;
 
-        [Enhanced, EndFoldout] public Ease MenuFadeOutEase = Ease.InSine;
+        public Ease MenuFadeOutEase = Ease.InSine;
+
+        [Space(5f), HorizontalLine(SuperColor.Crimson), Space(5f)]
+
+        [Enhanced, Range(0f, 10f)] public float MenuScrollDuration = 0f;
+        public Vector2 MenuScroll = new Vector2();
+
+        [Enhanced, EndFoldout] public Ease MenuscrollEase = Ease.InSine;
         #endregion
 
         #region Title
@@ -89,6 +90,32 @@ namespace LudumDare50 {
         [Enhanced, Range(0f, 10f)] public float TitleRotateOutLoop = 1f;
         [Enhanced, Range(0f, 5f)] public float TitleRotateOutDuration = .1f;
         [Enhanced, EndFoldout] public Ease TitleRotateOutEase = Ease.InSine;
+        #endregion
+
+        #region Credits
+        [BeginFoldout("Credits"), Section("Credits")]
+
+        [Enhanced, Range(0f, 5f)] public float CreditsFadeInDuration = .5f;
+        public Ease CreditsFadeInEase = Ease.OutSine;
+
+        [Space(10f)]
+
+        public Vector2 CreditsMoveInMinAnchor = new Vector2();
+        public Vector2 CreditsMoveInMaxAnchor = new Vector2();
+        [Enhanced, Range(0f, 5f)] public float CreditsMoveInDuration = .1f;
+        public Ease CreditsMoveInEase = Ease.InSine;
+
+        [Space(5f), HorizontalLine(SuperColor.Crimson), Space(5f)]
+
+        [Enhanced, Range(0f, 5f)] public float CreditsFadeOutDuration = .5f;
+        public Ease CreditsFadeOutEase = Ease.OutSine;
+
+        [Space(10f)]
+
+        public Vector2 CreditsMoveOutMinAnchor = new Vector2();
+        public Vector2 CreditsMoveOutMaxAnchor = new Vector2();
+        [Enhanced, Range(0f, 5f)] public float CreditsMoveOutDuration = .1f;
+        [Enhanced, EndFoldout] public Ease CreditsMoveOutEase = Ease.InSine;
         #endregion
 
         #region Pause

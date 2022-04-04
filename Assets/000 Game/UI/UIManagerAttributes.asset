@@ -18,23 +18,23 @@ MonoBehaviour:
   MenuFadeOutBlackDelay: 0.5
   MenuFadeOutBlackDuration: 1
   MenuFadeOutBlackEase: 2
-  MenuFadeInDelay: 0.5
-  MenuFadeInDuration: 1
-  MenuFadeInEase: 3
   MenuFadeOutDelay: 0
   MenuFadeOutDuration: 0.5
   MenuFadeOutEase: 2
-  TitleInDelay: 1
+  MenuScrollDuration: 1.96
+  MenuScroll: {x: 181.5, y: 498.5}
+  MenuscrollEase: 1
+  TitleInDelay: 0.1
   TitleFadeInDuration: 0.5
   TitleFadeInEase: 3
-  TitleScaleInSize: {x: 0.2, y: 0.2, z: 1}
+  TitleScaleInSize: {x: 0.5, y: 0.5, z: 1}
   TitleScaleInDuration: 1
   TitleScaleInEase: 3
-  TitleRotateInLoop: 2
-  TitleRotateInDuration: 0.5
+  TitleRotateInLoop: 0
+  TitleRotateInDuration: 1
   TitleRotateInEase: 3
   TitleScaleIdle: {x: 1.1, y: 1.1, z: 1}
-  TitleScaleIdleDuration: 1
+  TitleScaleIdleDuration: 1.73
   TitleScaleIdleCurve:
     serializedVersion: 2
     m_Curve:
@@ -69,8 +69,8 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   TitleMoveIdleFrom: 0
-  TitleMoveIdle: -10
-  TitleMoveIdleDuration: 0.5
+  TitleMoveIdle: 50
+  TitleMoveIdleDuration: 1.73
   TitleMoveIdleCurve:
     serializedVersion: 2
     m_Curve:
@@ -105,14 +105,26 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   TitleOutDelay: 0.2
-  TitleFadeOutDuration: 0.7
+  TitleFadeOutDuration: 0.72
   TitleFadeOutEase: 3
-  TitleScaleOut: {x: 1.2, y: 1.15, z: 1}
-  TitleScaleOutDuration: 1
+  TitleScaleOut: {x: 1.5, y: 1.5, z: 1}
+  TitleScaleOutDuration: 0.9
   TitleScaleOutEase: 3
   TitleRotateOutLoop: 0
   TitleRotateOutDuration: 0.1
   TitleRotateOutEase: 2
+  CreditsFadeInDuration: 0.5
+  CreditsFadeInEase: 3
+  CreditsMoveInMinAnchor: {x: -1, y: 0}
+  CreditsMoveInMaxAnchor: {x: 0, y: 1}
+  CreditsMoveInDuration: 0.5
+  CreditsMoveInEase: 2
+  CreditsFadeOutDuration: 0.5
+  CreditsFadeOutEase: 3
+  CreditsMoveOutMinAnchor: {x: 0, y: 0}
+  CreditsMoveOutMaxAnchor: {x: 1, y: 1}
+  CreditsMoveOutDuration: 0.5
+  CreditsMoveOutEase: 2
   PauseFadeInDelay: 0
   PauseFadeInDuration: 0.1
   PauseFadeInEase: 3
@@ -130,7 +142,7 @@ MonoBehaviour:
   PlayFadeEase: 3
   ScoreIncreaseDuration: 0.01
   ScoreIncreaseInterval: 0.02
-  ScoreIncreaseMaxAmount: 3
+  ScoreIncreaseMaxAmount: 10
   ScoreScaleDuration: 0.25
   ScoreScaleSize: 1.5
   ScoreScaleCurve:

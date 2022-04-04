@@ -218,6 +218,8 @@ namespace LudumDare50 {
             gameOverSequence = DOTween.Sequence(); {
                 gameOverSequence.Join(DOVirtual.DelayedCall(duration, GameOver, false));
             }
+
+            Debug.Log("Splash");
         }
 
         public void EnterTrigger(Collider2D collision) {
@@ -242,6 +244,8 @@ namespace LudumDare50 {
             gameOverSequence = DOTween.Sequence(); {
                 gameOverSequence.Join(DOVirtual.DelayedCall(duration, GameOver, false));
             }
+
+            Debug.Log("Hit", collision);
         }
 
         private void GameOver() {
@@ -250,6 +254,8 @@ namespace LudumDare50 {
             }
 
             GameManager.Instance.GameOver();
+
+            Debug.Log("Game Over");
         }
         #endregion
 

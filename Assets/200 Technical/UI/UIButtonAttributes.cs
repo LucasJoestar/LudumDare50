@@ -22,6 +22,11 @@ namespace LudumDare50 {
 
         [Space(10f)]
 
+        [Enhanced, Range(0f, 10f)] public float ButtonDefaultScaleDuration = .1f;
+        public Ease ButtonDefaultScaleEase = Ease.InSine;
+
+        [Space(10f)]
+
         public Color ButtonSelectedColor = Color.white;
         [Enhanced, Range(0f, 10f)] public float ButtonSelectedColorDuration = .1f;
         public Ease ButtonSelectedColorEase = Ease.OutSine;
@@ -29,9 +34,13 @@ namespace LudumDare50 {
         [Space(5f), HorizontalLine(SuperColor.Aquamarine), Space(5f)]
 
         [Enhanced] public Vector3 ButtonScaleStartIdle = Vector3.one;
+        [Enhanced, Range(0f, 10f)] public float ButtonScaleStartIdleDuration = .1f;
+        public Ease ButtonScaleStartIdleEase = Ease.InSine;
+
+        [Space(10f)]
+
         [Enhanced] public Vector3 ButtonScaleEndIdle = Vector3.one;
         [Enhanced, Range(0f, 10f)] public float ButtonScaleIdleDuration = .1f;
-
         public Ease ButtonScaleIdleEase = Ease.InSine;
 
         [Space(5f), HorizontalLine(SuperColor.Aquamarine), Space(5f)]

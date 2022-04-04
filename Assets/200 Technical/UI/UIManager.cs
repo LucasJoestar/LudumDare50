@@ -23,22 +23,39 @@ namespace LudumDare50 {
         [SerializeField, Enhanced, Required] private ScoreUIFeedback feedback = null;
         [SerializeField, Enhanced, Required] private UIButton[] buttons = null;
 
-        [Space(10f)]
+		[Space(10f)]
+
+		[SerializeField, Enhanced, Required] private UIButton[] menuButtons = null;
+		[SerializeField, Enhanced, Required] private UIButton[] creditsButtons = null;
+		[SerializeField, Enhanced, Required] private UIButton[] pauseButtons = null;
+
+		[Space(10f)]
 
         [SerializeField, Enhanced, Required] private CanvasGroup fadeToBlack = null;
 		[SerializeField, Enhanced, Required] private RectTransform titleTransform = null;
 		[SerializeField, Enhanced, Required] private CanvasGroup menu = null;
         [SerializeField, Enhanced, Required] private CanvasGroup title = null;
+        [SerializeField, Enhanced, Required] private CanvasGroup credits = null;
         [SerializeField, Enhanced, Required] private CanvasGroup ingame = null;
         [SerializeField, Enhanced, Required] private CanvasGroup pause = null;
         [SerializeField, Enhanced, Required] private TextMeshProUGUI scoreText = null;
-        [SerializeField, Enhanced, Required] private Image scoreFlash = null;
+        [SerializeField, Enhanced, Required] private TextMeshProUGUI highscoreText = null;
+		[SerializeField, Enhanced, Required] private RectTransform menuBackground = null;
+		[SerializeField, Enhanced, Required] private RectTransform creditsAnchor = null;
+		[SerializeField, Enhanced, Required] private Image scoreFlash = null;
+
 		private DOTweenTMPAnimator animator = null;
         #endregion
 
         #region Behaviour
         private void Start() {
 			animator = new DOTweenTMPAnimator(scoreText);
+			DoScroll();
+		}
+
+		void DoScroll() {
+			menuBackground.anchoredPosition = Vector2.zero;
+			menuBackground.DOAnchorPos(attributes.MenuScroll, attributes.MenuScrollDuration).SetEase(attributes.MenuscrollEase).OnComplete(DoScroll);
 		}
         #endregion
 
@@ -248,12 +265,13 @@ namespace LudumDare50 {
 		#region Management
 		private Sequence sequence = null;
 		private Sequence fadeSequence = null;
+		private Sequence creditsSequence = null;
 
         // ---------------
 
         public void ShowMenu(bool doForceFade) {
             if (sequence.IsActive()) {
-                sequence.Kill(false);
+                sequence.Kill(true);
             }
 
             sequence = DOTween.Sequence();
@@ -276,7 +294,6 @@ namespace LudumDare50 {
             Sequence _fadeIn = DOTween.Sequence(); {
                 _fadeIn.AppendInterval(attributes.MenuFadeOutBlackDelay);
                 _fadeIn.Join(fadeToBlack.DOFade(0f, attributes.MenuFadeOutBlackDuration).SetEase(attributes.MenuFadeOutBlackEase));
-                _fadeIn.Join(menu.DOFade(1f, attributes.MenuFadeInDuration).SetEase(attributes.MenuFadeInEase).SetDelay(attributes.MenuFadeInDelay));
 
                 sequence.Append(_fadeIn);
             }
@@ -299,24 +316,33 @@ namespace LudumDare50 {
             // ----- Local Methods ----- \\
 
             void OnFaded() {
-                menu.alpha = 0f;
+                menu.alpha = 1f;
                 title.alpha = 0f;
 				ingame.alpha = 0f;
 				pause.alpha = 0;
+
+				int highscore = PlayerPrefs.GetInt(GameManager.HIGHSCORE_KEY, 0);
+				highscoreText.text = highscore.ToString("### ### 000").Trim();
 
 				titleTransform.localScale = attributes.TitleScaleInSize;
                 titleTransform.rotation = Quaternion.identity;
                 titleTransform.anchoredPosition = new Vector2(titleTransform.anchoredPosition.x, attributes.TitleMoveIdleFrom);
 
-                buttons[0].Select();
-
                 GameManager.Instance.ResetGame();
                 EnableButtons(true);
-            }
 
-            void OnComplete() {
-                // Idle sequence.
-                sequence = DOTween.Sequence(); {
+				foreach (var button in menuButtons) {
+					button.Selectable.enabled = true;
+				}
+
+				menuButtons[0].Selectable.Select();
+			}
+
+			void OnComplete() {
+				// Idle sequence.
+				sequence.Kill();
+
+				sequence = DOTween.Sequence(); {
                     titleTransform.rotation = Quaternion.identity;
 
                     sequence.Join(titleTransform.DOScale(attributes.TitleScaleIdle, attributes.TitleScaleIdleDuration).SetEase(attributes.TitleScaleIdleCurve));
@@ -329,7 +355,7 @@ namespace LudumDare50 {
 
         public void HideMenu() {
             if (sequence.IsActive()) {
-                sequence.Complete(false);
+                sequence.Kill(true);
             }
 
             sequence = DOTween.Sequence();
@@ -354,7 +380,11 @@ namespace LudumDare50 {
 
                 sequence.Join(_title);
             }
-        }
+
+			foreach (var button in menuButtons) {
+				button.Selectable.enabled = false;
+			}
+		}
 
 		public void StartPlay() {
 			ingame.alpha = 0f;
@@ -370,15 +400,61 @@ namespace LudumDare50 {
 
         public void EnableButtons(bool enabled) {
             foreach (var button in buttons) {
-                button.interactable = enabled;
+                button.Selectable.interactable = enabled;
             }
         }
 
-        // ---------------
+		// ---------------
 
-        public void PauseGame(bool isPaused) {
+		public void ShowCredits(bool isVisible) {
+			if (creditsSequence.IsActive()) {
+				creditsSequence.Kill();
+			}
+
+			foreach (var button in menuButtons) {
+				button.Selectable.enabled = !isVisible;
+			}
+
+			foreach (var button in creditsButtons) {
+				button.Selectable.enabled = isVisible;
+			}
+
+			creditsSequence = DOTween.Sequence();
+
+			if (isVisible) {
+				creditsSequence.Join(credits.DOFade(1f, attributes.CreditsFadeInDuration).SetEase(attributes.CreditsFadeInEase));
+
+				creditsSequence.Join(creditsAnchor.DOAnchorMin(attributes.CreditsMoveInMinAnchor, attributes.CreditsMoveInDuration).SetEase(attributes.CreditsMoveInEase));
+				creditsSequence.Join(creditsAnchor.DOAnchorMax(attributes.CreditsMoveInMaxAnchor, attributes.CreditsMoveInDuration).SetEase(attributes.CreditsMoveInEase));
+			} else {
+				creditsSequence.Join(credits.DOFade(0f, attributes.CreditsFadeOutDuration).SetEase(attributes.CreditsFadeOutEase));
+
+				creditsSequence.Join(creditsAnchor.DOAnchorMin(attributes.CreditsMoveOutMinAnchor, attributes.CreditsMoveOutDuration).SetEase(attributes.CreditsMoveOutEase));
+				creditsSequence.Join(creditsAnchor.DOAnchorMax(attributes.CreditsMoveOutMaxAnchor, attributes.CreditsMoveOutDuration).SetEase(attributes.CreditsMoveOutEase));
+			}
+
+			creditsSequence.InsertCallback(.1f, OnComplete);
+
+			void OnComplete() {
+				if (isVisible) {
+					creditsButtons[0].Selectable.Select();
+				} else {
+					menuButtons[0].Selectable.Select();
+				}
+            }
+		}
+
+		public void PauseGame(bool isPaused) {
 			if (fadeSequence.IsActive()) {
 				fadeSequence.Complete();
+			}
+
+            foreach (var button in pauseButtons) {
+				button.Selectable.enabled = isPaused;
+            }
+
+			if (isPaused) {
+				pauseButtons[0].Selectable.Select();
 			}
 
 			fadeSequence = DOTween.Sequence();
@@ -429,6 +505,10 @@ namespace LudumDare50 {
 				completeSequence.Complete(false);
 			}
 
+			if (creditsSequence.IsActive()) {
+				creditsSequence.Complete(false);
+			}
+
 			if (fadeSequence.IsActive()) {
 				fadeSequence.Kill();
 			}
@@ -446,7 +526,19 @@ namespace LudumDare50 {
 
 			scoreText.text = "000";
 			pause.alpha = 0f;
-        }
+
+			foreach (var button in menuButtons) {
+				button.Selectable.enabled = false;
+			}
+
+			foreach (var button in creditsButtons) {
+				button.Selectable.enabled = false;
+			}
+
+			foreach (var button in pauseButtons) {
+				button.Selectable.enabled = false;
+			}
+		}
         #endregion
     }
 }

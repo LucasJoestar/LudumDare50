@@ -41,6 +41,21 @@ TextureImporter:
   - first:
       213: -3377670375933205956
     second: Rock02
+  - first:
+      213: 2066502976198894318
+    second: Audio_01
+  - first:
+      213: 93475730414452310
+    second: Audio_02
+  - first:
+      213: 7498853468367845273
+    second: Audio_03
+  - first:
+      213: 5100521185938203102
+    second: Audio 4
+  - first:
+      213: -2096710210845356773
+    second: Warning_Soft
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -71,7 +86,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -410,6 +425,111 @@ TextureImporter:
       bones: []
       spriteID: c32242250ba1021d0800000000000000
       internalID: -3377670375933205956
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Audio_01
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 368
+        width: 176
+        height: 272
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee26f9f0281bdac10800000000000000
+      internalID: 2066502976198894318
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Audio_02
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 496
+        width: 688
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65e397a7ea71c4100800000000000000
+      internalID: 93475730414452310
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Audio_03
+      rect:
+        serializedVersion: 2
+        x: 1232
+        y: 432
+        width: 112
+        height: 160
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 99775c4bf77411860800000000000000
+      internalID: 7498853468367845273
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Audio 4
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 16
+        width: 144
+        height: 288
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed16331bef0b8c640800000000000000
+      internalID: 5100521185938203102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warning_Soft
+      rect:
+        serializedVersion: 2
+        x: 1520
+        y: 528
+        width: 432
+        height: 224
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b1dc0ad0c2df6e2e0800000000000000
+      internalID: -2096710210845356773
       vertices: []
       indices: 
       edges: []

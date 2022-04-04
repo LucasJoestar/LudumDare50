@@ -12,17 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2eebfbc1e96c7a948a25a615271f1148, type: 3}
   m_Name: UIButtonAttributes
   m_EditorClassIdentifier: 
-  ButtonDefaultColor: {r: 0.5566038, g: 0.5566038, b: 0.5566038, a: 1}
+  ButtonDefaultColor: {r: 1, g: 1, b: 1, a: 1}
   ButtonDefaultColorDuration: 0.5
   ButtonDefaultColorEase: 2
-  ButtonSelectedColor: {r: 0.15566039, g: 1, b: 0.8450379, a: 1}
+  ButtonDefaultScaleDuration: 0.1
+  ButtonDefaultScaleEase: 2
+  ButtonSelectedColor: {r: 1, g: 1, b: 1, a: 1}
   ButtonSelectedColorDuration: 0.5
   ButtonSelectedColorEase: 3
-  ButtonScaleStartIdle: {x: 1, y: 1, z: 1}
-  ButtonScaleEndIdle: {x: 1, y: 1, z: 1}
-  ButtonScaleIdleDuration: 1
-  ButtonScaleIdleEase: 2
-  ButtonBlinkDuration: 0.5
+  ButtonScaleStartIdle: {x: 0.75, y: 0.7, z: 1}
+  ButtonScaleStartIdleDuration: 0.1
+  ButtonScaleStartIdleEase: 2
+  ButtonScaleEndIdle: {x: 0.5, y: 0.5, z: 0.5}
+  ButtonScaleIdleDuration: 1.69
+  ButtonScaleIdleEase: 7
+  ButtonBlinkDuration: 0.25
   ButtonBlinkCurve:
     serializedVersion: 2
     m_Curve:
@@ -36,8 +40,8 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 0.14647378
-      value: 1
+      time: 0.12477517
+      value: 0.6743108
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -54,8 +58,8 @@ MonoBehaviour:
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.47303686
-      value: 1
+      time: 0.4441062
+      value: 0.4348259
       inSlope: -0.014683144
       outSlope: -0.014683144
       tangentMode: 0
@@ -72,8 +76,8 @@ MonoBehaviour:
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.80801743
-      value: 1
+      time: 0.8025853
+      value: 0.7392845
       inSlope: 0.015474872
       outSlope: 0.015474872
       tangentMode: 0
