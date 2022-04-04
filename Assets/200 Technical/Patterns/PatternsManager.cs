@@ -18,6 +18,7 @@ namespace LudumDare50
         [SerializeField] private PatternInfos[] patterns = new PatternInfos[] { };
         [SerializeField] private float waitingInterval = 10.0f;
         private Queue<PatternHolder> availableHolders = new Queue<PatternHolder>();
+        private List<PatternHolder> holders = new List<PatternHolder>();
         private Sequence sequence;
         private int lastPatternIndex = -1;
         #endregion
@@ -34,12 +35,16 @@ namespace LudumDare50
             else
                 _holder = Instantiate(holderPrefab, Vector3.zero, Quaternion.identity);
 
+            holders.Add(_holder);
             return _holder;
         }
 
-        public void PushHolderToQueue(PatternHolder _holder) => availableHolders.Enqueue(_holder);
+        public void PushHolderToQueue(PatternHolder _holder)
+        {
+            holders.Remove(_holder);
+            availableHolders.Enqueue(_holder);
+        }
 
-        [Button]
         private void StartRandomPattern()
         {
             PatternHolder _holder = GetHolderFromQueue();
@@ -92,6 +97,10 @@ namespace LudumDare50
 
         public void Stop()
         {
+            for (int i = 0; i < holders.Count; i++)
+            {
+                holders[i].Stop(true);
+            }
             sequence.Kill(false);
         }
         #endregion

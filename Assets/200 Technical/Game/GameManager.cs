@@ -51,6 +51,9 @@ namespace LudumDare50 {
         [SerializeField, Enhanced, ReadOnly] private bool isInTransition = false;
         [SerializeField, Enhanced, ReadOnly] private bool isPaused = false;
 
+        [SerializeField] private AudioClip playAudioClip = null;
+        [SerializeField] private AudioClip pauseAudioClip = null;
+
         // ---------------
 
         private InputAction skipInput = null;
@@ -134,6 +137,8 @@ namespace LudumDare50 {
             if (!isInMenu)
                 return;
 
+            SoundManager.Instance.PlayClip(playAudioClip);
+
             isInMenu = false;
             isInTransition = true;
 
@@ -153,6 +158,7 @@ namespace LudumDare50 {
         }
 
         public void StartPlay() {
+            SoundManager.Instance.SwitchMusicTo(MusicType.InGame);
             UIManager.Instance.StartPlay();
             PlayerController.Instance.SetPlayable(true);
             PatternsManager.Instance.StartSequence();
@@ -171,12 +177,13 @@ namespace LudumDare50 {
                            : 1f;
 
             UIManager.Instance.PauseGame(isPaused);
+            SoundManager.Instance.PlayClip(pauseAudioClip);
         }
 
         public void ShowMenu(bool doForceFade = false) {
             isInTransition = true;
             isInMenu = true;
-
+            SoundManager.Instance.SwitchMusicTo(MusicType.Menu);
             UIManager.Instance.ShowMenu(doForceFade);
             SpawnManager.Instance.Reset();
             PatternsManager.Instance.Stop();

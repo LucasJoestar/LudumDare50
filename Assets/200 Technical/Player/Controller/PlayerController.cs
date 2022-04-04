@@ -146,7 +146,7 @@ namespace LudumDare50 {
                 }
 
                 IK.ApplyJumpIK(duration, velocity.x);
-
+                SoundManager.Instance.PlayClip(attributes.jumpingClips[Random.Range(0, attributes.jumpingClips.Length)], attributes.VolumeScale);
                 moveSequence.Join(thisTransform.DOMove(destination, duration).SetEase(attributes.MovementEase));
                 moveSequence.Join(root.DOLocalMoveY(attributes.MovementRootHeight, duration).SetEase(attributes.MovementRootCurve));
 
@@ -160,6 +160,7 @@ namespace LudumDare50 {
                 return;
             }
 
+            SoundManager.Instance.PlayClip(attributes.landingClips[Random.Range(0, attributes.landingClips.Length)], attributes.VolumeScale);
             // Landing callback.
             IK.ApplyLandingIK(attributes.MovementLandingDuration, instability);
 
@@ -198,6 +199,7 @@ namespace LudumDare50 {
         }
 
         private void OnCollect() {
+            SoundManager.Instance.PlayClip(attributes.bonusClip[Random.Range(0, attributes.bonusClip.Length)], attributes.VolumeScale);
             IngredientCount++;
             SetPlayable(true);
         }

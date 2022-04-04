@@ -23,6 +23,8 @@ namespace LudumDare50
         [SerializeField] private SpriteRenderer targetRenderer = null;
         [SerializeField] private LineRenderer lineRenderer = null;
         [SerializeField, Enhanced, Range(.1f, 2f)] private float scrollSpeed = 1.0f ;
+        [SerializeField, Enhanced, Range(.1f, 1f)] private float volumeScale = .75f ;
+
         private Pattern pattern = null;
         private Vector2 startPosition, endPosition;
         private Sequence sequence = null; 
@@ -33,6 +35,7 @@ namespace LudumDare50
         public void InitPattern(Pattern _pattern, Vector2 _start, Vector2 _end)
         {
             pattern = _pattern;
+            root.localScale *= pattern.SizeMultiplier;
             renderer.sprite = _pattern.Sprites[0];
             collider.offset = _pattern.ColliderOffset;
             collider.size = _pattern.ColliderSize;
@@ -46,7 +49,6 @@ namespace LudumDare50
         private void StartPattern(){
             root.transform.localPosition = startPosition;
             root.eulerAngles = Vector3.forward * Vector2.SignedAngle(Vector2.up, endPosition - startPosition);
-            collider.enabled = pattern.IsTriggerContinuous;
             root.gameObject.SetActive(true);
             warningRenderer.gameObject.SetActive(true);
 
@@ -55,7 +57,7 @@ namespace LudumDare50
                 endPosition = startPosition;
                 warningRenderer.transform.localPosition = startPosition + Vector2.one;
                 targetRenderer.transform.localPosition = endPosition;
-                if(pattern.PatternType == PatternType.Slap) renderer.color = Color.black;
+                if (pattern.PatternType == PatternType.Slap) renderer.color = new Color(0, 0, 0, .75f); ;
             }
             else if (pattern.IsTriggerContinuous)
                 warningRenderer.transform.localPosition = (startPosition + endPosition) / 2 + Vector2.one;
@@ -78,6 +80,9 @@ namespace LudumDare50
                 sequence.Join(root.transform.DOShakePosition(pattern.StartingDelay, .1f));
                 sequence.Join(DOVirtual.Vector3(startPosition, endPosition, pattern.StartingDelay, p => lineRenderer.SetPosition(1, p)));
             }
+            sequence.AppendCallback(() => collider.enabled = pattern.IsTriggerContinuous);
+            if (pattern.StartSounds.Length > 0)
+                sequence.AppendCallback(() => SoundManager.Instance.PlayClip(pattern.StartSounds[Random.Range(0, pattern.StartSounds.Length)], volumeScale));
             switch (pattern.PatternType)
             {
                 case PatternType.Linear:
@@ -98,8 +103,8 @@ namespace LudumDare50
                     // Insert Slap Behaviour here
                     _duration = pattern.Speed;
                     sequence.Append(renderer.DOColor(Color.white, _duration).SetEase(pattern.Acceleration));
-                    sequence.Join(root.DOScale(1.25f, _duration / 2).SetEase(Ease.OutCubic));
-                    sequence.Append(root.DOScale(1f, _duration / 2).SetEase(Ease.InExpo));
+                    sequence.Join(root.DOScale( pattern.SizeMultiplier +  .25f, _duration / 2).SetEase(Ease.OutCubic));
+                    sequence.Append(root.DOScale(pattern.SizeMultiplier, _duration / 2).SetEase(Ease.InExpo));
                     break;
                 case PatternType.Dog:
                     _duration = pattern.Speed;
@@ -114,6 +119,8 @@ namespace LudumDare50
         }
 
         private void EndPattern(){
+            if (pattern.HitSounds.Length > 0)
+                SoundManager.Instance.PlayClip(pattern.HitSounds[Random.Range(0, pattern.HitSounds.Length)], volumeScale);
             lineRenderer.enabled = false;
             lineRenderer.material.SetTextureOffset("_MainTex", Vector2.zero);
             collider.enabled = true;
@@ -127,19 +134,23 @@ namespace LudumDare50
             }
         }
 
-        public void Stop() {
-            PatternsManager.Instance.Stop();
+        public void Stop(bool _calledFromManager = false) {
+            if(!_calledFromManager) PatternsManager.Instance.Stop();
             collider.enabled = false;
-            if (pattern.IsTriggerContinuous)
+            sequence.Kill(false);
+            if (pattern.IsTriggerContinuous && !_calledFromManager)
             {
-                sequence.Kill(false);
                 EndPattern();
             }
+            else
+                Reset();
         }
 
         private void Reset(){
+
             warningRenderer.gameObject.SetActive(false);
             root.gameObject.SetActive(false);
+            root.localScale = Vector3.one;
             renderer.flipX = false;
             targetRenderer.enabled = false;
             IsActive = false;

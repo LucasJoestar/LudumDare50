@@ -340,6 +340,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6223432923370104719}
+  - component: {fileID: 1543010105293299276}
   - component: {fileID: 6223432923370104712}
   - component: {fileID: 1517935373}
   m_Layer: 5
@@ -370,6 +371,24 @@ RectTransform:
   m_AnchoredPosition: {x: -9, y: 0}
   m_SizeDelta: {x: -124, y: 0}
   m_Pivot: {x: 1, y: 0.5}
+--- !u!114 &1543010105293299276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6223432923370104718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 877eb788512e6904897eca70a462a2c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  comment: 
+  Tags:
+    Tags: []
+  lastModifiedBy: CKG_Alexis
+  lastModifiedDate: 05/04/2022 00:58:36
+  IsPersistent: 0
 --- !u!114 &6223432923370104712
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -462,6 +481,8 @@ MonoBehaviour:
   rectTransform: {fileID: 6223432923820762200}
   buttonImage: {fileID: 6223432923820762201}
   flash: {fileID: 7129109822651277595}
+  selectClip: {fileID: 8300000, guid: 3f8509393ecb5564ba3c65172d700014, type: 3}
+  clickClip: {fileID: 8300000, guid: 5aa5abfcbb325644d9dfbc76e3e13703, type: 3}
   onClick:
     m_PersistentCalls:
       m_Calls: []

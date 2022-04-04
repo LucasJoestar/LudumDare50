@@ -993,8 +993,8 @@ MonoBehaviour:
   comment: 
   Tags:
     Tags: []
-  lastModifiedBy: Lucas
-  lastModifiedDate: 04/04/2022 23:38:54
+  lastModifiedBy: CKG_Alexis
+  lastModifiedDate: 05/04/2022 00:51:33
   IsPersistent: 0
 --- !u!114 &4933287911180586123
 MonoBehaviour:
@@ -1038,6 +1038,8 @@ MonoBehaviour:
   menuBackground: {fileID: 1558587398063482592}
   creditsAnchor: {fileID: 7618241669813529786}
   scoreFlash: {fileID: 4933287911911335625}
+  selectClip: {fileID: 8300000, guid: 3f8509393ecb5564ba3c65172d700014, type: 3}
+  clickClip: {fileID: 8300000, guid: 5aa5abfcbb325644d9dfbc76e3e13703, type: 3}
 --- !u!1 &4933287911181742792
 GameObject:
   m_ObjectHideFlags: 0
@@ -3067,6 +3069,34 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4933287911579444772}
     m_Modifications:
+    - target: {fileID: 530415726, guid: f2dd9683eca0f9d4fb47111db7ab3364, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 530415726, guid: f2dd9683eca0f9d4fb47111db7ab3364, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 530415726, guid: f2dd9683eca0f9d4fb47111db7ab3364, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 4933287911180586123}
+    - target: {fileID: 530415726, guid: f2dd9683eca0f9d4fb47111db7ab3364, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 530415726, guid: f2dd9683eca0f9d4fb47111db7ab3364, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PlayClickSound
+      objectReference: {fileID: 0}
+    - target: {fileID: 530415726, guid: f2dd9683eca0f9d4fb47111db7ab3364, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: LudumDare50.UIManager, LudumDare50
+      objectReference: {fileID: 0}
+    - target: {fileID: 530415726, guid: f2dd9683eca0f9d4fb47111db7ab3364, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 4374690893467574071, guid: f2dd9683eca0f9d4fb47111db7ab3364, type: 3}
       propertyPath: m_Name
       value: Credits Button
@@ -3176,6 +3206,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1308467709460004948}
     - target: {fileID: 4374690893467574076, guid: f2dd9683eca0f9d4fb47111db7ab3364, type: 3}
+      propertyPath: onClick.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4374690893467574076, guid: f2dd9683eca0f9d4fb47111db7ab3364, type: 3}
       propertyPath: onClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 6
       objectReference: {fileID: 0}
@@ -3197,11 +3231,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4374690893467574077, guid: f2dd9683eca0f9d4fb47111db7ab3364, type: 3}
       propertyPath: lastModifiedBy
-      value: Lucas
+      value: CKG_Alexis
       objectReference: {fileID: 0}
     - target: {fileID: 4374690893467574077, guid: f2dd9683eca0f9d4fb47111db7ab3364, type: 3}
       propertyPath: lastModifiedDate
-      value: 04/04/2022 22:46:22
+      value: 05/04/2022 00:53:02
       objectReference: {fileID: 0}
     - target: {fileID: 4374690895424240225, guid: f2dd9683eca0f9d4fb47111db7ab3364, type: 3}
       propertyPath: m_text
@@ -3488,6 +3522,34 @@ PrefabInstance:
       propertyPath: m_Navigation.m_SelectOnDown
       value: 
       objectReference: {fileID: 1341342535}
+    - target: {fileID: 530415726, guid: f2dd9683eca0f9d4fb47111db7ab3364, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 530415726, guid: f2dd9683eca0f9d4fb47111db7ab3364, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 530415726, guid: f2dd9683eca0f9d4fb47111db7ab3364, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 4933287911180586123}
+    - target: {fileID: 530415726, guid: f2dd9683eca0f9d4fb47111db7ab3364, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 530415726, guid: f2dd9683eca0f9d4fb47111db7ab3364, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PlayClickSound
+      objectReference: {fileID: 0}
+    - target: {fileID: 530415726, guid: f2dd9683eca0f9d4fb47111db7ab3364, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: LudumDare50.UIManager, LudumDare50
+      objectReference: {fileID: 0}
+    - target: {fileID: 530415726, guid: f2dd9683eca0f9d4fb47111db7ab3364, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 4374690893467574071, guid: f2dd9683eca0f9d4fb47111db7ab3364, type: 3}
       propertyPath: m_Name
       value: Play Button
@@ -3575,6 +3637,18 @@ PrefabInstance:
     - target: {fileID: 4374690893467574072, guid: f2dd9683eca0f9d4fb47111db7ab3364, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4374690893467574076, guid: f2dd9683eca0f9d4fb47111db7ab3364, type: 3}
+      propertyPath: onClick.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4374690893467574077, guid: f2dd9683eca0f9d4fb47111db7ab3364, type: 3}
+      propertyPath: lastModifiedBy
+      value: CKG_Alexis
+      objectReference: {fileID: 0}
+    - target: {fileID: 4374690893467574077, guid: f2dd9683eca0f9d4fb47111db7ab3364, type: 3}
+      propertyPath: lastModifiedDate
+      value: 05/04/2022 00:50:59
       objectReference: {fileID: 0}
     - target: {fileID: 4374690895424240225, guid: f2dd9683eca0f9d4fb47111db7ab3364, type: 3}
       propertyPath: m_fontColor.b

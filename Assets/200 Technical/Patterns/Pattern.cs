@@ -17,6 +17,7 @@ namespace LudumDare50
         public Sprite[] Sprites = new Sprite[] { };
         public Vector2 ColliderOffset = Vector2.zero;
         public Vector2 ColliderSize = Vector2.one;
+        public float SizeMultiplier = 1.0f;
         [Section("Appearing")]
         public float FadeInDuration = 1.0f;
         public float StartingDelay = 2.0f;
@@ -30,6 +31,9 @@ namespace LudumDare50
         public float EndForce = 1.0f;
         public int EndVibrato = 10;
         public float FadeOutDuration = 2.0f;
+        [Section("Sounds")]
+        public AudioClip[] StartSounds = new AudioClip[] { };
+        public AudioClip[] HitSounds = new AudioClip[] { };
         #endregion
 
         #region Method

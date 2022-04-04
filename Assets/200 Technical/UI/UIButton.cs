@@ -19,7 +19,8 @@ namespace LudumDare50 {
         [SerializeField, Enhanced, Required] private RectTransform rectTransform = null;
         [SerializeField, Enhanced, Required] private Image buttonImage = null;
         [SerializeField, Enhanced, Required] private CanvasGroup flash = null;
-
+        [SerializeField, Enhanced, Required] private AudioClip selectClip = null;
+        [SerializeField, Enhanced, Required] private AudioClip clickClip = null;
         [Space(10f)]
 
         [SerializeField] private UnityEvent onClick = null;
@@ -42,6 +43,8 @@ namespace LudumDare50 {
         public void OnSelect(BaseEventData eventData) {
             if (isSubmitting)
                 return;
+
+            SoundManager.Instance.PlayClip(selectClip);
 
             // Animation.
             if (sequence.IsActive()) {
@@ -78,6 +81,8 @@ namespace LudumDare50 {
 
             isSubmitting = true;
             UIManager.Instance.EnableButtons(false);
+
+            SoundManager.Instance.PlayClip(clickClip);
 
             // Animation.
             if (sequence.IsActive()) {

@@ -612,7 +612,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8220252290836113160}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -725,3 +725,4 @@ MonoBehaviour:
   targetRenderer: {fileID: 1229735222608690453}
   lineRenderer: {fileID: 7927929223761999049}
   scrollSpeed: 1
+  volumeScale: 0.75

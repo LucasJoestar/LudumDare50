@@ -49,7 +49,6 @@ namespace LudumDare50
             mixer.SetFloat("Volume", _dB);
         }
 
-        [Button]
         public void SwitchMusicTo(MusicType _type)
         {
             if (sequence.IsActive()) sequence.Kill(true);

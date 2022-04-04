@@ -16,6 +16,7 @@ MonoBehaviour:
   - {fileID: 5619074069039827861, guid: 39bc2f3566b1e9d4ea2feed377ac10e2, type: 3}
   ColliderOffset: {x: 0, y: -0.25}
   ColliderSize: {x: 0.4, y: 0.5}
+  SizeMultiplier: 1
   FadeInDuration: 1
   StartingDelay: 2
   Speed: 15
@@ -26,3 +27,7 @@ MonoBehaviour:
   EndForce: 0.02
   EndVibrato: 25
   FadeOutDuration: 2
+  StartSounds:
+  - {fileID: 8300000, guid: 711f770ad1e330246bc12678b52529ed, type: 3}
+  HitSounds:
+  - {fileID: 8300000, guid: 7f0d196109ab00643b2b9bcf66cff26c, type: 3}
