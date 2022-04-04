@@ -8,8 +8,6 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Playables;
 
-using Range = EnhancedEditor.RangeAttribute;
-
 namespace LudumDare50 {
     public class Singleton<T> : MonoBehaviour where T : MonoBehaviour {
         #region Global Members
@@ -46,10 +44,19 @@ namespace LudumDare50 {
 
         [Space(10f)]
 
+        [SerializeField] public Camera[] cameras = null;
+
+        [Space(10f)]
+
         [SerializeField, Enhanced, ReadOnly] private bool isInMenu = false;
         [SerializeField, Enhanced, ReadOnly] private bool isInIntro = false;
         [SerializeField, Enhanced, ReadOnly] private bool isInTransition = false;
         [SerializeField, Enhanced, ReadOnly] private bool isPaused = false;
+
+        public GameSteps CurrentStep = null;
+        public GameSteps NextStep = null;
+
+        public int CurrentStepIndex = 0;
 
         // ---------------
 
@@ -84,6 +91,8 @@ namespace LudumDare50 {
         }
 
         private void Update() {
+            UpdateCameras();
+
             // Inputs.
             if (isInIntro) {
                 if (skipInput.WasPerformedThisFrame()) {
@@ -164,16 +173,20 @@ namespace LudumDare50 {
         #endregion
 
         #region Management
-        public void PauseGame() {
+        public void PauseGame(bool doForce = false) {
             isPaused = !isPaused;
             Time.timeScale = isPaused
                            ? 0f
                            : 1f;
 
-            UIManager.Instance.PauseGame(isPaused);
+            UIManager.Instance.PauseGame(isPaused, doForce);
         }
 
         public void ShowMenu(bool doForceFade = false) {
+            if (isPaused) {
+                PauseGame(true);
+            }
+
             isInTransition = true;
             isInMenu = true;
 
@@ -183,6 +196,10 @@ namespace LudumDare50 {
         }
 
         public void RestartGame() {
+            if (isPaused) {
+                PauseGame(true);
+            }
+
             isInTransition = true;
 
             UIManager.Instance.RestartGame();
@@ -198,11 +215,96 @@ namespace LudumDare50 {
         // ---------------
 
         public void ResetGame() {
+            if (cameraSequence.IsActive()) {
+                cameraSequence.Kill();
+            }
+
             PlayerController.Instance.ResetBehaviour();
             UIManager.Instance.ResetBehaviour();
             SpawnManager.Instance.Reset();
             PatternsManager.Instance.Stop();
             isInTransition = false;
+
+            CurrentStepIndex = 0;
+            UpdateStep(false);
+        }
+        #endregion
+
+        #region Gameplay
+        private Sequence cameraSequence = null;
+
+        // ---------------
+
+        public void CollectIngredient(int count) {
+            if (NextStep == CurrentStep)
+                return;
+
+            int difference = NextStep.MinIngredient - CurrentStep.MinIngredient;
+            count = Mathf.Max(0, count - CurrentStep.MinIngredient);
+
+            float percent = (count == 0)
+                          ? 0f
+                          : ((float)count / difference);
+
+            UIManager.Instance.UpdateGauge(percent);
+        }
+
+        public void GoNextStep() {
+            CurrentStepIndex++;
+            UpdateStep();
+
+            PlayerController.Instance.ScaleUp(CurrentStep.PlayerScale);
+        }
+
+        // ---------------
+
+        private void UpdateStep(bool doUpdate = true) {
+            var step = Settings.Steps[CurrentStepIndex];
+            if (step != CurrentStep) {
+                CurrentStep = step;
+                NextStep = (CurrentStepIndex == Settings.Steps.Length - 1)
+                            ? step
+                            : Settings.Steps[CurrentStepIndex + 1];
+
+                UIManager.Instance.ResetGauge();
+
+                PlayerController.Instance.HorizontalBounds = step.HorizontalBounds;
+                PlayerController.Instance.VerticalBounds = step.VerticalBounds;
+
+                // Update cameras rect.
+                if (cameraSequence.IsActive()) {
+                    cameraSequence.Kill();
+                }
+
+                if (doUpdate) {
+                    foreach (var _camera in cameras) {
+                        _camera.orthographicSize = step.CameraSize;
+                    }
+                } else {
+                    cameraSequence = DOTween.Sequence();
+
+                    foreach (var _camera in cameras) {
+                        cameraSequence.Join(_camera.DOOrthoSize(step.CameraSize, Settings.CameraSizeDuration).SetEase(Settings.CameraSizeEase));
+                    }
+
+                    cameraSequence.PrependInterval(Settings.CameraSizeDelay);
+                }
+            }
+        }
+
+        private void UpdateCameras() {
+            // Clamp cameras rect in bounds.
+            foreach (var _camera in cameras) {
+                _camera.transform.position = Vector3.Lerp(_camera.transform.position, PlayerController.Instance.transform.position, .01f);
+
+                Vector3 position = _camera.transform.position;
+
+                float width = _camera.orthographicSize * (16f / 9f);
+                float playerScale = PlayerController.Instance.transform.localScale.x;
+
+                position.x = Mathf.Clamp(position.x, (CurrentStep.HorizontalBounds.x - playerScale) + width, (CurrentStep.HorizontalBounds.y + playerScale) - width);
+                position.y = Mathf.Clamp(position.y, (CurrentStep.VerticalBounds.x - 1f) + _camera.orthographicSize, (CurrentStep.VerticalBounds.y + playerScale) - _camera.orthographicSize);
+            }
         }
         #endregion
     }

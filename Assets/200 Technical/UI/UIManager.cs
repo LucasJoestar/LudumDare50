@@ -43,6 +43,7 @@ namespace LudumDare50 {
 		[SerializeField, Enhanced, Required] private RectTransform menuBackground = null;
 		[SerializeField, Enhanced, Required] private RectTransform creditsAnchor = null;
 		[SerializeField, Enhanced, Required] private Image scoreFlash = null;
+		[SerializeField, Enhanced, Required] private Image gauge = null;
 
 		private DOTweenTMPAnimator animator = null;
         #endregion
@@ -444,7 +445,7 @@ namespace LudumDare50 {
             }
 		}
 
-		public void PauseGame(bool isPaused) {
+		public void PauseGame(bool isPaused, bool doForce) {
 			if (fadeSequence.IsActive()) {
 				fadeSequence.Complete();
 			}
@@ -453,9 +454,8 @@ namespace LudumDare50 {
 				button.Selectable.enabled = isPaused;
             }
 
-			if (isPaused) {
-				pauseButtons[0].Selectable.Select();
-			}
+			if (doForce)
+				return;
 
 			fadeSequence = DOTween.Sequence();
 
@@ -465,7 +465,14 @@ namespace LudumDare50 {
 				fadeSequence.Join(pause.DOFade(0f, attributes.PauseFadeOutDuration).SetEase(attributes.PauseFadeOutEase).SetDelay(attributes.PauseFadeOutDelay));
 			}
 
+			fadeSequence.OnComplete(OnComplete);
 			fadeSequence.SetUpdate(true);
+
+			void OnComplete() {
+				if (isPaused) {
+					pauseButtons[0].Selectable.Select();
+				}
+			}
 		}
 
         public void RestartGame() {
@@ -493,6 +500,38 @@ namespace LudumDare50 {
 				GameManager.Instance.StartPlay();
 			}
 		}
+		#endregion
+
+		#region Gameplay
+		private Sequence gaugeSequence = null;
+
+		// ---------------
+
+		public void UpdateGauge(float percent) {
+			if (gaugeSequence.IsActive()) {
+				gaugeSequence.Kill();
+			}
+
+			gaugeSequence = DOTween.Sequence(); {
+				gaugeSequence.AppendInterval(attributes.GaugeIncreaseDelay);
+				gaugeSequence.Append(gauge.DOFillAmount(0f, attributes.GaugeIncreaseDuration).SetEase(attributes.GaugeIncreaseEase));
+
+				if (percent == 1f) {
+					gaugeSequence.OnComplete(GameManager.Instance.GoNextStep);
+				}
+			}
+		}
+
+		public void ResetGauge() {
+			if (gaugeSequence.IsActive()) {
+				gaugeSequence.Kill();
+			}
+
+			gaugeSequence = DOTween.Sequence(); {
+				gaugeSequence.AppendInterval(attributes.GaugeDecreaseDelay);
+				gaugeSequence.Append(gauge.DOFillAmount(0f, attributes.GaugeDecreaseDuration).SetEase(attributes.GaugeDecreaseEase));
+			}
+		}
         #endregion
 
         #region Reset
@@ -513,6 +552,10 @@ namespace LudumDare50 {
 				fadeSequence.Kill();
 			}
 
+			if (gaugeSequence.IsActive()) {
+				gaugeSequence.Kill();
+			}
+
 			foreach (var _feedback in allFeedbacks) {
                 _feedback.Complete();
             }
@@ -526,6 +569,7 @@ namespace LudumDare50 {
 
 			scoreText.text = "000";
 			pause.alpha = 0f;
+			gauge.fillAmount = 0f;
 
 			foreach (var button in menuButtons) {
 				button.Selectable.enabled = false;

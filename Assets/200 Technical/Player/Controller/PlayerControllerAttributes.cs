@@ -37,6 +37,15 @@ namespace LudumDare50 {
         [Enhanced, EndFoldout] public AnimationCurve IdleCurve = AnimationCurve.Linear(0f, 0f, 1f, 0f);
         #endregion
 
+        #region Scale
+        [Enhanced, BeginFoldout("Scale"), Section("Scale")]
+
+        [Range(0f, 1f)] public float ScaleDelay = 0f;
+        [Enhanced, Range(0f, 10f)] public float ScaleDuration = 1f;
+
+        [Enhanced, EndFoldout] public AnimationCurve ScaleCurve = AnimationCurve.Linear(0f, 0f, 1f, 0f);
+        #endregion
+
         #region Movement
         [Enhanced, BeginFoldout("Movement"), Section("Movement")]
 

@@ -35,6 +35,8 @@ namespace LudumDare50 {
         public static int IngredienMask { get; private set; }
         public static int PlayerMask { get; private set; }
 
+        public float GetOverlapRadius => attributes.OverlapRadius * thisTransform.localScale.x;
+
         // ---------------
 
         private Transform thisTransform = null;
@@ -126,15 +128,25 @@ namespace LudumDare50 {
                 input = movementInput.normalized;
 
                 if (Mathf.Abs(input.x) > .4f) {
-                    destination.x += GameManager.Instance.Settings.Unit * attributes.MovementUnit * Mathf.Sign(input.x);
+                    destination.x += GameManager.Instance.Settings.Unit * attributes.MovementUnit * Mathf.Sign(input.x) * thisTransform.localScale.x;
                 }
 
                 if (Mathf.Abs(input.y) > .4f) {
-                    destination.y += GameManager.Instance.Settings.Unit * attributes.MovementUnit * Mathf.Sign(input.y);
+                    destination.y += GameManager.Instance.Settings.Unit * attributes.MovementUnit * Mathf.Sign(input.y) * thisTransform.localScale.x;
                 }
 
                 destination.x = Mathf.Clamp(destination.x, HorizontalBounds.x, HorizontalBounds.y);
                 destination.y = Mathf.Clamp(destination.y, VerticalBounds.x, VerticalBounds.y);
+
+                int amount = Overlap(destination);
+                for (int i = 0; i < amount; i++) {
+                    Collider2D collider = buffer[i];
+
+                    if (collider.TryGetComponent<Obstacle>(out _)) {
+                        destination = thisTransform.position;
+                        break;
+                    }
+                }
 
                 float duration = attributes.MovementDuration;
                 Vector2 velocity = destination - (Vector2)thisTransform.position;
@@ -164,7 +176,8 @@ namespace LudumDare50 {
             IK.ApplyLandingIK(attributes.MovementLandingDuration, instability);
 
             // Land without falling in pieces.
-            int amount = Physics2D.OverlapCircle(transform.position, attributes.OverlapRadius, filter, buffer);
+            int amount = Overlap(thisTransform.position);
+
             for (int i = 0; i < amount; i++) {
                 Collider2D collider = buffer[i];
                 Transform parent = collider.transform.parent;
@@ -173,6 +186,13 @@ namespace LudumDare50 {
                     _bonus.Collect(this);
                 }
             }
+        }
+
+        private int Overlap(Vector3 position) {
+            float radius = GetOverlapRadius;
+            position += (Vector3.up * radius);
+
+            return Physics2D.OverlapCircle(position, radius, filter, buffer);
         }
         #endregion
 
@@ -200,13 +220,32 @@ namespace LudumDare50 {
         private void OnCollect() {
             IngredientCount++;
             SetPlayable(true);
+
+            GameManager.Instance.CollectIngredient(IngredientCount);
         }
         #endregion
 
         #region Gameplay
         private Sequence gameOverSequence = null;
+        private Sequence scaleSequence = null;
 
         // ---------------
+
+        public void ScaleUp(float scale) {
+            if (scaleSequence.IsActive()) {
+                scaleSequence.Kill();
+            }
+
+            SetPlayable(false);
+            scaleSequence = DOTween.Sequence(); {
+                scaleSequence.Join(thisTransform.DOScale(scale, attributes.ScaleDuration).SetEase(attributes.ScaleCurve).SetDelay(attributes.ScaleDelay));
+                scaleSequence.OnComplete(OnComplete);
+            }
+
+            void OnComplete() {
+                SetPlayable(true);
+            }
+        }
 
         private void Splash() {
             float duration = attributes.SplashDuration;
@@ -284,6 +323,10 @@ namespace LudumDare50 {
 
             if (idleSequence.IsActive()) {
                 idleSequence.Complete(false);
+            }
+
+            if (scaleSequence.IsActive()) {
+                scaleSequence.Complete(false);
             }
 
             // Reset the whole behaviour.

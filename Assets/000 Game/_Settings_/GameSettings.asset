@@ -19,3 +19,19 @@ MonoBehaviour:
     m_Actions: []
     m_Bindings: []
   Unit: 1
+  IntroDelay: 1
+  Steps:
+  - MinIngredient: 0
+    PlayerScale: 0
+    CameraSize: 0
+    HorizontalBounds: {x: 0, y: 0}
+    VerticalBounds: {x: 0, y: 0}
+    BonusSpawnInterval: {x: 0, y: 0}
+    PatternSpawnInterval: {x: 0, y: 0}
+  SkipInput: Shortcuts/Skip
+  PauseInput: Shortcuts/Pause
+  RestartInput: Shortcuts/Restart
+  MenuInput: Shortcuts/Menu
+  CameraSizeDelay: 0.1
+  CameraSizeDuration: 0.5
+  CameraSizeEase: 4

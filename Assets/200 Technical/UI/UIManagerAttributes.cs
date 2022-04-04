@@ -152,6 +152,21 @@ namespace LudumDare50 {
         [Enhanced, EndFoldout] public Ease PlayFadeEase = Ease.InSine;
         #endregion
 
+        #region Gauge
+        [BeginFoldout("Gauge"), Section("Gauge")]
+
+        [Enhanced, Range(0f, 5f)] public float GaugeIncreaseDelay = 0f;
+        [Enhanced, Range(0f, 5f)] public float GaugeIncreaseDuration = 1f;
+        public Ease GaugeIncreaseEase = Ease.OutSine;
+
+        [Space(10f)]
+
+        [Enhanced, Range(0f, 5f)] public float GaugeDecreaseDelay = 0f;
+        [Enhanced, Range(0f, 5f)] public float GaugeDecreaseDuration = 1f;
+
+        [Enhanced, EndFoldout] public Ease GaugeDecreaseEase = Ease.OutSine;
+        #endregion
+
         #region Score
         [BeginFoldout("Score"), Section("Score")]
 

@@ -45,13 +45,15 @@ namespace LudumDare50 {
 
             // Animation.
             if (sequence.IsActive()) {
-                sequence.Kill(false);
+                sequence.Kill(true);
             }
 
             sequence = DOTween.Sequence(); {
                 sequence.Join(rectTransform.DOScale(attributes.ButtonScaleStartIdle, attributes.ButtonScaleStartIdleDuration).SetEase(attributes.ButtonScaleStartIdleEase));
                 sequence.OnComplete(OnComplete);
+                sequence.SetUpdate(true);
             }
+
 
             // Color.
             if (colorSequence.IsActive()) {
@@ -60,7 +62,9 @@ namespace LudumDare50 {
 
             colorSequence = DOTween.Sequence(); {
                 colorSequence.Join(buttonImage.DOColor(attributes.ButtonSelectedColor, attributes.ButtonSelectedColorDuration).SetEase(attributes.ButtonSelectedColorEase));
+                colorSequence.SetUpdate(true);
             }
+
 
             // ----- Local Method ----- \\
 
@@ -68,6 +72,8 @@ namespace LudumDare50 {
                 sequence = DOTween.Sequence(); {
                     sequence.Join(rectTransform.DOScale(attributes.ButtonScaleEndIdle, attributes.ButtonScaleIdleDuration).SetEase(attributes.ButtonScaleIdleEase));
                     sequence.SetLoops(-1, LoopType.Yoyo);
+
+                    sequence.SetUpdate(true);
                 }
             }
         }
@@ -87,6 +93,8 @@ namespace LudumDare50 {
             sequence = DOTween.Sequence(); {
                 sequence.Join(flash.DOFade(1f, attributes.ButtonBlinkDuration).SetEase(attributes.ButtonBlinkCurve));
                 sequence.OnComplete(OnComplete);
+
+                sequence.SetUpdate(true);
             }
 
             // ----- Local Method ----- \\
@@ -111,6 +119,7 @@ namespace LudumDare50 {
 
             sequence = DOTween.Sequence(); {
                 sequence.Join(rectTransform.DOScale(baseScale, attributes.ButtonDefaultScaleDuration).SetEase(attributes.ButtonDefaultScaleEase));
+                sequence.SetUpdate(true);
             }
 
             // Color.
@@ -120,6 +129,7 @@ namespace LudumDare50 {
 
             colorSequence = DOTween.Sequence(); {
                 colorSequence.Join(buttonImage.DOColor(attributes.ButtonDefaultColor, attributes.ButtonDefaultColorDuration).SetEase(attributes.ButtonDefaultColorEase));
+                colorSequence.SetUpdate(true);
             }
         }
         #endregion
