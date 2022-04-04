@@ -10,19 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 081b8cf66e571ac4280f3da50e8e2d25, type: 3}
-  m_Name: HandPattern
+  m_Name: BigHand
   m_EditorClassIdentifier: 
   Sprites:
-  - {fileID: -5149184257344873937, guid: 39bc2f3566b1e9d4ea2feed377ac10e2, type: 3}
-  ColliderOffset: {x: 0, y: 0}
-  ColliderSize: {x: 0.8, y: 1.25}
+  - {fileID: -2668444805468974377, guid: 2641f280796fb5e46a3950bdc563f95f, type: 3}
+  ColliderOffset: {x: 0, y: 0.15}
+  ColliderSize: {x: 1.2, y: 1.5}
   FadeInDuration: 1
   StartingDelay: 2
-  Speed: 10
+  Speed: 3
   Acceleration: 1
   IsTriggerContinuous: 1
   PatternType: 1
   EndDuration: 0.2
-  EndForce: 0.02
+  EndForce: 0.025
   EndVibrato: 25
-  FadeOutDuration: 2
+  FadeOutDuration: 2.5

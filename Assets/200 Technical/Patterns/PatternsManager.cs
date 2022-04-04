@@ -49,38 +49,34 @@ namespace LudumDare50
             Pattern _pattern = patterns[lastPatternIndex].GetRandomPattern();
 
             Vector2 _startPosition = Vector2.zero, _endPosition = Vector2.zero;
+            float _halfHorizontal = GameManager.Instance.renderCamera.orthographicSize * (16 / 9);
+            float _halfVertical = GameManager.Instance.renderCamera.orthographicSize;
             // From Left - Right 
-            if(Random.value >= .5f) {
+            if (Random.value >= .5f) {
                 // Horizontal
                 if (Random.value >= .5f) {
-                    _startPosition.x = PlayerController.Instance.HorizontalBounds.x + 1;
-                    _endPosition.x = PlayerController.Instance.HorizontalBounds.y - 1;
+                    _startPosition.x = GameManager.Instance.renderCamera.transform.position.x - _halfHorizontal + 1;
+                    _endPosition.x = GameManager.Instance.renderCamera.transform.position.x + _halfHorizontal - 1;
 
                 }
                 else {
-                    _startPosition.x = PlayerController.Instance.HorizontalBounds.y - 1;
-                    _endPosition.x = PlayerController.Instance.HorizontalBounds.x + 1;
+                    _startPosition.x = GameManager.Instance.renderCamera.transform.position.x + _halfHorizontal - 1;
+                    _endPosition.x = GameManager.Instance.renderCamera.transform.position.x - _halfHorizontal + 1;
                 }
 
-                _startPosition.y = Random.Range(PlayerController.Instance.VerticalBounds.x + 1, PlayerController.Instance.VerticalBounds.y - 1);
-                _endPosition.y = Random.Range(PlayerController.Instance.VerticalBounds.x + 1, PlayerController.Instance.VerticalBounds.y - 1);
             }
             else { // Top - Bottom
                 // Vertical
                 if (Random.value >= .5f)
                 {
-                    _startPosition.y = PlayerController.Instance.VerticalBounds.x + 1;
-                    _endPosition.y = PlayerController.Instance.VerticalBounds.y - 1;
-
+                    _startPosition.y = GameManager.Instance.renderCamera.transform.position.y + _halfVertical - 1;
+                    _endPosition.y = GameManager.Instance.renderCamera.transform.position.y - _halfVertical + 1;
                 }
                 else
                 {
-                    _startPosition.y = PlayerController.Instance.VerticalBounds.y - 1;
-                    _endPosition.y = PlayerController.Instance.VerticalBounds.x + 1;
+                    _startPosition.y = GameManager.Instance.renderCamera.transform.position.y - _halfVertical + 1;
+                    _endPosition.y = GameManager.Instance.renderCamera.transform.position.y + _halfVertical - 1; 
                 }
-
-                _startPosition.x = Random.Range(PlayerController.Instance.HorizontalBounds.x + 1, PlayerController.Instance.HorizontalBounds.y - 1);
-                _endPosition.x = Random.Range(PlayerController.Instance.HorizontalBounds.x + 1, PlayerController.Instance.HorizontalBounds.y - 1);
             }
 
             _holder.InitPattern(_pattern, _startPosition, _endPosition);
