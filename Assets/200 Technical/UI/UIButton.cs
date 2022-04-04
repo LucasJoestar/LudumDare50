@@ -33,6 +33,7 @@ namespace LudumDare50 {
         private Sequence colorSequence = null;
 
         private Vector3 baseScale = Vector3.one;
+        private bool isSelected = false;
 
         // ---------------
 
@@ -44,7 +45,11 @@ namespace LudumDare50 {
             if (isSubmitting)
                 return;
 
-            SoundManager.Instance.PlayClip(selectClip);
+            if (!isSelected) {
+                SoundManager.Instance.PlayClip(selectClip);
+            }
+
+            isSelected = true;
 
             // Animation.
             if (sequence.IsActive()) {
@@ -67,7 +72,6 @@ namespace LudumDare50 {
                 colorSequence.Join(buttonImage.DOColor(attributes.ButtonSelectedColor, attributes.ButtonSelectedColorDuration).SetEase(attributes.ButtonSelectedColorEase));
                 colorSequence.SetUpdate(true);
             }
-
 
             // ----- Local Method ----- \\
 
@@ -116,6 +120,8 @@ namespace LudumDare50 {
         public void OnDeselect(BaseEventData eventData) {
             if (isSubmitting)
                 return;
+
+            isSelected = false;
 
             // Animation.
             if (sequence.IsActive()) {

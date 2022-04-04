@@ -48,6 +48,11 @@ namespace LudumDare50 {
 
         [Space(10f)]
 
+        [SerializeField, Enhanced, Required] private AudioClip playAudioClip = null;
+        [SerializeField, Enhanced, Required] private AudioClip pauseAudioClip = null;
+
+        [Space(10f)]
+
         [SerializeField, Enhanced, ReadOnly] private bool isInMenu = false;
         [SerializeField, Enhanced, ReadOnly] private bool isInIntro = false;
         [SerializeField, Enhanced, ReadOnly] private bool isInTransition = false;
@@ -147,6 +152,8 @@ namespace LudumDare50 {
             isInTransition = true;
 
             UIManager.Instance.HideMenu();
+            SoundManager.Instance.PlayClip(playAudioClip);
+
             DOVirtual.DelayedCall(Settings.IntroDelay, OnIntroStart);
         }
 
@@ -179,6 +186,7 @@ namespace LudumDare50 {
                            ? 0f
                            : 1f;
 
+            SoundManager.Instance.PlayClip(pauseAudioClip);
             UIManager.Instance.PauseGame(isPaused, doForce);
         }
 
@@ -295,7 +303,10 @@ namespace LudumDare50 {
         private void UpdateCameras() {
             // Clamp cameras rect in bounds.
             foreach (var _camera in cameras) {
-                _camera.transform.position = Vector3.Lerp(_camera.transform.position, PlayerController.Instance.transform.position, .01f);
+                Vector3 target = PlayerController.Instance.transform.position;
+                target.z = _camera.transform.position.z;
+
+                _camera.transform.position = Vector3.Lerp(_camera.transform.position, target, .01f);
 
                 Vector3 position = _camera.transform.position;
 
@@ -304,6 +315,8 @@ namespace LudumDare50 {
 
                 position.x = Mathf.Clamp(position.x, (CurrentStep.HorizontalBounds.x - playerScale) + width, (CurrentStep.HorizontalBounds.y + playerScale) - width);
                 position.y = Mathf.Clamp(position.y, (CurrentStep.VerticalBounds.x - 1f) + _camera.orthographicSize, (CurrentStep.VerticalBounds.y + playerScale) - _camera.orthographicSize);
+
+                _camera.transform.position = position;
             }
         }
         #endregion

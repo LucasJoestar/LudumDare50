@@ -26,6 +26,10 @@ namespace LudumDare50 {
 
         [Enhanced, MinMax(0f, 100f)] public Vector2 BonusSpawnInterval = Vector2.one;
         [Enhanced, MinMax(0f, 100f)] public Vector2 PatternSpawnInterval = Vector2.one;
+
+        [Space(10f)]
+
+        public Pattern[] Pattern = new Pattern[] { };
     }
 
     [CreateAssetMenu(fileName = "GameSettings", menuName = "LudumDare50/GameSettings")]

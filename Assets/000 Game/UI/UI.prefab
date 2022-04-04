@@ -1083,6 +1083,7 @@ MonoBehaviour:
   menuBackground: {fileID: 1558587398063482592}
   creditsAnchor: {fileID: 7618241669813529786}
   scoreFlash: {fileID: 4933287911911335625}
+  gauge: {fileID: 4933287911670696875}
 --- !u!1 &4933287911181742792
 GameObject:
   m_ObjectHideFlags: 0

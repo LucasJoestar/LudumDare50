@@ -22,12 +22,13 @@ MonoBehaviour:
   IntroDelay: 1
   Steps:
   - MinIngredient: 0
-    PlayerScale: 0
-    CameraSize: 0
-    HorizontalBounds: {x: 0, y: 0}
-    VerticalBounds: {x: 0, y: 0}
+    PlayerScale: 1
+    CameraSize: 3
+    HorizontalBounds: {x: -5, y: 5}
+    VerticalBounds: {x: -5, y: 5}
     BonusSpawnInterval: {x: 0, y: 0}
     PatternSpawnInterval: {x: 0, y: 0}
+    Pattern: []
   SkipInput: Shortcuts/Skip
   PauseInput: Shortcuts/Pause
   RestartInput: Shortcuts/Restart
