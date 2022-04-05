@@ -216,8 +216,13 @@ namespace LudumDare50 {
         }
 
         public void GameOver() {
+            isInTransition = true;
+
+            UIManager.Instance.OnGameOver();
+            SpawnManager.Instance.Reset();
+            PatternsManager.Instance.Stop();
             // Show game over screen.
-            ShowMenu();
+            //ShowMenu();
         }
 
         // ---------------

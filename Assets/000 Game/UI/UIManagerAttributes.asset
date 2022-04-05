@@ -140,6 +140,18 @@ MonoBehaviour:
   PlayFadeDelay: 0
   PlayFadeDuration: 0.25
   PlayFadeEase: 3
+  GameOverFadeInDelay: 0
+  GameOverFadeInDuration: 0.25
+  GameOverFadeInEase: 3
+  GameOverFadeOutDelay: 0
+  GameOverFadeOutDuration: 0.12
+  GameOverFadeOutEase: 2
+  GaugeIncreaseDelay: 0
+  GaugeIncreaseDuration: 1
+  GaugeIncreaseEase: 3
+  GaugeDecreaseDelay: 0
+  GaugeDecreaseDuration: 1
+  GaugeDecreaseEase: 3
   ScoreIncreaseDuration: 0.01
   ScoreIncreaseInterval: 0.02
   ScoreIncreaseMaxAmount: 10

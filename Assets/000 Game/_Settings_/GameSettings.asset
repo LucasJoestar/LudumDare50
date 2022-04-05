@@ -26,9 +26,27 @@ MonoBehaviour:
     CameraSize: 3
     HorizontalBounds: {x: -5, y: 5}
     VerticalBounds: {x: -5, y: 5}
-    BonusSpawnInterval: {x: 0, y: 0}
-    PatternSpawnInterval: {x: 0, y: 0}
-    Pattern: []
+    BonusSpawnInterval: {x: 5, y: 8}
+    PatternSpawnInterval: {x: 0, y: 10}
+    Pattern:
+    - {fileID: 11400000, guid: 4f8f9d1b5b124224da62361b62b1de2e, type: 2}
+    - {fileID: 11400000, guid: 2bc7fd2404344994788b2413876dc7cf, type: 2}
+    - {fileID: 11400000, guid: bf18c84f972f47942b24ee341f8178a3, type: 2}
+  - MinIngredient: 5
+    PlayerScale: 1.15
+    CameraSize: 5
+    HorizontalBounds: {x: -10, y: 10}
+    VerticalBounds: {x: -10, y: 10}
+    BonusSpawnInterval: {x: 5, y: 10}
+    PatternSpawnInterval: {x: 2, y: 6}
+    Pattern:
+    - {fileID: 11400000, guid: 4f8f9d1b5b124224da62361b62b1de2e, type: 2}
+    - {fileID: 11400000, guid: 2bc7fd2404344994788b2413876dc7cf, type: 2}
+    - {fileID: 11400000, guid: bf18c84f972f47942b24ee341f8178a3, type: 2}
+    - {fileID: 11400000, guid: 69c0d0d0a64dc4f4d86889553041d7b4, type: 2}
+    - {fileID: 11400000, guid: c13c287b1b7f4324fa7ac7a191b55c93, type: 2}
+    - {fileID: 11400000, guid: e0ba41c22d81b234b86e906c8b090229, type: 2}
+    - {fileID: 11400000, guid: 0a170eda7f8629549b14f8905801c40c, type: 2}
   SkipInput: Shortcuts/Skip
   PauseInput: Shortcuts/Pause
   RestartInput: Shortcuts/Restart

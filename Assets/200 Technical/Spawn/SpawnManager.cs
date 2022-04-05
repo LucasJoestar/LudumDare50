@@ -15,7 +15,7 @@ namespace LudumDare50
         #region Global Members
         [Section("SpawnManager")]
 
-        [SerializeField, Enhanced, Range(0f, 60f)] private float spawnInterval = 10f;
+        // [SerializeField, Enhanced, Range(0f, 60f)] private float spawnInterval = 10f;
         [SerializeField] private Bonus[] bonuses = new Bonus[] { };
         [SerializeField] private bool useEarlyRespawn = false;
         private Sequence sequence = null;
@@ -27,7 +27,7 @@ namespace LudumDare50
         {
             sequence = DOTween.Sequence();
             {
-                sequence.AppendInterval(spawnInterval);
+                sequence.AppendInterval(Random.Range(GameManager.Instance.CurrentStep.BonusSpawnInterval.x, GameManager.Instance.CurrentStep.BonusSpawnInterval.y));
                 sequence.AppendCallback(ApplySpawn);
             }
         }

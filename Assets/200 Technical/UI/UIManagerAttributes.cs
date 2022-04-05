@@ -152,6 +152,20 @@ namespace LudumDare50 {
         [Enhanced, EndFoldout] public Ease PlayFadeEase = Ease.InSine;
         #endregion
 
+        #region GameOver
+        [BeginFoldout("Game Over"), Section("Game Over")]
+
+        [Enhanced, Range(0f, 5f)] public float GameOverFadeInDelay = .0f;
+        [Enhanced, Range(0f, 5f)] public float GameOverFadeInDuration = .1f;
+        public Ease GameOverFadeInEase = Ease.OutSine;
+
+        [Space(10f)]
+
+        [Enhanced, Range(0f, 1f)] public float GameOverFadeOutDelay = 0f;
+        [Enhanced, Range(0f, 5f)] public float GameOverFadeOutDuration = .1f;
+        [Enhanced, EndFoldout] public Ease GameOverFadeOutEase = Ease.InSine;
+        #endregion
+
         #region Gauge
         [BeginFoldout("Gauge"), Section("Gauge")]
 
