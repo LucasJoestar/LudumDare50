@@ -45,6 +45,11 @@ namespace LudumDare50 {
 		[SerializeField, Enhanced, Required] private Image scoreFlash = null;
 		[SerializeField, Enhanced, Required] private Image gauge = null;
 
+		[Space(10f)]
+		[SerializeField, Enhanced, Required] private CanvasGroup gameOver = null;
+		[SerializeField, Enhanced, Required] private UIButton[] gameOverButton = null;
+		[SerializeField, Enhanced, Required] private TMPro.TMP_Text gameOverScoreText = null; 
+
 		private DOTweenTMPAnimator animator = null;
         #endregion
 
@@ -321,6 +326,7 @@ namespace LudumDare50 {
                 title.alpha = 0f;
 				ingame.alpha = 0f;
 				pause.alpha = 0;
+				gameOver.alpha = 0f;
 
 				int highscore = PlayerPrefs.GetInt(GameManager.HIGHSCORE_KEY, 0);
 				highscoreText.text = highscore.ToString("### ### 000").Trim();
@@ -501,6 +507,52 @@ namespace LudumDare50 {
 
 				GameManager.Instance.ResetGame();
 				GameManager.Instance.StartPlay();
+			}
+		}
+
+		public void OnGameOver(){
+
+			if (fadeSequence.IsActive()){
+				fadeSequence.Complete();
+            }
+			fadeSequence = DOTween.Sequence();
+
+			fadeSequence.Join(fadeToBlack.DOFade(1f, attributes.CreditsFadeOutDuration).SetEase(attributes.GameOverFadeOutEase).SetDelay(attributes.GameOverFadeOutDelay));
+			fadeSequence.AppendInterval(attributes.GameOverFadeOutDelay);
+
+			fadeSequence.AppendCallback(OnFaded);
+
+			fadeSequence.OnComplete(OnComplete);
+
+			// ----- Local Methods ----- \\
+
+			void OnFaded()
+			{
+				menu.alpha = 0f;
+				title.alpha = 0f;
+				ingame.alpha = 0f;
+				pause.alpha = 0;
+				gameOver.alpha = 1f;
+
+				gameOverScoreText.text = currentScore.ToString("### ### 000").Trim();
+				foreach (var button in gameOverButton)
+				{
+					button.Selectable.enabled = true;
+				}
+
+				gameOverButton[0].Selectable.Select();
+			}
+			void OnComplete()
+			{
+				if (sequence.IsActive())
+				{
+					sequence.Kill(true);
+				}
+
+				sequence = DOTween.Sequence();
+
+				sequence.Join(fadeToBlack.DOFade(0f, attributes.GameOverFadeInDuration).SetEase(attributes.GameOverFadeInEase));
+
 			}
 		}
 		#endregion

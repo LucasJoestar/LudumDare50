@@ -149,6 +149,7 @@ namespace LudumDare50
         private void Reset(){
 
             warningRenderer.gameObject.SetActive(false);
+            lineRenderer.enabled = false;
             root.gameObject.SetActive(false);
             root.localScale = Vector3.one;
             renderer.flipX = false;

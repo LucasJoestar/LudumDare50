@@ -15,8 +15,8 @@ namespace LudumDare50
         #region Global Members
         [Section("PatternsManager")]
         [SerializeField] private PatternHolder holderPrefab = null;
-        [SerializeField] private PatternInfos[] patterns = new PatternInfos[] { };
-        [SerializeField] private float waitingInterval = 10.0f;
+        //[SerializeField] private PatternInfos[] patterns = new PatternInfos[] { };
+        // [SerializeField] private float waitingInterval = 10.0f;
         private Queue<PatternHolder> availableHolders = new Queue<PatternHolder>();
         private List<PatternHolder> holders = new List<PatternHolder>();
         private Sequence sequence;
@@ -48,10 +48,12 @@ namespace LudumDare50
         private void StartRandomPattern()
         {
             PatternHolder _holder = GetHolderFromQueue();
-            lastPatternIndex++;
-            if (lastPatternIndex >= patterns.Length || patterns[lastPatternIndex].MinimumIngredient > PlayerController.Instance.IngredientCount) 
-                lastPatternIndex = 0;
-            Pattern _pattern = patterns[lastPatternIndex].GetRandomPattern();
+
+            int _randomIndex = Random.Range(0, GameManager.Instance.CurrentStep.Pattern.Length);
+            if (_randomIndex == lastPatternIndex && _randomIndex + 1 < GameManager.Instance.CurrentStep.Pattern.Length - 1)
+                _randomIndex++;
+            Pattern _pattern = GameManager.Instance.CurrentStep.Pattern[_randomIndex];
+            lastPatternIndex = _randomIndex;
 
             Vector2 _startPosition = Vector2.zero, _endPosition = Vector2.zero;
             float _halfHorizontal = GameManager.Instance.renderCamera.orthographicSize * (16 / 9);
@@ -91,7 +93,7 @@ namespace LudumDare50
         public void StartSequence()
         {
             sequence = DOTween.Sequence();
-            sequence.AppendInterval(waitingInterval);
+            sequence.AppendInterval(Random.Range(GameManager.Instance.CurrentStep.PatternSpawnInterval.x, GameManager.Instance.CurrentStep.PatternSpawnInterval.y));
             sequence.AppendCallback(StartRandomPattern);               
         }
 
