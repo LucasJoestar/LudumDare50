@@ -36,8 +36,10 @@ namespace LudumDare50
                 _source = Instantiate(sourcePrefab, Vector3.zero, Quaternion.identity);
             _source.PlayOneShot(_clip, _volumeScale);
             Sequence _s = DOTween.Sequence();
-            _s.AppendInterval(_clip.length);
-            _s.AppendCallback(() => sources.Enqueue(_source));
+            {
+                _s.AppendInterval(_clip.length).SetUpdate(true);
+            }
+            _s.onComplete += () => sources.Enqueue(_source);
         }
 
         public void SetAttennuationValue(float _value)
