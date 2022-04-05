@@ -19,7 +19,7 @@ MonoBehaviour:
     m_Actions: []
     m_Bindings: []
   Unit: 1
-  IntroDelay: 1
+  IntroDelay: 1.2
   Steps:
   - MinIngredient: 0
     PlayerScale: 1

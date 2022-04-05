@@ -16,7 +16,7 @@ TextureImporter:
     second: Burger_SpriteSheet3_9
   - first:
       213: 6969023522183541415
-    second: Cine_BurgerEyes02
+    second: Cine_BurgerEyes03
   - first:
       213: -7329972627773188783
     second: Cine_MouthBurger
@@ -35,6 +35,9 @@ TextureImporter:
   - first:
       213: 7317385453880376288
     second: Cine_Fairy_Arm02
+  - first:
+      213: 8102485349970242108
+    second: Cine BurgerEyes02
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -161,9 +164,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1184
-        y: 1571
+        y: 1712
         width: 288
-        height: 253
+        height: 112
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -220,7 +223,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cine_BurgerEyes02
+      name: Cine_BurgerEyes03
       rect:
         serializedVersion: 2
         x: 1152
@@ -362,6 +365,27 @@ TextureImporter:
       bones: []
       spriteID: 0eb76271d439c8560800000000000000
       internalID: 7317385453880376288
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cine BurgerEyes02
+      rect:
+        serializedVersion: 2
+        x: 1184
+        y: 1568
+        width: 288
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3a68ca3f7fc17070800000000000000
+      internalID: 8102485349970242108
       vertices: []
       indices: 
       edges: []

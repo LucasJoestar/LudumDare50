@@ -364,9 +364,12 @@ namespace LudumDare50 {
             // Fade.
             Sequence _fadeOut = DOTween.Sequence(); {
                 _fadeOut.AppendInterval(attributes.MenuFadeOutDelay);
-                _fadeOut.Append(menu.DOFade(0f, attributes.MenuFadeOutDuration).SetEase(attributes.MenuFadeOutEase));
+                _fadeOut.Append(fadeToBlack.DOFade(1f, attributes.MenuFadeOutDuration).SetEase(attributes.MenuFadeOutEase));
+				_fadeOut.AppendInterval(.2f);
+                _fadeOut.Append(fadeToBlack.DOFade(0f, 0f));
+				_fadeOut.Append(menu.DOFade(0f, 0f));
 
-                sequence.Append(_fadeOut);
+				sequence.Append(_fadeOut);
             }
 
             // Title.

@@ -19,8 +19,8 @@ MonoBehaviour:
   MenuFadeOutBlackDuration: 1
   MenuFadeOutBlackEase: 2
   MenuFadeOutDelay: 0
-  MenuFadeOutDuration: 0.5
-  MenuFadeOutEase: 2
+  MenuFadeOutDuration: 1.2
+  MenuFadeOutEase: 3
   MenuScrollDuration: 1.96
   MenuScroll: {x: 181.5, y: 498.5}
   MenuscrollEase: 1
@@ -140,6 +140,12 @@ MonoBehaviour:
   PlayFadeDelay: 0
   PlayFadeDuration: 0.25
   PlayFadeEase: 3
+  GaugeIncreaseDelay: 0
+  GaugeIncreaseDuration: 1
+  GaugeIncreaseEase: 3
+  GaugeDecreaseDelay: 0
+  GaugeDecreaseDuration: 1
+  GaugeDecreaseEase: 3
   ScoreIncreaseDuration: 0.01
   ScoreIncreaseInterval: 0.02
   ScoreIncreaseMaxAmount: 10
