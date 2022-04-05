@@ -33,10 +33,7 @@ namespace LudumDare50
             if (sources.Count > 0)
                 _source = sources.Dequeue();
             else
-            {
                 _source = Instantiate(sourcePrefab, Vector3.zero, Quaternion.identity);
-                _source.outputAudioMixerGroup = mixer.outputAudioMixerGroup;
-            }
             _source.PlayOneShot(_clip, _volumeScale);
             Sequence _s = DOTween.Sequence();
             _s.AppendInterval(_clip.length);
@@ -45,8 +42,13 @@ namespace LudumDare50
 
         public void SetAttennuationValue(float _value)
         {
+            Debug.Log("Call Set Attenuation");
+            if (_value == 0)
+                mixer.SetFloat("Volume", -80);
+            else { 
             float _dB = Mathf.Lerp(-30f, 0f, _value);
             mixer.SetFloat("Volume", _dB);
+            }
         }
 
         public void SwitchMusicTo(MusicType _type)
