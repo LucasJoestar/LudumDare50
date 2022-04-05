@@ -173,6 +173,7 @@ namespace LudumDare50 {
             PlayerController.Instance.SetPlayable(true);
             PatternsManager.Instance.StartSequence();
             SpawnManager.Instance.StartSpawnSequence();
+            SoundManager.Instance.SwitchMusicTo(MusicType.InGame);
 
             isInIntro = false;
             isInTransition = false;
@@ -197,7 +198,7 @@ namespace LudumDare50 {
 
             isInTransition = true;
             isInMenu = true;
-
+            SoundManager.Instance.SwitchMusicTo(MusicType.Menu);
             UIManager.Instance.ShowMenu(doForceFade);
             SpawnManager.Instance.Reset();
             PatternsManager.Instance.Stop();
