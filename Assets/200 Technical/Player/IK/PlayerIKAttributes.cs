@@ -2,9 +2,9 @@
 //
 // ============================================================================ //
 
+using DG.Tweening;
 using EnhancedEditor;
 using UnityEngine;
-
 using Range = EnhancedEditor.RangeAttribute;
 
 namespace LudumDare50
@@ -32,7 +32,8 @@ namespace LudumDare50
         [Section("Get Ingredient")]
         public AnimationCurve HorizontalIngredientCurve = AnimationCurve.Linear(0,0,1,1);
 
-        
+        [Section("Splash")]
+        public Ease SplashEase = Ease.InOutBack;
         #endregion
     }
 }

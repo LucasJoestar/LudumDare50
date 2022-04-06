@@ -265,7 +265,7 @@ namespace LudumDare50 {
 
         public void GoNextStep() {
             CurrentStepIndex++;
-            UpdateStep();
+            UpdateStep(false);
 
             PlayerController.Instance.ScaleUp(CurrentStep.PlayerScale);
         }
@@ -312,16 +312,13 @@ namespace LudumDare50 {
                 Vector3 target = PlayerController.Instance.transform.position;
                 target.z = _camera.transform.position.z;
 
-                _camera.transform.position = Vector3.Lerp(_camera.transform.position, target, .01f);
+                Vector3 position =  Vector3.Lerp(_camera.transform.position, target, .01f);
 
-                Vector3 position = _camera.transform.position;
-
+                // _camera.transform.position;
                 float width = _camera.orthographicSize * (16f / 9f);
-                float playerScale = PlayerController.Instance.transform.localScale.x;
-
+                float playerScale = CurrentStep.PlayerScale;
                 position.x = Mathf.Clamp(position.x, (CurrentStep.HorizontalBounds.x - playerScale) + width, (CurrentStep.HorizontalBounds.y + playerScale) - width);
                 position.y = Mathf.Clamp(position.y, (CurrentStep.VerticalBounds.x - 1f) + _camera.orthographicSize, (CurrentStep.VerticalBounds.y + playerScale) - _camera.orthographicSize);
-
                 _camera.transform.position = position;
             }
         }

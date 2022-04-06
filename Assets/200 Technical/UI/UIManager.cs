@@ -569,7 +569,7 @@ namespace LudumDare50 {
 
 			gaugeSequence = DOTween.Sequence(); {
 				gaugeSequence.AppendInterval(attributes.GaugeIncreaseDelay);
-				gaugeSequence.Append(gauge.DOFillAmount(0f, attributes.GaugeIncreaseDuration).SetEase(attributes.GaugeIncreaseEase));
+				gaugeSequence.Append(gauge.DOFillAmount(percent, attributes.GaugeIncreaseDuration).SetEase(attributes.GaugeIncreaseEase));
 
 				if (percent == 1f) {
 					gaugeSequence.OnComplete(GameManager.Instance.GoNextStep);

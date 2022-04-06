@@ -220,7 +220,7 @@ namespace LudumDare50 {
             verticalSequence = DOTween.Sequence();
             for (int i = 0; i < ingredients.Count; i++)
             {
-                verticalSequence.Join(ingredients[i].transform.DOLocalMoveY(0, _splashDuration));
+                verticalSequence.Join(ingredients[i].transform.DOLocalMoveY(0, _splashDuration).SetEase(attributes.SplashEase));
             }
         }
         #endregion
