@@ -15,7 +15,7 @@ MonoBehaviour:
   LayerMask:
     serializedVersion: 2
     m_Bits: 129
-  OverlapRadius: 0.2
+  OverlapRadius: 0.5
   MoveInput: Player/Move
   IdleDelay: 1.5
   IdleDuration: 5
@@ -53,8 +53,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  ScaleDelay: 0
-  ScaleDuration: 1
+  ScaleDelay: 0.8
+  ScaleDuration: 0.42
   ScaleCurve:
     serializedVersion: 2
     m_Curve:
@@ -69,12 +69,12 @@ MonoBehaviour:
       outWeight: 0
     - serializedVersion: 3
       time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
+      value: 1
+      inSlope: -4.2410703
+      outSlope: -4.2410703
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0
+      inWeight: 0.035508573
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2

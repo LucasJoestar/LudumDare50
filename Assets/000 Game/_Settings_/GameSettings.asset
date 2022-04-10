@@ -33,7 +33,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 2bc7fd2404344994788b2413876dc7cf, type: 2}
     - {fileID: 11400000, guid: bf18c84f972f47942b24ee341f8178a3, type: 2}
   - MinIngredient: 5
-    PlayerScale: 1.15
+    PlayerScale: 1.25
     CameraSize: 4
     HorizontalBounds: {x: -7, y: 9}
     VerticalBounds: {x: -4, y: 6}
@@ -45,7 +45,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 2bc7fd2404344994788b2413876dc7cf, type: 2}
     - {fileID: 11400000, guid: bf18c84f972f47942b24ee341f8178a3, type: 2}
   - MinIngredient: 10
-    PlayerScale: 1.45
+    PlayerScale: 1.55
     CameraSize: 5
     HorizontalBounds: {x: -7, y: 10}
     VerticalBounds: {x: -4, y: 7}
@@ -59,7 +59,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 69c0d0d0a64dc4f4d86889553041d7b4, type: 2}
     - {fileID: 11400000, guid: c13c287b1b7f4324fa7ac7a191b55c93, type: 2}
   - MinIngredient: 15
-    PlayerScale: 1.55
+    PlayerScale: 2
     CameraSize: 6
     HorizontalBounds: {x: -14, y: 14}
     VerticalBounds: {x: -4, y: 16}

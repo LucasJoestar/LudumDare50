@@ -190,7 +190,7 @@ namespace LudumDare50 {
         }
 
         private int Overlap(Vector3 position) {
-            float radius = GetOverlapRadius;
+            float radius = GetOverlapRadius * thisTransform.localScale.x;
             position += (Vector3.up * radius);
 
             return Physics2D.OverlapCircle(position, radius, filter, buffer);
